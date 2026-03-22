@@ -1,0 +1,20 @@
+{
+  "lastChangelogVersion": "0.60.0",
+  "defaultProvider": "google",
+  "defaultModel": "gemini-3-flash-preview",
+  "defaultThinkingLevel": "high",
+  "enabledModels": [
+    "openai-codex/gpt-5.4",
+    "openai-codex/gpt-5.3-codex-spark",
+    "openai-codex/gpt-5.3-codex",
+    "google/gemini-3-flash-preview",
+    "google/gemini-3.1-flash-lite-preview",
+    "github-copilot/gpt-5-mini",
+    "github-copilot/gpt-5.3-codex",
+    "github-copilot/gpt-5.4",
+    "github-copilot/claude-opus-4.6",
+    "github-copilot/claude-sonnet-4.6",
+    "anthropic/claude-opus-4-6",
+    "anthropic/claude-sonnet-4-6"
+  ]
+}

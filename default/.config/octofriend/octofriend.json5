@@ -1,0 +1,41 @@
+{
+  yourName: 'hansol',
+  models: [
+    {
+      nickname: 'GLM-4.7 (Synthetic)',
+      baseUrl: 'https://api.synthetic.new/v1',
+      model: 'hf:zai-org/GLM-4.7',
+      context: 131072,
+    },
+    {
+      nickname: 'Kimi K2 0905 (Synthetic)',
+      baseUrl: 'https://api.synthetic.new/v1',
+      model: 'hf:moonshotai/Kimi-K2-Thinking',
+      context: 131072,
+    },
+    {
+      nickname: 'MiniMax M2.1 (Synthetic)',
+      baseUrl: 'https://api.synthetic.new/v1',
+      model: 'hf:MiniMaxAI/MiniMax-M2.1',
+      context: 98304,
+    },
+    {
+      nickname: 'GPT-OSS-120b (Synthetic)',
+      baseUrl: 'https://api.synthetic.new/v1',
+      model: 'hf:openai/gpt-oss-120b',
+      context: 65536,
+    },
+  ],
+  diffApply: {
+    baseUrl: 'https://api.synthetic.new/v1',
+    model: 'hf:syntheticlab/diff-apply',
+  },
+  fixJson: {
+    baseUrl: 'https://api.synthetic.new/v1',
+    model: 'hf:syntheticlab/fix-json',
+  },
+  defaultApiKeyOverrides: {},
+  vimEmulation: {
+    enabled: true,
+  },
+}
