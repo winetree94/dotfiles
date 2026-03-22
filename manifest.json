@@ -28,6 +28,11 @@
       "mode": "normal"
     },
     {
+      "kind": "directory",
+      "localPath": "~/.claude/skills",
+      "mode": "normal"
+    },
+    {
       "kind": "file",
       "localPath": "~/.codex/AGENTS.md",
       "mode": "normal"
