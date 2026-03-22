@@ -1,0 +1,174 @@
+{
+  "version": 6,
+  "age": {
+    "identityFile": "$XDG_CONFIG_HOME/devsync/age/keys.txt",
+    "recipients": [
+      "age147lw095r5j3qmyzs2kf3r6vn87nllrkd9jt6x8e5fm2v8u75j5ssr5q47q"
+    ]
+  },
+  "entries": [
+    {
+      "kind": "directory",
+      "localPath": "~/.claude/agents",
+      "mode": "normal"
+    },
+    {
+      "kind": "file",
+      "localPath": "~/.claude/CLAUDE.md",
+      "mode": "normal"
+    },
+    {
+      "kind": "directory",
+      "localPath": "~/.claude/commands",
+      "mode": "normal"
+    },
+    {
+      "kind": "file",
+      "localPath": "~/.claude/settings.json",
+      "mode": "normal"
+    },
+    {
+      "kind": "file",
+      "localPath": "~/.codex/AGENTS.md",
+      "mode": "normal"
+    },
+    {
+      "kind": "directory",
+      "localPath": "~/.codex/skills",
+      "mode": "normal"
+    },
+    {
+      "kind": "directory",
+      "localPath": "~/.codex/skills/.system",
+      "mode": "ignore"
+    },
+    {
+      "kind": "directory",
+      "localPath": "~/.config/alacritty",
+      "mode": "normal"
+    },
+    {
+      "kind": "directory",
+      "localPath": "~/.config/crush",
+      "mode": "normal"
+    },
+    {
+      "kind": "directory",
+      "localPath": "~/.config/ghostty",
+      "mode": "normal"
+    },
+    {
+      "kind": "directory",
+      "localPath": "~/.config/kitty",
+      "mode": "normal"
+    },
+    {
+      "kind": "directory",
+      "localPath": "~/.config/nvim",
+      "mode": "normal"
+    },
+    {
+      "kind": "directory",
+      "localPath": "~/.config/octofriend",
+      "mode": "normal"
+    },
+    {
+      "kind": "directory",
+      "localPath": "~/.config/opencode",
+      "mode": "normal"
+    },
+    {
+      "kind": "file",
+      "localPath": "~/.config/opencode/bun.lock",
+      "mode": "ignore"
+    },
+    {
+      "kind": "directory",
+      "localPath": "~/.config/opencode/node_modules",
+      "mode": "ignore"
+    },
+    {
+      "kind": "file",
+      "localPath": "~/.config/opencode/package.json",
+      "mode": "ignore"
+    },
+    {
+      "kind": "directory",
+      "localPath": "~/.config/pi",
+      "mode": "normal"
+    },
+    {
+      "kind": "file",
+      "localPath": "~/.config/pi/agent/auth.json",
+      "mode": "ignore"
+    },
+    {
+      "kind": "directory",
+      "localPath": "~/.config/pi/agent/sessions",
+      "mode": "ignore"
+    },
+    {
+      "kind": "directory",
+      "localPath": "~/.config/tmux",
+      "mode": "normal"
+    },
+    {
+      "kind": "directory",
+      "localPath": "~/.config/zed",
+      "mode": "normal"
+    },
+    {
+      "kind": "directory",
+      "localPath": "~/.config/zellij",
+      "mode": "normal"
+    },
+    {
+      "kind": "directory",
+      "localPath": "~/.config/zsh"
+    },
+    {
+      "kind": "file",
+      "localPath": "~/.config/zsh/secrets.zsh",
+      "mode": "secret",
+      "machines": [
+        "default",
+        "vivident"
+      ]
+    },
+    {
+      "kind": "file",
+      "localPath": "~/.config/zsh/zsh_plugins.zsh",
+      "mode": "ignore"
+    },
+    {
+      "kind": "file",
+      "localPath": "~/.ideavimrc",
+      "mode": "normal"
+    },
+    {
+      "kind": "file",
+      "localPath": "~/.kube/k3s.yaml",
+      "mode": "secret"
+    },
+    {
+      "kind": "file",
+      "localPath": "~/.ssh/config",
+      "mode": "normal"
+    },
+    {
+      "kind": "file",
+      "localPath": "~/.ssh/winetree94_id_rsa",
+      "mode": "secret"
+    },
+    {
+      "kind": "file",
+      "localPath": "~/.ssh/winetree94_id_rsa.pub",
+      "mode": "secret"
+    },
+    {
+      "kind": "file",
+      "localPath": "~/.zshrc",
+      "mode": "normal"
+    }
+  ]
+}
