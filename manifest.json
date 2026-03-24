@@ -147,6 +147,11 @@
     },
     {
       "kind": "file",
+      "localPath": "~/.gitconfig",
+      "mode": "normal"
+    },
+    {
+      "kind": "file",
       "localPath": "~/.ideavimrc",
       "mode": "normal"
     },
