@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.60.0",
+  "lastChangelogVersion": "0.61.1",
   "defaultProvider": "google",
   "defaultModel": "gemini-3-flash-preview",
   "defaultThinkingLevel": "high",
