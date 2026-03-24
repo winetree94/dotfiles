@@ -188,7 +188,7 @@
         "default": "~/.config/zsh/secrets.zsh"
       },
       "mode": "secret",
-      "machines": ["default", "vivident"]
+      "profiles": ["default", "vivident"]
     },
     {
       "kind": "file",
