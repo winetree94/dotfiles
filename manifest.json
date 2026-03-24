@@ -94,7 +94,8 @@
     {
       "kind": "directory",
       "localPath": {
-        "default": "~/.config/nvim"
+        "default": "~/.config/nvim",
+        "win": "%LOCALAPPDATA%/nvim"
       },
       "mode": "normal"
     },
