@@ -1,5 +1,5 @@
 {
-  "version": 6,
+  "version": 7,
   "age": {
     "identityFile": "$XDG_CONFIG_HOME/devsync/age/keys.txt",
     "recipients": [
@@ -12,84 +12,108 @@
       "localPath": {
         "default": "~/.claude/agents"
       },
-      "mode": "normal"
+      "mode": {
+        "default": "normal"
+      }
     },
     {
       "kind": "file",
       "localPath": {
         "default": "~/.claude/CLAUDE.md"
       },
-      "mode": "normal"
+      "mode": {
+        "default": "normal"
+      }
     },
     {
       "kind": "directory",
       "localPath": {
         "default": "~/.claude/commands"
       },
-      "mode": "normal"
+      "mode": {
+        "default": "normal"
+      }
     },
     {
       "kind": "file",
       "localPath": {
         "default": "~/.claude/settings.json"
       },
-      "mode": "normal"
+      "mode": {
+        "default": "normal"
+      }
     },
     {
       "kind": "directory",
       "localPath": {
         "default": "~/.claude/skills"
       },
-      "mode": "normal"
+      "mode": {
+        "default": "normal"
+      }
     },
     {
       "kind": "file",
       "localPath": {
         "default": "~/.codex/AGENTS.md"
       },
-      "mode": "normal"
+      "mode": {
+        "default": "normal"
+      }
     },
     {
       "kind": "directory",
       "localPath": {
         "default": "~/.codex/skills"
       },
-      "mode": "normal"
+      "mode": {
+        "default": "normal"
+      }
     },
     {
       "kind": "directory",
       "localPath": {
         "default": "~/.codex/skills/.system"
       },
-      "mode": "ignore"
+      "mode": {
+        "default": "ignore"
+      }
     },
     {
       "kind": "directory",
       "localPath": {
         "default": "~/.config/alacritty"
       },
-      "mode": "normal"
+      "mode": {
+        "default": "normal"
+      }
     },
     {
       "kind": "directory",
       "localPath": {
         "default": "~/.config/crush"
       },
-      "mode": "normal"
+      "mode": {
+        "default": "normal"
+      }
     },
     {
       "kind": "directory",
       "localPath": {
         "default": "~/.config/ghostty"
       },
-      "mode": "normal"
+      "mode": {
+        "default": "normal"
+      }
     },
     {
       "kind": "directory",
       "localPath": {
         "default": "~/.config/kitty"
       },
-      "mode": "normal"
+      "mode": {
+        "default": "normal"
+      }
     },
     {
       "kind": "directory",
@@ -97,84 +121,108 @@
         "default": "~/.config/nvim",
         "win": "%LOCALAPPDATA%/nvim"
       },
-      "mode": "normal"
+      "mode": {
+        "default": "normal"
+      }
     },
     {
       "kind": "directory",
       "localPath": {
         "default": "~/.config/octofriend"
       },
-      "mode": "normal"
+      "mode": {
+        "default": "normal"
+      }
     },
     {
       "kind": "directory",
       "localPath": {
         "default": "~/.config/opencode"
       },
-      "mode": "normal"
+      "mode": {
+        "default": "normal"
+      }
     },
     {
       "kind": "file",
       "localPath": {
         "default": "~/.config/opencode/bun.lock"
       },
-      "mode": "ignore"
+      "mode": {
+        "default": "ignore"
+      }
     },
     {
       "kind": "directory",
       "localPath": {
         "default": "~/.config/opencode/node_modules"
       },
-      "mode": "ignore"
+      "mode": {
+        "default": "ignore"
+      }
     },
     {
       "kind": "file",
       "localPath": {
         "default": "~/.config/opencode/package.json"
       },
-      "mode": "ignore"
+      "mode": {
+        "default": "ignore"
+      }
     },
     {
       "kind": "directory",
       "localPath": {
         "default": "~/.config/pi"
       },
-      "mode": "normal"
+      "mode": {
+        "default": "normal"
+      }
     },
     {
       "kind": "file",
       "localPath": {
         "default": "~/.config/pi/agent/auth.json"
       },
-      "mode": "ignore"
+      "mode": {
+        "default": "ignore"
+      }
     },
     {
       "kind": "directory",
       "localPath": {
         "default": "~/.config/pi/agent/sessions"
       },
-      "mode": "ignore"
+      "mode": {
+        "default": "ignore"
+      }
     },
     {
       "kind": "directory",
       "localPath": {
         "default": "~/.config/tmux"
       },
-      "mode": "normal"
+      "mode": {
+        "default": "normal"
+      }
     },
     {
       "kind": "directory",
       "localPath": {
         "default": "~/.config/zed"
       },
-      "mode": "normal"
+      "mode": {
+        "default": "normal"
+      }
     },
     {
       "kind": "directory",
       "localPath": {
         "default": "~/.config/zellij"
       },
-      "mode": "normal"
+      "mode": {
+        "default": "normal"
+      }
     },
     {
       "kind": "directory",
@@ -187,7 +235,9 @@
       "localPath": {
         "default": "~/.config/zsh/secrets.zsh"
       },
-      "mode": "secret",
+      "mode": {
+        "default": "secret"
+      },
       "profiles": ["default", "vivident"]
     },
     {
@@ -195,57 +245,72 @@
       "localPath": {
         "default": "~/.config/zsh/zsh_plugins.zsh"
       },
-      "mode": "ignore"
+      "mode": {
+        "default": "ignore"
+      }
     },
     {
       "kind": "file",
       "localPath": {
         "default": "~/.gitconfig"
       },
-      "mode": "normal"
+      "mode": {
+        "default": "normal"
+      }
     },
     {
       "kind": "file",
       "localPath": {
         "default": "~/.ideavimrc"
       },
-      "mode": "normal"
+      "mode": {
+        "default": "normal"
+      }
     },
     {
       "kind": "file",
       "localPath": {
         "default": "~/.kube/k3s.yaml"
       },
-      "mode": "secret"
+      "mode": {
+        "default": "secret"
+      }
     },
     {
       "kind": "file",
       "localPath": {
         "default": "~/.ssh/config"
       },
-      "mode": "normal"
+      "mode": {
+        "default": "normal"
+      }
     },
     {
       "kind": "file",
       "localPath": {
         "default": "~/.ssh/winetree94_id_rsa"
       },
-      "mode": "secret"
+      "mode": {
+        "default": "secret"
+      }
     },
     {
       "kind": "file",
       "localPath": {
         "default": "~/.ssh/winetree94_id_rsa.pub"
       },
-      "mode": "secret"
+      "mode": {
+        "default": "secret"
+      }
     },
     {
       "kind": "file",
       "localPath": {
         "default": "~/.zshrc"
       },
-      "mode": "normal"
+      "mode": {
+        "default": "normal"
+      }
     }
   ]
 }
-
