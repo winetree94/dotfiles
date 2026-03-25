@@ -297,6 +297,49 @@
     {
       "kind": "file",
       "localPath": {
+        "default": "~/.gitconfig.linux"
+      },
+      "mode": {
+        "default": "ignore",
+        "linux": "normal"
+      }
+    },
+    {
+      "kind": "file",
+      "localPath": {
+        "default": "~/.gitconfig.mac"
+      },
+      "mode": {
+        "default": "ignore",
+        "mac": "normal"
+      }
+    },
+    {
+      "kind": "file",
+      "localPath": {
+        "default": "~/.gitconfig.windows"
+      },
+      "mode": {
+        "default": "ignore",
+        "win": "normal"
+      }
+    },
+    {
+      "kind": "file",
+      "localPath": {
+        "default": "~/.gitconfig.profile"
+      },
+      "mode": {
+        "default": "normal"
+      },
+      "profiles": [
+        "default",
+        "vivident"
+      ]
+    },
+    {
+      "kind": "file",
+      "localPath": {
         "default": "~/.ideavimrc"
       },
       "mode": {

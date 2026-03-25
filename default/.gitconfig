@@ -8,4 +8,10 @@
   helper = /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
 [push]
 	autoSetupRemote = true
+[include]
+  path = ~/.gitconfig.linux
+  path = ~/.gitconfig.mac
+  path = ~/.gitconfig.windows
+  path = ~/.gitconfig.wsl
+  path = ~/.gitconfig.profile
 
