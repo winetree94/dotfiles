@@ -345,7 +345,7 @@
         "default": "~/.zshrc"
       },
       "mode": {
-        "default": "secret",
+        "default": "normal",
         "win": "ignore"
       }
     }
