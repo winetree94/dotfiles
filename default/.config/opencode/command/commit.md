@@ -2,7 +2,6 @@
 description: Commit
 agent: build
 subtask: true
-model: github-copilot/gpt-5-mini
 ---
 
 Analyze current changes and create well-organized commits.

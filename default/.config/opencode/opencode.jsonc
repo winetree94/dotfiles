@@ -5,8 +5,8 @@
     "~/.config/opencode/AGENTS.md"
   ],
 
-  "model": "github-copilot/gpt-5.4",
-  "small_model": "github-copilot/gpt-5-mini",
+  "model": "openai/gpt-5.4",
+  "small_model": "openai/gpt-5.3-codex-spark",
 
   "permission": {
     "bash": "allow",
