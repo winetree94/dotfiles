@@ -171,9 +171,9 @@
       }
     },
     {
-      "kind": "directory",
+      "kind": "file",
       "localPath": {
-        "default": "~/.config/pi"
+        "default": "~/.config/pi/agent/AGENTS.md"
       },
       "mode": {
         "default": "normal"
@@ -182,19 +182,37 @@
     {
       "kind": "file",
       "localPath": {
-        "default": "~/.config/pi/agent/auth.json"
+        "default": "~/.config/pi/agent/config.yml"
       },
       "mode": {
-        "default": "ignore"
+        "default": "normal"
+      }
+    },
+    {
+      "kind": "file",
+      "localPath": {
+        "default": "~/.config/pi/agent/settings.json"
+      },
+      "mode": {
+        "default": "normal"
+      }
+    },
+    {
+      "kind": "file",
+      "localPath": {
+        "default": "~/.config/pi/agent/keybindings.json"
+      },
+      "mode": {
+        "default": "normal"
       }
     },
     {
       "kind": "directory",
       "localPath": {
-        "default": "~/.config/pi/agent/sessions"
+        "default": "~/.config/pi/agent/skills"
       },
       "mode": {
-        "default": "ignore"
+        "default": "normal"
       }
     },
     {
@@ -228,6 +246,10 @@
       "kind": "directory",
       "localPath": {
         "default": "~/.config/zsh"
+      },
+      "mode": {
+        "default": "normal",
+        "win": "ignore"
       }
     },
     {
@@ -236,9 +258,23 @@
         "default": "~/.config/zsh/secrets.zsh"
       },
       "mode": {
-        "default": "secret"
+        "default": "secret",
+        "win": "ignore"
+      }
+    },
+    {
+      "kind": "file",
+      "localPath": {
+        "default": "~/.config/zsh/secrets.profile.zsh"
       },
-      "profiles": ["default", "vivident"]
+      "mode": {
+        "default": "secret",
+        "win": "ignore"
+      },
+      "profiles": [
+        "default",
+        "vivident"
+      ]
     },
     {
       "kind": "file",
@@ -309,7 +345,8 @@
         "default": "~/.zshrc"
       },
       "mode": {
-        "default": "normal"
+        "default": "secret",
+        "win": "ignore"
       }
     }
   ]

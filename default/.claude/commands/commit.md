@@ -36,15 +36,14 @@ Analyze current changes and create well-organized commits.
    - After all commits are created, push to the remote repository
 
 
-6. **Use English**
-   - All commit messages MUST be written in English
-   - Use clear, professional technical English
-   - Follow standard English grammar and sentence structure
-   - Use imperative mood (e.g., "Add feature" not "Added feature")
+6. **Use Korean**
+   - All commit messages MUST be written in Korean
+   - Use natural Korean expressions, not direct translations
+   - Follow Korean grammar and sentence structure
    - Examples:
-     - `feat: add user profile page`
-     - `fix: resolve timeout error during login`
-     - `docs: add installation guide to README`
-     - `refactor: extract authentication logic into separate module`
+     - `feat: 사용자 프로필 페이지 추가`
+     - `fix: 로그인 시 발생하는 타임아웃 오류 해결`
+     - `docs: README에 설치 가이드 추가`
+     - `refactor: 인증 로직을 별도 모듈로 분리`
 
 
