@@ -14,6 +14,9 @@
       },
       "mode": {
         "default": "normal"
+      },
+      "permission": {
+        "default": "0755"
       }
     },
     {
@@ -23,6 +26,9 @@
       },
       "mode": {
         "default": "normal"
+      },
+      "permission": {
+        "default": "0644"
       }
     },
     {
@@ -32,6 +38,9 @@
       },
       "mode": {
         "default": "normal"
+      },
+      "permission": {
+        "default": "0755"
       }
     },
     {
@@ -41,6 +50,9 @@
       },
       "mode": {
         "default": "normal"
+      },
+      "permission": {
+        "default": "0644"
       }
     },
     {
@@ -50,6 +62,9 @@
       },
       "mode": {
         "default": "normal"
+      },
+      "permission": {
+        "default": "0755"
       }
     },
     {
@@ -59,6 +74,9 @@
       },
       "mode": {
         "default": "normal"
+      },
+      "permission": {
+        "default": "0644"
       }
     },
     {
@@ -68,6 +86,9 @@
       },
       "mode": {
         "default": "normal"
+      },
+      "permission": {
+        "default": "0755"
       }
     },
     {
@@ -77,6 +98,9 @@
       },
       "mode": {
         "default": "ignore"
+      },
+      "permission": {
+        "default": "0755"
       }
     },
     {
@@ -86,6 +110,9 @@
       },
       "mode": {
         "default": "normal"
+      },
+      "permission": {
+        "default": "0755"
       }
     },
     {
@@ -95,6 +122,9 @@
       },
       "mode": {
         "default": "normal"
+      },
+      "permission": {
+        "default": "0755"
       }
     },
     {
@@ -104,6 +134,9 @@
       },
       "mode": {
         "default": "normal"
+      },
+      "permission": {
+        "default": "0755"
       }
     },
     {
@@ -113,6 +146,9 @@
       },
       "mode": {
         "default": "normal"
+      },
+      "permission": {
+        "default": "0755"
       }
     },
     {
@@ -123,6 +159,9 @@
       },
       "mode": {
         "default": "normal"
+      },
+      "permission": {
+        "default": "0755"
       }
     },
     {
@@ -132,6 +171,9 @@
       },
       "mode": {
         "default": "normal"
+      },
+      "permission": {
+        "default": "0755"
       }
     },
     {
@@ -141,6 +183,9 @@
       },
       "mode": {
         "default": "normal"
+      },
+      "permission": {
+        "default": "0755"
       }
     },
     {
@@ -150,6 +195,9 @@
       },
       "mode": {
         "default": "ignore"
+      },
+      "permission": {
+        "default": "0644"
       }
     },
     {
@@ -159,6 +207,9 @@
       },
       "mode": {
         "default": "ignore"
+      },
+      "permission": {
+        "default": "0755"
       }
     },
     {
@@ -168,6 +219,9 @@
       },
       "mode": {
         "default": "ignore"
+      },
+      "permission": {
+        "default": "0644"
       }
     },
     {
@@ -177,6 +231,9 @@
       },
       "mode": {
         "default": "normal"
+      },
+      "permission": {
+        "default": "0644"
       }
     },
     {
@@ -186,6 +243,9 @@
       },
       "mode": {
         "default": "normal"
+      },
+      "permission": {
+        "default": "0644"
       }
     },
     {
@@ -195,6 +255,9 @@
       },
       "mode": {
         "default": "normal"
+      },
+      "permission": {
+        "default": "0644"
       }
     },
     {
@@ -204,6 +267,9 @@
       },
       "mode": {
         "default": "normal"
+      },
+      "permission": {
+        "default": "0644"
       }
     },
     {
@@ -213,6 +279,9 @@
       },
       "mode": {
         "default": "normal"
+      },
+      "permission": {
+        "default": "0755"
       }
     },
     {
@@ -222,6 +291,9 @@
       },
       "mode": {
         "default": "normal"
+      },
+      "permission": {
+        "default": "0755"
       }
     },
     {
@@ -231,6 +303,9 @@
       },
       "mode": {
         "default": "normal"
+      },
+      "permission": {
+        "default": "0755"
       }
     },
     {
@@ -240,6 +315,9 @@
       },
       "mode": {
         "default": "normal"
+      },
+      "permission": {
+        "default": "0755"
       }
     },
     {
@@ -250,6 +328,9 @@
       "mode": {
         "default": "normal",
         "win": "ignore"
+      },
+      "permission": {
+        "default": "0755"
       }
     },
     {
@@ -260,6 +341,9 @@
       "mode": {
         "default": "secret",
         "win": "ignore"
+      },
+      "permission": {
+        "default": "0600"
       }
     },
     {
@@ -270,6 +354,9 @@
       "mode": {
         "default": "secret",
         "win": "ignore"
+      },
+      "permission": {
+        "default": "0600"
       },
       "profiles": [
         "default",
@@ -283,6 +370,9 @@
       },
       "mode": {
         "default": "ignore"
+      },
+      "permission": {
+        "default": "0644"
       }
     },
     {
@@ -292,6 +382,9 @@
       },
       "mode": {
         "default": "normal"
+      },
+      "permission": {
+        "default": "0644"
       }
     },
     {
@@ -302,6 +395,9 @@
       "mode": {
         "default": "ignore",
         "linux": "normal"
+      },
+      "permission": {
+        "default": "0644"
       }
     },
     {
@@ -312,6 +408,9 @@
       "mode": {
         "default": "ignore",
         "mac": "normal"
+      },
+      "permission": {
+        "default": "0644"
       }
     },
     {
@@ -322,6 +421,9 @@
       "mode": {
         "default": "ignore",
         "win": "normal"
+      },
+      "permission": {
+        "default": "0644"
       }
     },
     {
@@ -332,6 +434,9 @@
       "mode": {
         "default": "ignore",
         "wsl": "normal"
+      },
+      "permission": {
+        "default": "0644"
       }
     },
     {
@@ -341,6 +446,9 @@
       },
       "mode": {
         "default": "normal"
+      },
+      "permission": {
+        "default": "0644"
       },
       "profiles": [
         "default",
@@ -354,6 +462,9 @@
       },
       "mode": {
         "default": "normal"
+      },
+      "permission": {
+        "default": "0644"
       }
     },
     {
@@ -363,6 +474,9 @@
       },
       "mode": {
         "default": "secret"
+      },
+      "permission": {
+        "default": "0600"
       }
     },
     {
@@ -372,6 +486,9 @@
       },
       "mode": {
         "default": "normal"
+      },
+      "permission": {
+        "default": "0600"
       }
     },
     {
@@ -381,6 +498,9 @@
       },
       "mode": {
         "default": "secret"
+      },
+      "permission": {
+        "default": "0600"
       }
     },
     {
@@ -390,6 +510,9 @@
       },
       "mode": {
         "default": "secret"
+      },
+      "permission": {
+        "default": "0644"
       }
     },
     {
@@ -400,6 +523,9 @@
       "mode": {
         "default": "normal",
         "win": "ignore"
+      },
+      "permission": {
+        "default": "0644"
       }
     }
   ]
