@@ -327,6 +327,16 @@
     {
       "kind": "file",
       "localPath": {
+        "default": "~/.gitconfig.wsl"
+      },
+      "mode": {
+        "default": "ignore",
+        "wsl": "normal"
+      }
+    },
+    {
+      "kind": "file",
+      "localPath": {
         "default": "~/.gitconfig.profile"
       },
       "mode": {

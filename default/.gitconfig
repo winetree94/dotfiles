@@ -8,8 +8,6 @@
   gpgsign = true
 [pull]
   rebase = true
-[credential]
-  helper = /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
 [push]
 	autoSetupRemote = true
 [include]
