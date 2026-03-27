@@ -394,7 +394,8 @@
       },
       "mode": {
         "default": "ignore",
-        "linux": "normal"
+        "linux": "normal",
+        "wsl": "ignore"
       },
       "permission": {
         "default": "0644"
@@ -449,6 +450,7 @@
       },
       "mode": {
         "default": "ignore",
+        "linux": "ignore",
         "wsl": "normal"
       },
       "permission": {
