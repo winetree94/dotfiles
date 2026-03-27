@@ -251,7 +251,7 @@
     {
       "kind": "file",
       "localPath": {
-        "default": "~/.config/pi/agent/settings.json"
+        "default": "~/.config/pi/agent/keybindings.json"
       },
       "mode": {
         "default": "normal"
@@ -263,7 +263,7 @@
     {
       "kind": "file",
       "localPath": {
-        "default": "~/.config/pi/agent/keybindings.json"
+        "default": "~/.config/pi/agent/settings.json"
       },
       "mode": {
         "default": "normal"
@@ -336,19 +336,6 @@
     {
       "kind": "file",
       "localPath": {
-        "default": "~/.config/zsh/secrets.zsh"
-      },
-      "mode": {
-        "default": "secret",
-        "win": "ignore"
-      },
-      "permission": {
-        "default": "0600"
-      }
-    },
-    {
-      "kind": "file",
-      "localPath": {
         "default": "~/.config/zsh/secrets.profile.zsh"
       },
       "mode": {
@@ -362,6 +349,19 @@
         "default",
         "vivident"
       ]
+    },
+    {
+      "kind": "file",
+      "localPath": {
+        "default": "~/.config/zsh/secrets.zsh"
+      },
+      "mode": {
+        "default": "secret",
+        "win": "ignore"
+      },
+      "permission": {
+        "default": "0600"
+      }
     },
     {
       "kind": "file",
@@ -416,6 +416,22 @@
     {
       "kind": "file",
       "localPath": {
+        "default": "~/.gitconfig.profile"
+      },
+      "mode": {
+        "default": "normal"
+      },
+      "permission": {
+        "default": "0644"
+      },
+      "profiles": [
+        "default",
+        "vivident"
+      ]
+    },
+    {
+      "kind": "file",
+      "localPath": {
         "default": "~/.gitconfig.windows"
       },
       "mode": {
@@ -438,22 +454,6 @@
       "permission": {
         "default": "0644"
       }
-    },
-    {
-      "kind": "file",
-      "localPath": {
-        "default": "~/.gitconfig.profile"
-      },
-      "mode": {
-        "default": "normal"
-      },
-      "permission": {
-        "default": "0644"
-      },
-      "profiles": [
-        "default",
-        "vivident"
-      ]
     },
     {
       "kind": "file",
@@ -526,6 +526,16 @@
       },
       "permission": {
         "default": "0644"
+      }
+    },
+    {
+      "kind": "file",
+      "localPath": {
+        "default": "~/Documents/PowerShell/Microsoft.PowerShell_profile.ps1"
+      },
+      "mode": {
+        "default": "ignore",
+        "win": "normal"
       }
     }
   ]
