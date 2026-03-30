@@ -460,6 +460,15 @@
     {
       "kind": "file",
       "localPath": {
+        "default": "~/.gnupg/gpg-agent.conf"
+      },
+      "mode": {
+        "default": "normal"
+      }
+    },
+    {
+      "kind": "file",
+      "localPath": {
         "default": "~/.ideavimrc"
       },
       "mode": {
