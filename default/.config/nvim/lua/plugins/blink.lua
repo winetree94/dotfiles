@@ -1,12 +1,12 @@
-local add, later = MiniDeps.add, MiniDeps.later
+local pack = require("configs.pack")
 
-add({
+pack.add({
   source = "saghen/blink.cmp",
   depends = { "rafamadriz/friendly-snippets" },
   checkout = "v1.9.1",
 })
 
-later(function()
+pack.later(function()
   require("blink.cmp").setup({
     keymap = { preset = "default" },
 
@@ -29,4 +29,3 @@ later(function()
     fuzzy = { implementation = "prefer_rust" },
   })
 end)
-

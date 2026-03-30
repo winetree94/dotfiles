@@ -1,8 +1,10 @@
-MiniDeps.later(function()
-	MiniDeps.add({
-		source = "nvim-mini/mini.map",
-		checkout = "stable",
-	})
+local pack = require("configs.pack")
+
+pack.later(function()
+  pack.add({
+    source = "nvim-mini/mini.map",
+    checkout = "stable",
+  })
   require('mini.map').setup({})
 
   vim.keymap.set('n', '<Leader>mo', MiniMap.open, { desc = 'Open MiniMap' })

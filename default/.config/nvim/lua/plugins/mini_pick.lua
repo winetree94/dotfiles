@@ -1,6 +1,8 @@
 -- Fuzzy Finder
-MiniDeps.later(function()
-  MiniDeps.add({ source = "nvim-mini/mini.pick", checkout = "stable" })
+local pack = require("configs.pack")
+
+pack.later(function()
+  pack.add({ source = "nvim-mini/mini.pick", checkout = "stable" })
   require("mini.pick").setup({
     -- mappings = {
     -- 	sys_paste = {

@@ -1,9 +1,9 @@
-MiniDeps.later(function()
-	MiniDeps.add({
-		source = "folke/ts-comments.nvim",
-	})
+local pack = require("configs.pack")
 
-	MiniDeps.later(function()
-		require("ts-comments").setup()
-	end)
+pack.later(function()
+  pack.add({
+    source = "folke/ts-comments.nvim",
+  })
+
+  require("ts-comments").setup()
 end)

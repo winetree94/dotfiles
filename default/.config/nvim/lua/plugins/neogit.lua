@@ -1,21 +1,23 @@
-MiniDeps.later(function()
-	MiniDeps.add({
-		source = "NeogitOrg/neogit",
-		depends = {
-			"nvim-lua/plenary.nvim",
-			"sindrets/diffview.nvim",
-			"nvim-mini/mini.pick",
-		},
-	})
+local pack = require("configs.pack")
 
-	local neogit = require("neogit")
+pack.later(function()
+  pack.add({
+    source = "NeogitOrg/neogit",
+    depends = {
+      "nvim-lua/plenary.nvim",
+      "sindrets/diffview.nvim",
+      "nvim-mini/mini.pick",
+    },
+  })
 
-	neogit.setup({
-		integrations = {
-			diffview = true,
-			mini_pick = true,
-		},
-	})
+  local neogit = require("neogit")
 
-	vim.keymap.set("n", "<leader>gg", neogit.open, { desc = "Open Neogit UI" })
+  neogit.setup({
+    integrations = {
+      diffview = true,
+      mini_pick = true,
+    },
+  })
+
+  vim.keymap.set("n", "<leader>gg", neogit.open, { desc = "Open Neogit UI" })
 end)
