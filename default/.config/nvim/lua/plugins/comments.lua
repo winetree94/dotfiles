@@ -1,9 +1,7 @@
-local pack = require("configs.pack")
+vim.pack.add({
+  {
+    src = "https://github.com/folke/ts-comments.nvim",
+  },
+}, { confirm = false, load = false })
 
-pack.later(function()
-  pack.add({
-    source = "folke/ts-comments.nvim",
-  })
-
-  require("ts-comments").setup()
-end)
+require("ts-comments").setup()

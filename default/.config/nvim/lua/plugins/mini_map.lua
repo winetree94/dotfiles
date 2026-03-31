@@ -1,13 +1,12 @@
-local pack = require("configs.pack")
+vim.pack.add({
+  {
+    src = "https://github.com/nvim-mini/mini.map",
+    version = "stable",
+  },
+}, { confirm = false, load = false })
 
-pack.later(function()
-  pack.add({
-    source = "nvim-mini/mini.map",
-    checkout = "stable",
-  })
-  require('mini.map').setup({})
+require("mini.map").setup({})
 
-  vim.keymap.set('n', '<Leader>mo', MiniMap.open, { desc = 'Open MiniMap' })
-  vim.keymap.set('n', '<Leader>mc', MiniMap.close, { desc = 'Close MiniMap' })
-  vim.keymap.set('n', '<Leader>mt', MiniMap.toggle, { desc = 'Toggle MiniMap' })
-end)
+vim.keymap.set("n", "<Leader>mo", MiniMap.open, { desc = "Open MiniMap" })
+vim.keymap.set("n", "<Leader>mc", MiniMap.close, { desc = "Close MiniMap" })
+vim.keymap.set("n", "<Leader>mt", MiniMap.toggle, { desc = "Toggle MiniMap" })

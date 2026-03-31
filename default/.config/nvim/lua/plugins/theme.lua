@@ -1,8 +1,7 @@
-local pack = require("configs.pack")
+vim.pack.add({
+  {
+    src = "https://github.com/EdenEast/nightfox.nvim",
+  },
+}, { confirm = false, load = false })
 
-pack.now(function()
-  pack.add({
-    source = "EdenEast/nightfox.nvim",
-  })
-  vim.cmd.colorscheme("carbonfox")
-end)
+vim.cmd.colorscheme("carbonfox")

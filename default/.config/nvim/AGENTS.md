@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 
-This repository is a personal Neovim configuration for Neovim 0.11+ written in Lua. `init.lua` is the entry point and loads files from `lua/configs/` and `lua/plugins/`. Core editor settings live in `lua/configs/options.lua`; package bootstrap lives in `lua/configs/pack.lua`. Plugin setup is split into focused files such as `lua/plugins/lsp.lua`, `lua/plugins/blink.lua`, and `lua/plugins/neo-tree.lua`. Per-server LSP overrides belong in `after/lsp/` and should return a `vim.lsp.Config` table.
+This repository is a personal Neovim configuration for Neovim 0.12+ written in Lua. `init.lua` is the entry point and loads files from `lua/configs/` and `lua/plugins/`. Core editor settings live in `lua/configs/options.lua`; plugins are managed directly from the plugin files with `vim.pack.add()`. Plugin setup is split into focused files such as `lua/plugins/lsp.lua`, `lua/plugins/blink.lua`, and `lua/plugins/neo-tree.lua`. Per-server LSP overrides belong in `after/lsp/` and should return a `vim.lsp.Config` table.
 
 ## Build, Test, and Development Commands
 
@@ -40,4 +40,4 @@ Local Git history is not available in this workspace, so follow a simple convent
 
 ## Configuration Notes
 
-Always pass `--config-path .stylelua.toml` to StyLua; it will not auto-detect this filename. This config expects Neovim 0.11+ and uses `mini.deps`, `blink.cmp`, `gitsigns.nvim`, `neogit`, `neo-tree.nvim`, and several `mini.nvim` modules.
+Always pass `--config-path .stylelua.toml` to StyLua; it will not auto-detect this filename. This config expects Neovim 0.12+ and uses native `vim.pack`, `blink.cmp`, `gitsigns.nvim`, `neogit`, `neo-tree.nvim`, and several `mini.nvim` modules.

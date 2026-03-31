@@ -1,60 +1,44 @@
-local pack = require("configs.pack")
+vim.pack.add({
+  { src = "https://github.com/nvim-mini/mini.ai", version = "stable" },
+  { src = "https://github.com/nvim-mini/mini.pairs", version = "stable" },
+  { src = "https://github.com/nvim-mini/mini.move", version = "stable" },
+  { src = "https://github.com/nvim-mini/mini.basics", version = "stable" },
+  { src = "https://github.com/nvim-mini/mini.bracketed", version = "stable" },
+  { src = "https://github.com/nvim-mini/mini.bufremove", version = "stable" },
+  { src = "https://github.com/nvim-mini/mini.cmdline", version = "stable" },
+  { src = "https://github.com/nvim-mini/mini.extra", version = "stable" },
+  { src = "https://github.com/nvim-mini/mini-git", version = "stable" },
+  { src = "https://github.com/nvim-mini/mini.jump", version = "stable" },
+  { src = "https://github.com/nvim-mini/mini.jump2d", version = "stable" },
+  { src = "https://github.com/nvim-mini/mini.cursorword", version = "stable" },
+  { src = "https://github.com/nvim-mini/mini.icons", version = "stable" },
+  { src = "https://github.com/nvim-mini/mini.indentscope", version = "stable" },
+  { src = "https://github.com/nvim-mini/mini.notify", version = "stable" },
+  { src = "https://github.com/nvim-mini/mini.statusline", version = "stable" },
+  { src = "https://github.com/nvim-mini/mini.tabline", version = "stable" },
+  { src = "https://github.com/nvim-mini/mini.trailspace", version = "stable" },
+}, { confirm = false, load = false })
 
-pack.now(function()
-  --------------- text editing
-  pack.add({ source = "nvim-mini/mini.ai", checkout = "stable" })
-  require("mini.ai").setup()
+--------------- text editing
+require("mini.ai").setup()
+require("mini.pairs").setup()
+require("mini.move").setup()
 
-  pack.add({ source = "nvim-mini/mini.pairs", checkout = "stable" })
-  require("mini.pairs").setup()
+--------------- general workflow
+require("mini.basics").setup()
+require("mini.bracketed").setup()
+require("mini.bufremove").setup()
+require("mini.cmdline").setup()
+require("mini.extra").setup()
+require("mini.git").setup()
+require("mini.jump").setup()
+require("mini.jump2d").setup()
 
-  pack.add({ source = "nvim-mini/mini.move", checkout = "stable" })
-  require("mini.move").setup()
-
-  --------------- general workflow
-  pack.add({ source = "nvim-mini/mini.basics", checkout = "stable" })
-  require("mini.basics").setup()
-
-  pack.add({ source = "nvim-mini/mini.bracketed", checkout = "stable" })
-  require("mini.bracketed").setup()
-
-  pack.add({ source = "nvim-mini/mini.bufremove", checkout = "stable" })
-  require("mini.bufremove").setup()
-
-  pack.add({ source = "nvim-mini/mini.cmdline", checkout = "stable" })
-  require("mini.cmdline").setup()
-
-  pack.add({ source = 'nvim-mini/mini.extra', checkout = 'stable' })
-  require('mini.extra').setup()
-
-  pack.add({ source = "nvim-mini/mini-git", checkout = "stable" })
-  require("mini.git").setup()
-
-  pack.add({ source = "nvim-mini/mini.jump", checkout = "stable" })
-  require("mini.jump").setup()
-
-  pack.add({ source = "nvim-mini/mini.jump2d", checkout = "stable" })
-  require("mini.jump2d").setup()
-
-  --------------- appearance
-  pack.add({ source = "nvim-mini/mini.cursorword", checkout = "stable" })
-  require("mini.cursorword").setup()
-
-  pack.add({ source = "nvim-mini/mini.icons", checkout = "stable" })
-  require("mini.icons").setup()
-
-  pack.add({ source = "nvim-mini/mini.indentscope", checkout = "stable" })
-  require("mini.indentscope").setup()
-
-  pack.add({ source = "nvim-mini/mini.notify", checkout = "stable" })
-  require("mini.notify").setup()
-
-  pack.add({ source = "nvim-mini/mini.statusline", checkout = "stable" })
-  require("mini.statusline").setup()
-
-  pack.add({ source = "nvim-mini/mini.tabline", checkout = "stable" })
-  require("mini.tabline").setup()
-
-  pack.add({ source = "nvim-mini/mini.trailspace", checkout = "stable" })
-  require("mini.trailspace").setup()
-end)
+--------------- appearance
+require("mini.cursorword").setup()
+require("mini.icons").setup()
+require("mini.indentscope").setup()
+require("mini.notify").setup()
+require("mini.statusline").setup()
+require("mini.tabline").setup()
+require("mini.trailspace").setup()

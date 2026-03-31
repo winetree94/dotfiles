@@ -8,7 +8,10 @@ end
 local function load_directory(path)
   local dir = vim.fn.stdpath("config") .. "/lua/" .. path
   local module_prefix = path:gsub("/", ".")
-  for _, file in ipairs(vim.fn.readdir(dir)) do
+  local files = vim.fn.readdir(dir)
+  table.sort(files)
+
+  for _, file in ipairs(files) do
     if file:match("%.lua$") then
       require(module_prefix .. "." .. file:gsub("%.lua$", ""))
     end

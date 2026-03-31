@@ -1,23 +1,26 @@
-local pack = require("configs.pack")
+vim.pack.add({
+  {
+    src = "https://github.com/nvim-lua/plenary.nvim",
+  },
+  {
+    src = "https://github.com/sindrets/diffview.nvim",
+  },
+  {
+    src = "https://github.com/nvim-mini/mini.pick",
+    version = "stable",
+  },
+  {
+    src = "https://github.com/NeogitOrg/neogit",
+  },
+}, { confirm = false, load = false })
 
-pack.later(function()
-  pack.add({
-    source = "NeogitOrg/neogit",
-    depends = {
-      "nvim-lua/plenary.nvim",
-      "sindrets/diffview.nvim",
-      "nvim-mini/mini.pick",
-    },
-  })
+local neogit = require("neogit")
 
-  local neogit = require("neogit")
+neogit.setup({
+  integrations = {
+    diffview = true,
+    mini_pick = true,
+  },
+})
 
-  neogit.setup({
-    integrations = {
-      diffview = true,
-      mini_pick = true,
-    },
-  })
-
-  vim.keymap.set("n", "<leader>gg", neogit.open, { desc = "Open Neogit UI" })
-end)
+vim.keymap.set("n", "<leader>gg", neogit.open, { desc = "Open Neogit UI" })

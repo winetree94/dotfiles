@@ -1,18 +1,16 @@
-local pack = require("configs.pack")
+vim.pack.add({
+  {
+    src = "https://github.com/nvim-lua/plenary.nvim",
+  },
+  {
+    src = "https://github.com/cwrau/yaml-schema-detect.nvim",
+  },
+}, { confirm = false, load = false })
 
-pack.later(function()
-  pack.add({
-    source = "cwrau/yaml-schema-detect.nvim",
-    depends = {
-      "nvim-lua/plenary.nvim",
-    },
-  })
-
-  require("yaml-schema-detect").setup({
-    keymap = {
-      refresh = "<leader>yr",
-      cleanup = "<leader>yc",
-      info = "<leader>yi",
-    },
-  })
-end)
+require("yaml-schema-detect").setup({
+  keymap = {
+    refresh = "<leader>yr",
+    cleanup = "<leader>yc",
+    info = "<leader>yi",
+  },
+})

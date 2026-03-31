@@ -1,61 +1,58 @@
-local pack = require("configs.pack")
+vim.pack.add({
+  {
+    src = "https://github.com/mason-org/mason.nvim",
+  },
+  {
+    src = "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
+  },
+}, { confirm = false, load = false })
 
-pack.later(function()
-  pack.add({
-    source = "https://github.com/mason-org/mason.nvim",
-  })
+require("mason").setup()
 
-  require("mason").setup()
+require("mason-tool-installer").setup({
+  -- a list of all tools you want to ensure are installed upon
+  -- start
+  ensure_installed = {
+    -- lsp
+    "lua-language-server",
+    "stylua",
+    "luacheck",
+    "yaml-language-server",
+    "vim-language-server",
+    "json-lsp",
+    "html-lsp",
+    "typescript-language-server",
+    "bash-language-server",
+    "eslint-lsp",
+    "biome",
+    "css-lsp",
+    "emmet-language-server",
+    "tailwindcss-language-server",
+    "astro-language-server",
+    "ansible-language-server",
+    "dockerfile-language-server",
+    "docker-language-server",
+    "docker-compose-language-service",
+    "gh-actions-language-server",
+    "helm-ls",
+    "python-lsp-server",
+  },
 
-  pack.add({
-    source = "WhoIsSethDaniel/mason-tool-installer.nvim",
-  })
+  -- if set to true this will check each tool for updates. If updates
+  -- are available the tool will be updated. This setting does not
+  -- affect :MasonToolsUpdate or :MasonToolsInstall.
+  -- Default: false
+  auto_update = true,
 
-  require("mason-tool-installer").setup({
-    -- a list of all tools you want to ensure are installed upon
-    -- start
-    ensure_installed = {
-      -- lsp
-      "lua-language-server",
-      "stylua",
-      "luacheck",
-      "yaml-language-server",
-      "vim-language-server",
-      "json-lsp",
-      "html-lsp",
-      "typescript-language-server",
-      "bash-language-server",
-      "eslint-lsp",
-      "biome",
-      "css-lsp",
-      "emmet-language-server",
-      "tailwindcss-language-server",
-      "astro-language-server",
-      "ansible-language-server",
-      "dockerfile-language-server",
-      "docker-language-server",
-      "docker-compose-language-service",
-      "gh-actions-language-server",
-      "helm-ls",
-      "python-lsp-server",
-    },
+  -- automatically install / update on startup. If set to false nothing
+  -- will happen on startup. You can use :MasonToolsInstall or
+  -- :MasonToolsUpdate to install tools and check for updates.
+  -- Default: true
+  run_on_start = true,
 
-    -- if set to true this will check each tool for updates. If updates
-    -- are available the tool will be updated. This setting does not
-    -- affect :MasonToolsUpdate or :MasonToolsInstall.
-    -- Default: false
-    auto_update = true,
-
-    -- automatically install / update on startup. If set to false nothing
-    -- will happen on startup. You can use :MasonToolsInstall or
-    -- :MasonToolsUpdate to install tools and check for updates.
-    -- Default: true
-    run_on_start = true,
-
-    -- set a delay (in ms) before the installation starts. This is only
-    -- effective if run_on_start is set to true.
-    -- e.g.: 5000 = 5 second delay, 10000 = 10 second delay, etc...
-    -- Default: 0
-    start_delay = 3000, -- 3 second delay
-  })
-end)
+  -- set a delay (in ms) before the installation starts. This is only
+  -- effective if run_on_start is set to true.
+  -- e.g.: 5000 = 5 second delay, 10000 = 10 second delay, etc...
+  -- Default: 0
+  start_delay = 3000, -- 3 second delay
+})
