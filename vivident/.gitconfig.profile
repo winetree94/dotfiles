@@ -1,4 +1,0 @@
-[commit]
-  gpgsign = false
-[tag]
-  gpgsign = false
