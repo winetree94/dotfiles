@@ -459,11 +459,17 @@
     },
     {
       "kind": "file",
+      "repoPath": {
+        "default": ".gnupg/gpg-agent.conf",
+        "wsl": ".gnupg/gpg-agent.wsl.conf"
+      },
       "localPath": {
         "default": "~/.gnupg/gpg-agent.conf"
       },
       "mode": {
-        "default": "normal"
+        "default": "ignore",
+        "linux": "normal",
+        "wsl": "normal"
       }
     },
     {
