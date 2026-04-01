@@ -1,7 +1,7 @@
 {
   "version": 7,
   "age": {
-    "identityFile": "$XDG_CONFIG_HOME/devsync/age/keys.txt",
+    "identityFile": "$XDG_CONFIG_HOME/devsync/keys.txt",
     "recipients": [
       "age147lw095r5j3qmyzs2kf3r6vn87nllrkd9jt6x8e5fm2v8u75j5ssr5q47q"
     ]
