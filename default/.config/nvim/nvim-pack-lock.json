@@ -152,7 +152,8 @@
     },
     "neogit": {
       "rev": "2b6a9e4dacb435a95eff474c80d0e94ae0e4f909",
-      "src": "https://github.com/NeogitOrg/neogit"
+      "src": "https://github.com/NeogitOrg/neogit",
+      "version": "'master'"
     },
     "nightfox.nvim": {
       "rev": "ba47d4b4c5ec308718641ba7402c143836f35aa9",

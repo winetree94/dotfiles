@@ -11,8 +11,9 @@ vim.pack.add({
   },
   {
     src = "https://github.com/NeogitOrg/neogit",
+    version = "master",
   },
-}, { confirm = false, load = false })
+}, { confirm = false })
 
 local neogit = require("neogit")
 
