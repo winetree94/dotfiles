@@ -1,4 +1,4 @@
 [credential]
   helper = /mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
 [gpg]
-  program = /mnt/c/Program\\ Files/GnuPG/bin/gpg.exe
+  program = "/mnt/c/PROGRA~1/GnuPG/bin/gpg.exe"
