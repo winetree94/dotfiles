@@ -7,7 +7,7 @@ option_as_alt = "Both"
 hide_when_typing = false
 
 [font]
-
+normal = { family = "Cascadia Mono NF", style = "Regular" }
 size = 11
 
 
