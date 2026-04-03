@@ -462,13 +462,16 @@
       "kind": "file",
       "repoPath": {
         "default": ".gnupg/gpg-agent.conf",
+        "win": ".gnupg/gpg-agent.windows.conf",
         "wsl": ".gnupg/gpg-agent.wsl.conf"
       },
       "localPath": {
-        "default": "~/.gnupg/gpg-agent.conf"
+        "default": "~/.gnupg/gpg-agent.conf",
+        "win": "%APPDATA%/gnupg/gpg-agent.conf"
       },
       "mode": {
         "default": "ignore",
+        "win": "normal",
         "linux": "normal",
         "wsl": "normal"
       }
