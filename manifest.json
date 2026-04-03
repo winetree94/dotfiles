@@ -106,7 +106,8 @@
     {
       "kind": "directory",
       "localPath": {
-        "default": "~/.config/alacritty"
+        "default": "~/.config/alacritty",
+        "win": "%APPDATA%/alacritty"
       },
       "mode": {
         "default": "normal"
