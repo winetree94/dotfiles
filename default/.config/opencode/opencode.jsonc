@@ -1,13 +1,10 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "theme": "ayu",
   "instructions": [
     "~/.config/opencode/AGENTS.md"
   ],
-
   "model": "fireworks-ai/accounts/fireworks/routers/kimi-k2p5-turbo",
   "small_model": "fireworks-ai/accounts/fireworks/routers/kimi-k2p5-turbo",
-
   "permission": {
     "bash": "allow",
     "edit": "allow",
