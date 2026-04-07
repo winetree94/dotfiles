@@ -190,18 +190,6 @@
       }
     },
     {
-      "kind": "file",
-      "localPath": {
-        "default": "~/.config/opencode/bun.lock"
-      },
-      "mode": {
-        "default": "ignore"
-      },
-      "permission": {
-        "default": "0644"
-      }
-    },
-    {
       "kind": "directory",
       "localPath": {
         "default": "~/.config/opencode/node_modules"
@@ -211,18 +199,6 @@
       },
       "permission": {
         "default": "0755"
-      }
-    },
-    {
-      "kind": "file",
-      "localPath": {
-        "default": "~/.config/opencode/package.json"
-      },
-      "mode": {
-        "default": "ignore"
-      },
-      "permission": {
-        "default": "0644"
       }
     },
     {
