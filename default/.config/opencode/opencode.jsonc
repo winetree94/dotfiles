@@ -17,7 +17,7 @@
     "lsp": "allow"
   },
   "disabled_providers": [
-    "openrouter",
+    // "openrouter",
     "synthetic",
     "minimax-cn",
     "minimax-cn-coding-plan",
