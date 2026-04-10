@@ -15,4 +15,7 @@ export OPENCODE_DISABLE_CLAUDE_CODE=true
 export FZF_BASE=${HOMEBREW_PREFIX}/opt/fzf
 # export FZF_BASE=$(brew --prefix)/opt/fzf
 
+# export OPENCODE_EXPERIMENTAL_FILEWATCHER=true
+export OPENCODE_EXPERIMENTAL_PLAN_MODE=true
+
 eval "$(mise activate zsh)"
