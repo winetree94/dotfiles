@@ -26,7 +26,25 @@
     "github-models",
     "github-copilot-enterprise"
   ],
-  "provider": {},
+  "provider": {
+    "llamacpp": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "llamacpp",
+      "options": {
+        "baseURL": "https://llamacpp.winetree94.com/v1",
+        "apiKey": "{env:LLAMACPP_API_KEY}"
+      },
+      "models": {
+        "llamacpp": {
+          "name": "llamacpp model",
+          "limit": {
+            "context": 16384,
+            "output": 16384
+          }
+        }
+      }
+    }
+  },
   "mcp": {
     // "web-reader": {
     //   "type": "remote",
