@@ -1,7 +1,7 @@
 ---
 description: Fast commit and push
 agent: build
-model: fireworks-ai/accounts/fireworks/routers/kimi-k2p5-turbo
+model: openai/gpt-5.4-mini-fast
 subtask: true
 ---
 
