@@ -41,6 +41,15 @@ opt.timeoutlen = 300
 -- Clipboard (sync with system clipboard)
 opt.clipboard = "unnamedplus"
 
+-- Prefer tmux's clipboard integration when inside tmux. Neovim 0.12 already
+-- knows how to use `tmux load-buffer -w -` for copy and `refresh-client -l`
+-- for paste. Over SSH without tmux, force OSC52.
+if vim.env.TMUX then
+  vim.g.clipboard = "tmux"
+elseif vim.env.SSH_TTY or vim.env.SSH_CONNECTION then
+  vim.g.clipboard = "osc52"
+end
+
 -- Leader key configuration
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -58,4 +67,3 @@ end, { desc = "Format buffer (LSP)" })
 vim.keymap.set("n", "grd", function()
 	vim.diagnostic.setloclist()
 end, { desc = "Show diagnostics" })
-
