@@ -27,19 +27,26 @@
     "github-copilot-enterprise"
   ],
   "provider": {
-    "llamacpp": {
+    "litellm": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "llamacpp",
+      "name": "litellm",
       "options": {
-        "baseURL": "https://llamacpp.winetree94.com/v1",
-        "apiKey": "{env:LLAMACPP_API_KEY}"
+        "baseURL": "https://llm.winetree94.com/v1",
+        "apiKey": "{env:LITELLM_API_KEY}"
       },
       "models": {
-        "llamacpp": {
-          "name": "llamacpp model",
+        "gemma-4-E4B-it-Q4_K_M": {
+          "name": "gemma-4-E4B-it-Q4_K_M",
           "limit": {
-            "context": 16384,
-            "output": 16384
+            "context": 131072,
+            "output": 131072
+          }
+        },
+        "gemma-4-26B-A4B-it-UD-Q4_K_M": {
+          "name": "gemma-4-26B-A4B-it-UD-Q4_K_M",
+          "limit": {
+            "context": 131072,
+            "output": 131072
           }
         }
       }
