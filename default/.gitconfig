@@ -2,6 +2,8 @@
   name = winetree94
   email = me@winetree94.com
   signingkey = C20D90288161417E
+[init]
+	defaultBranch = main
 [core]
   pager = delta
 [interactive]
@@ -26,4 +28,3 @@
   path = ~/.gitconfig.windows
   path = ~/.gitconfig.wsl
   path = ~/.gitconfig.profile
-
