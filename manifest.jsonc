@@ -1,7 +1,6 @@
 {
   "version": 7,
   "age": {
-    "identityFile": "$XDG_CONFIG_HOME/devsync/keys.txt",
     "recipients": [
       "age147lw095r5j3qmyzs2kf3r6vn87nllrkd9jt6x8e5fm2v8u75j5ssr5q47q"
     ]
@@ -436,14 +435,14 @@
     },
     {
       "kind": "file",
+      "localPath": {
+        "default": "~/.gnupg/gpg-agent.conf",
+        "win": "%APPDATA%/gnupg/gpg-agent.conf"
+      },
       "repoPath": {
         "default": ".gnupg/gpg-agent.conf",
         "win": ".gnupg/gpg-agent.windows.conf",
         "wsl": ".gnupg/gpg-agent.wsl.conf"
-      },
-      "localPath": {
-        "default": "~/.gnupg/gpg-agent.conf",
-        "win": "%APPDATA%/gnupg/gpg-agent.conf"
       },
       "mode": {
         "default": "ignore",
@@ -504,6 +503,30 @@
       "kind": "file",
       "localPath": {
         "default": "~/.ssh/winetree94_id_rsa.pub"
+      },
+      "mode": {
+        "default": "secret"
+      },
+      "permission": {
+        "default": "0644"
+      }
+    },
+    {
+      "kind": "file",
+      "localPath": {
+        "default": "~/.ssh/winetree94-openclaw.key"
+      },
+      "mode": {
+        "default": "secret"
+      },
+      "permission": {
+        "default": "0600"
+      }
+    },
+    {
+      "kind": "file",
+      "localPath": {
+        "default": "~/.ssh/winetree94-openclaw.key.pub"
       },
       "mode": {
         "default": "secret"
