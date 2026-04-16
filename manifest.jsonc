@@ -367,6 +367,15 @@
       }
     },
     {
+      "kind": "directory",
+      "localPath": {
+        "default": "~/.gemini/policies"
+      },
+      "mode": {
+        "default": "normal"
+      }
+    },
+    {
       "kind": "file",
       "localPath": {
         "default": "~/.gemini/settings.json"

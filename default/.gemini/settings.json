@@ -3,6 +3,7 @@
     "auth": {
       "selectedType": "oauth-personal"
     },
+    "autoAddToPolicyByDefault": true,
     "enablePermanentToolApproval": true
   },
   "mcpServers": {
@@ -12,5 +13,8 @@
     "notion": {
       "url": "https://mcp.notion.com/mcp"
     }
+  },
+  "ui": {
+    "compactToolOutput": false
   }
 }

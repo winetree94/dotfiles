@@ -1,0 +1,19 @@
+[[rule]]
+decision = "allow"
+priority = 950
+toolName = "run_shell_command"
+commandPrefix = [ "rm" ]
+modes = [ "autoEdit", "yolo" ]
+
+[[rule]]
+decision = "allow"
+priority = 950
+toolName = "run_shell_command"
+commandPrefix = [ "bun" ]
+modes = [ "autoEdit", "yolo" ]
+
+[[rule]]
+decision = "allow"
+priority = 950
+toolName = "activate_skill"
+modes = [ "autoEdit", "yolo" ]
