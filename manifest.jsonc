@@ -360,6 +360,15 @@
     {
       "kind": "file",
       "localPath": {
+        "default": "~/.gemini/GEMINI.md"
+      },
+      "mode": {
+        "default": "normal"
+      }
+    },
+    {
+      "kind": "file",
+      "localPath": {
         "default": "~/.gitconfig"
       },
       "mode": {
