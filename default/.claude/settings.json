@@ -3,5 +3,8 @@
     "commit": "",
     "pr": ""
   },
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "enabledPlugins": {
+    "figma@claude-plugins-official": true
+  }
 }
