@@ -94,5 +94,10 @@
   },
   "plugin": [
     "opencode-gemini-auth@latest"
-  ]
+  ],
+  "skills": {
+    "paths": [
+      "~/.agents/skills"
+    ]
+  }
 }

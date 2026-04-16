@@ -9,6 +9,15 @@
     {
       "kind": "directory",
       "localPath": {
+        "default": "~/.agents"
+      },
+      "mode": {
+        "default": "normal"
+      }
+    },
+    {
+      "kind": "directory",
+      "localPath": {
         "default": "~/.claude/agents"
       },
       "mode": {
