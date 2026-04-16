@@ -64,15 +64,12 @@
       }
     },
     {
-      "kind": "directory",
+      "kind": "file",
       "localPath": {
         "default": "~/.claude/skills"
       },
       "mode": {
         "default": "normal"
-      },
-      "permission": {
-        "default": "0755"
       }
     },
     {
