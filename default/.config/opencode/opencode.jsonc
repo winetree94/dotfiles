@@ -92,5 +92,7 @@
     //   "enabled": true
     // }
   },
-  "plugin": []
+  "plugin": [
+    "opencode-gemini-auth@latest"
+  ]
 }
