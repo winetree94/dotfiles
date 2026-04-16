@@ -369,6 +369,15 @@
     {
       "kind": "file",
       "localPath": {
+        "default": "~/.gemini/settings.json"
+      },
+      "mode": {
+        "default": "normal"
+      }
+    },
+    {
+      "kind": "file",
+      "localPath": {
         "default": "~/.gitconfig"
       },
       "mode": {
