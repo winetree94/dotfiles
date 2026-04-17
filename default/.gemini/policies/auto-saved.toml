@@ -17,3 +17,17 @@ decision = "allow"
 priority = 950
 toolName = "activate_skill"
 modes = [ "autoEdit", "yolo" ]
+
+[[rule]]
+decision = "allow"
+priority = 950
+toolName = "run_shell_command"
+commandPrefix = [ "npm" ]
+modes = [ "autoEdit", "yolo" ]
+
+[[rule]]
+decision = "allow"
+priority = 950
+toolName = "run_shell_command"
+commandPrefix = [ "git" ]
+modes = [ "autoEdit", "yolo" ]
