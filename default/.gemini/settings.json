@@ -16,5 +16,10 @@
   },
   "ui": {
     "compactToolOutput": false
+  },
+  "context": {
+    "fileName": [
+      "AGENTS.md"
+    ]
   }
 }
