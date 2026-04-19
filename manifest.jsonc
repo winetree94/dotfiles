@@ -376,6 +376,15 @@
       }
     },
     {
+      "kind": "directory",
+      "localPath": {
+        "default": "~/.gemini/commands"
+      },
+      "mode": {
+        "default": "normal"
+      }
+    },
+    {
       "kind": "file",
       "localPath": {
         "default": "~/.gemini/settings.json"
