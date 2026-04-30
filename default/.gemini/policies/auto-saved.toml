@@ -31,3 +31,10 @@ priority = 950
 toolName = "run_shell_command"
 commandPrefix = [ "git" ]
 modes = [ "autoEdit", "yolo" ]
+
+[[rule]]
+decision = "allow"
+priority = 950
+toolName = "run_shell_command"
+commandPrefix = [ "git", "cat", "head" ]
+modes = [ "default", "autoEdit", "yolo" ]
