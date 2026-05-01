@@ -1,7 +1,7 @@
 export PATH=$HOME/.local/bin:$PATH
 export PATH="$HOME/.cache/.bun/bin:$PATH"
 export PATH="$HOME/.bun/bin:$PATH"
-export PATH="$PATH:/snap/bin"
+
 export PATH="/home/winetree94/.cache/.bun/bin:$PATH"
 export JAVA_HOME="/usr/lib/jvm/java-21-openjdk-amd64"
 export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
