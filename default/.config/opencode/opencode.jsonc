@@ -3,8 +3,8 @@
   "instructions": [
     "~/.agents/AGENTS.md"
   ],
-  "model": "openai/gpt-5.4",
-  "small_model": "openai/gpt-5.4-mini",
+  "model": "opencode-go/deepseek-v4-pro",
+  "small_model": "opencode-go/deepseek-v4-flash",
   "permission": {
     "bash": "allow",
     "edit": "allow",
