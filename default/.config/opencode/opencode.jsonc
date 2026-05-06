@@ -50,6 +50,20 @@
           }
         }
       }
+    },
+    "vllm-server": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Remote vLLM",
+      "options": {
+        "baseURL": "http://10.78.151.6:8002/v1",
+        "apiKey": "EMPTY"
+      },
+      "models": {
+        "Qwen3.5-397B-A17B-NVFP4": {
+          "name": "Qwen3.5-397B-A17B-NVFP4",
+          "id": "Qwen3.5-397B-A17B-NVFP4"
+        }
+      }
     }
   },
   "mcp": {
