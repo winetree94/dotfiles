@@ -3,8 +3,8 @@
   "instructions": [
     "~/.agents/AGENTS.md"
   ],
-  "model": "opencode-go/deepseek-v4-pro",
-  "small_model": "opencode-go/deepseek-v4-flash",
+  "model": "wafer.ai/MiniMax-M2.7",
+  "small_model": "wafer.ai/MiniMax-M2.7",
   "permission": {
     "bash": "allow",
     "edit": "allow",
