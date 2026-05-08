@@ -3,7 +3,7 @@
   "instructions": [
     "~/.agents/AGENTS.md"
   ],
-  "model": "wafer.ai/MiniMax-M2.7",
+  "model": "wafer.ai/GLM-5.1",
   "small_model": "wafer.ai/MiniMax-M2.7",
   "permission": {
     "bash": "allow",
