@@ -1,7 +1,7 @@
 ---
 description: Fast commit and push
 agent: build
-model: opencode-go/deepseek-v4-flash
+model: fireworks-ai/accounts/fireworks/routers/kimi-k2p6-turbo
 subtask: true
 ---
 
