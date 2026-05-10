@@ -3,8 +3,8 @@
   "instructions": [
     "~/.agents/AGENTS.md"
   ],
-  "model": "fireworks-ai/accounts/fireworks/routers/kimi-k2p6-turbo",
-  "small_model": "fireworks-ai/accounts/fireworks/routers/kimi-k2p6-turbo",
+  "model": "opencode-go/deepseek-v4-pro",
+  "small_model": "opencode-go/deepseek-v4-flash",
   "permission": {
     "*": {
       "*": "allow"
