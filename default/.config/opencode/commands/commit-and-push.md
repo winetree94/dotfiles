@@ -1,7 +1,7 @@
 ---
 description: Fast commit and push
 agent: build
-model: opencode-go/deepseek-v4-flash
+model: wafer.ai/Qwen3.5-397B-A17B
 subtask: true
 ---
 

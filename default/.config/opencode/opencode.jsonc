@@ -3,8 +3,8 @@
   "instructions": [
     "~/.agents/AGENTS.md"
   ],
-  "model": "opencode-go/deepseek-v4-pro",
-  "small_model": "opencode-go/deepseek-v4-flash",
+  "model": "wafer.ai/Qwen3.5-397B-A17B",
+  "small_model": "wafer.ai/Qwen3.5-397B-A17B",
   "permission": {
     "*": {
       "*": "allow"
