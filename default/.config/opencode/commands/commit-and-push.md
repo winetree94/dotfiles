@@ -1,7 +1,7 @@
 ---
 description: Fast commit and push
 agent: build
-model: wafer.ai/Qwen3.5-397B-A17B
+model: openai/gpt-5.4-mini
 subtask: true
 ---
 
