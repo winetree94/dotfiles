@@ -1,0 +1,72 @@
+{
+  "_comment": "n8n chatbot using Webhook + Basic LLM Chain + Respond. Use this when Chat Trigger webhooks aren't registering. Replace CREDENTIAL_ID and CREDENTIAL_NAME with your actual credential info.",
+  "name": "LLM Chatbot (Webhook Pattern)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "my-chatbot",
+        "responseMode": "responseNode"
+      },
+      "id": "webhook-001",
+      "name": "Chat Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "prompt": "={{ $json.body.message }}"
+      },
+      "id": "llm-chain-001",
+      "name": "LLM Chain",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1,
+      "position": [650, 300],
+      "credentials": {
+        "openAiApi": {
+          "id": "CREDENTIAL_ID",
+          "name": "CREDENTIAL_NAME"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"reply\": $json.text } }}"
+      },
+      "id": "response-001",
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [1050, 300]
+    }
+  ],
+  "connections": {
+    "Chat Webhook": {
+      "main": [
+        [
+          {
+            "node": "LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}
