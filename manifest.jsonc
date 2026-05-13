@@ -5,6 +5,9 @@
       "age147lw095r5j3qmyzs2kf3r6vn87nllrkd9jt6x8e5fm2v8u75j5ssr5q47q"
     ]
   },
+  "profiles": [
+    "vivident"
+  ],
   "entries": [
     {
       "kind": "directory",
@@ -358,6 +361,15 @@
       }
     },
     {
+      "kind": "directory",
+      "localPath": {
+        "default": "~/.gemini/commands"
+      },
+      "mode": {
+        "default": "normal"
+      }
+    },
+    {
       "kind": "file",
       "localPath": {
         "default": "~/.gemini/GEMINI.md"
@@ -370,15 +382,6 @@
       "kind": "directory",
       "localPath": {
         "default": "~/.gemini/policies"
-      },
-      "mode": {
-        "default": "normal"
-      }
-    },
-    {
-      "kind": "directory",
-      "localPath": {
-        "default": "~/.gemini/commands"
       },
       "mode": {
         "default": "normal"
@@ -496,6 +499,51 @@
     {
       "kind": "file",
       "localPath": {
+        "default": "~/.hermes/.env"
+      },
+      "mode": {
+        "default": "secret"
+      }
+    },
+    {
+      "kind": "file",
+      "localPath": {
+        "default": "~/.hermes/config.yaml"
+      },
+      "mode": {
+        "default": "normal"
+      }
+    },
+    {
+      "kind": "directory",
+      "localPath": {
+        "default": "~/.hermes/memories"
+      },
+      "mode": {
+        "default": "secret"
+      }
+    },
+    {
+      "kind": "directory",
+      "localPath": {
+        "default": "~/.hermes/skills"
+      },
+      "mode": {
+        "default": "normal"
+      }
+    },
+    {
+      "kind": "file",
+      "localPath": {
+        "default": "~/.hermes/SOUL.md"
+      },
+      "mode": {
+        "default": "normal"
+      }
+    },
+    {
+      "kind": "file",
+      "localPath": {
         "default": "~/.ideavimrc"
       },
       "mode": {
@@ -600,8 +648,5 @@
         "win": "normal"
       }
     }
-  ],
-  "profiles": [
-    "vivident"
   ]
 }
