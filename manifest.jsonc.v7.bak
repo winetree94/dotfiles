@@ -1,5 +1,5 @@
 {
-  "version": 8,
+  "version": 7,
   "age": {
     "recipients": [
       "age147lw095r5j3qmyzs2kf3r6vn87nllrkd9jt6x8e5fm2v8u75j5ssr5q47q"
@@ -600,8 +600,5 @@
         "win": "normal"
       }
     }
-  ],
-  "profiles": [
-    "vivident"
   ]
 }
