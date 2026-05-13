@@ -58,23 +58,6 @@
           "id": "Qwen3.5-397B-A17B-NVFP4"
         }
       }
-    },
-    "fireworks-ai": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Fireworks AI",
-      "options": {
-        "baseURL": "https://api.fireworks.ai/inference/v1",
-        "apiKey": "{env:FIREWORKS_API_KEY}"
-      },
-      "models": {
-        "accounts/fireworks/routers/kimi-k2p6-turbo": {
-          "name": "Kimi K2.6 Turbo",
-          "limit": {
-            "context": 262144,
-            "output": 262144
-          }
-        }
-      }
     }
   },
   "mcp": {
@@ -117,9 +100,7 @@
     //   "enabled": true
     // }
   },
-  "plugin": [
-    "opencode-gemini-auth@latest"
-  ],
+  "plugin": [],
   "skills": {
     "paths": [
       "~/.agents/skills"
