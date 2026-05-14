@@ -535,6 +535,33 @@
     {
       "kind": "file",
       "localPath": {
+        "default": "~/.hermes/skills/.bundled_manifest"
+      },
+      "mode": {
+        "default": "ignore"
+      }
+    },
+    {
+      "kind": "file",
+      "localPath": {
+        "default": "~/.hermes/skills/.curator_state"
+      },
+      "mode": {
+        "default": "ignore"
+      }
+    },
+    {
+      "kind": "file",
+      "localPath": {
+        "default": "~/.hermes/skills/.usage.json"
+      },
+      "mode": {
+        "default": "ignore"
+      }
+    },
+    {
+      "kind": "file",
+      "localPath": {
         "default": "~/.hermes/SOUL.md"
       },
       "mode": {

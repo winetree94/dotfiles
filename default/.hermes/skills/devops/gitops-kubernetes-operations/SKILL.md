@@ -161,6 +161,10 @@ For `mariadb-operator` HelmReleases stuck because a MariaDB CR is `Restoring bac
 
 For coordinated CNPG, Barman Cloud Plugin, MariaDB Operator, CRD, and `mariadb-cluster` chart upgrades, see `references/database-operator-upgrades.md`. Key pitfall: before upgrading `mariadb-cluster`, compare live immutable fields with rendered chart output; newer charts may default `rootPasswordSecretKeyRef.generate: true`, while existing clusters may require an explicit `generate: false` to avoid immutable-field upgrade failures.
 
+## Application Migration Audits
+
+For Stalwart 0.15 -> 0.16 upgrades, especially app-password disappearance or old `config.toml` parity checks, see `references/stalwart-v016-migration-audit.md`. Key pitfall: the official `migrate_v016.py` may recognize `$app$` app-password hashes in `principals.json` but omit them from `export.json`, leaving clients unable to authenticate even though the pod and ports are healthy.
+
 ## Pitfalls
 
 For Flux/HelmRelease failures around MariaDB Operator resources stuck in `Restoring backup`, `InProgress`, or `Backup not found`, see `references/mariadb-operator-restore-debugging.md`. In particular, the `mariadb-cluster` Helm chart prefixes generated `Backup` resource names with the release fullname, while `mariadb.bootstrapFrom.backupRef.name` is passed through verbatim; always compare rendered names against the live `Restore` error before proposing a fix.
