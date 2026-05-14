@@ -15,6 +15,7 @@ agent:
   service_tier: ''
   tool_use_enforcement: auto
   gateway_timeout_warning: 900
+  clarify_timeout: 600
   gateway_notify_interval: 180
   gateway_auto_continue_freshness: 3600
   image_input_mode: auto
@@ -102,6 +103,9 @@ browser:
   dialog_timeout_s: 300
   camofox:
     managed_persistence: false
+    user_id: ''
+    session_key: ''
+    adopt_existing_tab: false
 checkpoints:
   enabled: false
   max_snapshots: 20
@@ -237,6 +241,7 @@ display:
   persistent_output: true
   persistent_output_max_lines: 200
   inline_diffs: true
+  file_mutation_verifier: true
   show_cost: false
   skin: default
   language: en
@@ -391,6 +396,7 @@ approvals:
 command_allowlist:
 - recursive delete
 - script execution via -e/-c flag
+- delete in root path
 - shell command via -c/-lc flag
 quick_commands: {}
 hooks: {}
@@ -407,6 +413,8 @@ security:
     enabled: false
     domains: []
     shared_files: []
+  acked_advisories: []
+  allow_lazy_installs: true
 cron:
   wrap_response: true
   max_parallel_jobs: null
@@ -437,12 +445,19 @@ sessions:
 onboarding:
   seen:
     busy_input_prompt: true
+    tool_progress_prompt: true
 updates:
   pre_update_backup: false
   backup_keep: 5
+lsp:
+  enabled: true
+  wait_mode: document
+  wait_timeout: 5.0
+  install_strategy: auto
+  servers: {}
 _config_version: 23
 session_reset:
-  mode: both
+  mode: none
   idle_minutes: 1440
   at_hour: 4
 group_sessions_per_user: true
