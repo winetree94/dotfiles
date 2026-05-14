@@ -30,7 +30,7 @@ Kubernetes context mappings:
 - homelab-proxy: repo ~/Workspaces/tinyrack/proxy, host alias proxy-server
 - mail-server: repo ~/Workspaces/tinyrack/mail-server, host alias mail-server
 - tinyrack: repo ~/Workspaces/tinyrack/infrastructure, host alias tinyrack-server
-- vivident-intranet: repo ~/Workspaces/vivident/eevee, no explicit ~/.ssh/config host alias found
+- vivident-intranet: repo ~/Workspaces/vivident/eevee, host alias vivident-server
 
 ## n8n Durable Facts
 
