@@ -329,11 +329,7 @@
       },
       "permission": {
         "default": "0600"
-      },
-      "profiles": [
-        "default",
-        "vivident"
-      ]
+      }
     },
     {
       "kind": "file",
@@ -445,11 +441,7 @@
       },
       "permission": {
         "default": "0644"
-      },
-      "profiles": [
-        "default",
-        "vivident"
-      ]
+      }
     },
     {
       "kind": "file",
@@ -503,7 +495,11 @@
       },
       "mode": {
         "default": "secret"
-      }
+      },
+      "profiles": [
+        "default",
+        "vivident"
+      ]
     },
     {
       "kind": "file",
@@ -512,51 +508,6 @@
       },
       "mode": {
         "default": "normal"
-      }
-    },
-    {
-      "kind": "directory",
-      "localPath": {
-        "default": "~/.hermes/memories"
-      },
-      "mode": {
-        "default": "secret"
-      }
-    },
-    {
-      "kind": "directory",
-      "localPath": {
-        "default": "~/.hermes/skills"
-      },
-      "mode": {
-        "default": "normal"
-      }
-    },
-    {
-      "kind": "file",
-      "localPath": {
-        "default": "~/.hermes/skills/.bundled_manifest"
-      },
-      "mode": {
-        "default": "ignore"
-      }
-    },
-    {
-      "kind": "file",
-      "localPath": {
-        "default": "~/.hermes/skills/.curator_state"
-      },
-      "mode": {
-        "default": "ignore"
-      }
-    },
-    {
-      "kind": "file",
-      "localPath": {
-        "default": "~/.hermes/skills/.usage.json"
-      },
-      "mode": {
-        "default": "ignore"
       }
     },
     {
