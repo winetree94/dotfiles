@@ -321,6 +321,15 @@
     {
       "kind": "file",
       "localPath": {
+        "default": "~/.config/zsh/device.zsh"
+      },
+      "mode": {
+        "default": "ignore"
+      }
+    },
+    {
+      "kind": "file",
+      "localPath": {
         "default": "~/.config/zsh/secrets.profile.zsh"
       },
       "mode": {
