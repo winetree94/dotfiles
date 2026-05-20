@@ -15,11 +15,11 @@ agent:
   service_tier: ''
   tool_use_enforcement: auto
   gateway_timeout_warning: 900
-  clarify_timeout: 600
   gateway_notify_interval: 180
   gateway_auto_continue_freshness: 3600
   image_input_mode: auto
   disabled_toolsets: []
+  clarify_timeout: 600
   verbose: false
   reasoning_effort: medium
   personalities:
@@ -67,6 +67,7 @@ terminal:
   modal_mode: auto
   cwd: .
   timeout: 180
+  shell: bash
   env_passthrough: []
   shell_init_files: []
   auto_source_bashrc: true
@@ -139,6 +140,8 @@ compression:
   hygiene_hard_message_limit: 400
 prompt_caching:
   cache_ttl: 5m
+  long_lived_prefix: true
+  long_lived_ttl: 1h
 openrouter:
   response_cache: true
   response_cache_ttl: 300
@@ -241,7 +244,6 @@ display:
   persistent_output: true
   persistent_output_max_lines: 200
   inline_diffs: true
-  file_mutation_verifier: true
   show_cost: false
   skin: default
   language: en
@@ -262,6 +264,7 @@ display:
     - context_pct
     - cwd
   copy_shortcut: auto
+  file_mutation_verifier: true
   tool_progress: all
   cleanup_progress: false
   background_process_notifications: all
@@ -394,10 +397,11 @@ approvals:
   mcp_reload_confirm: true
   destructive_slash_confirm: false
 command_allowlist:
-- recursive delete
 - script execution via -e/-c flag
-- delete in root path
 - shell command via -c/-lc flag
+- recursive delete
+- delete in root path
+- git force push (rewrites remote history)
 quick_commands: {}
 hooks: {}
 hooks_auto_accept: false
@@ -449,13 +453,13 @@ onboarding:
 updates:
   pre_update_backup: false
   backup_keep: 5
+_config_version: 23
 lsp:
   enabled: true
   wait_mode: document
   wait_timeout: 5.0
   install_strategy: auto
   servers: {}
-_config_version: 23
 session_reset:
   mode: none
   idle_minutes: 1440
