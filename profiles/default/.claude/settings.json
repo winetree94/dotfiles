@@ -3,8 +3,9 @@
     "commit": "",
     "pr": ""
   },
-  "skipDangerousModePermissionPrompt": true,
   "enabledPlugins": {
     "figma@claude-plugins-official": true
-  }
+  },
+  "skipDangerousModePermissionPrompt": true,
+  "model": "claude-fable-5[1m]"
 }
