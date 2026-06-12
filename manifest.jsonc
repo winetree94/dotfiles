@@ -517,7 +517,11 @@
       },
       "mode": {
         "default": "normal"
-      }
+      },
+      "profiles": [
+        "default",
+        "vivident"
+      ]
     },
     {
       "kind": "file",
