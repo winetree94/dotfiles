@@ -500,7 +500,8 @@
     {
       "kind": "file",
       "localPath": {
-        "default": "~/.hermes/.env"
+        "default": "~/.hermes/.env",
+        "win": "%LOCALAPPDATA%/hermes/.env"
       },
       "mode": {
         "default": "secret"
@@ -513,7 +514,8 @@
     {
       "kind": "file",
       "localPath": {
-        "default": "~/.hermes/config.yaml"
+        "default": "~/.hermes/config.yaml",
+        "win": "%LOCALAPPDATA%/hermes/config.yaml"
       },
       "mode": {
         "default": "normal"
@@ -526,7 +528,8 @@
     {
       "kind": "file",
       "localPath": {
-        "default": "~/.hermes/SOUL.md"
+        "default": "~/.hermes/SOUL.md",
+        "win": "%LOCALAPPDATA%/hermes/SOUL.md"
       },
       "mode": {
         "default": "normal"
