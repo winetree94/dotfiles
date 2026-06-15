@@ -1,7 +1,7 @@
 [user]
   name = winetree94
   email = me@winetree94.com
-  signingkey = C20D90288161417E
+	signingkey = /home/winetree94/.ssh/winetree94_id_rsa.pub
 [init]
 	defaultBranch = main
 [core]
@@ -15,9 +15,9 @@
 [merge]
   conflictStyle = zdiff3
 [commit]
-  gpgsign = true
+	gpgsign = true
 [tag]
-  gpgsign = true
+	gpgsign = true
 [pull]
   rebase = true
 [push]
@@ -36,3 +36,5 @@
 	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
 [windows]
 	appendAtomically = false
+[gpg]
+	format = ssh
