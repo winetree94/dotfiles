@@ -1,3 +1,5 @@
+[user]
+	signingkey = /c/Users/winetree94/.ssh/winetree94_id_rsa.pub
 [credential]
   helper = /c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
 [gpg]
