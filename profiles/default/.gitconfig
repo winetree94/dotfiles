@@ -6,6 +6,8 @@
 	defaultBranch = main
 [core]
   pager = delta
+	longpaths = true
+	protectNTFS = false
 [interactive]
   diffFilter = delta --color-only
 [delta]
