@@ -17,6 +17,24 @@
       }
     },
     {
+      "kind": "file",
+      "localPath": {
+        "default": "~/.aws/config"
+      },
+      "mode": {
+        "default": "normal"
+      }
+    },
+    {
+      "kind": "file",
+      "localPath": {
+        "default": "~/.aws/credentials"
+      },
+      "mode": {
+        "default": "secret"
+      }
+    },
+    {
       "kind": "directory",
       "localPath": {
         "default": "~/.claude/agents"
