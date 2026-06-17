@@ -550,7 +550,7 @@
     {
       "kind": "file",
       "localPath": {
-        "default": "~/.kube/k3s.yaml"
+        "default": "~/.kube/config"
       },
       "mode": {
         "default": "secret"
