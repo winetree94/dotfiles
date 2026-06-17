@@ -3,9 +3,11 @@
     "commit": "",
     "pr": ""
   },
+  "model": "opus[1m]",
   "enabledPlugins": {
     "figma@claude-plugins-official": true
   },
+  "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
-  "model": "claude-fable-5[1m]"
+  "theme": "dark"
 }
