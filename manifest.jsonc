@@ -214,6 +214,16 @@
       }
     },
     {
+      "kind": "file",
+      "localPath": {
+        "default": "~/.config/opencode/opencode.jsonc"
+      },
+      "mode": {
+        "default": "normal"
+      },
+      "profiles": ["default", "vivident"]
+    },
+    {
       "kind": "directory",
       "localPath": {
         "default": "~/.config/opencode/node_modules"
