@@ -5,9 +5,7 @@
       "age147lw095r5j3qmyzs2kf3r6vn87nllrkd9jt6x8e5fm2v8u75j5ssr5q47q"
     ]
   },
-  "profiles": [
-    "vivident"
-  ],
+  "profiles": ["vivident"],
   "entries": [
     {
       "kind": "directory",
@@ -270,9 +268,10 @@
       }
     },
     {
-      "kind": "directory",
+      "kind": "file",
       "localPath": {
-        "default": "~/.config/tmux"
+        "default": "~/.config/tmux/tmux.conf",
+        "win": "~/.config/psmux/psmux.conf"
       },
       "mode": {
         "default": "normal"
@@ -506,10 +505,7 @@
       "mode": {
         "default": "secret"
       },
-      "profiles": [
-        "default",
-        "vivident"
-      ]
+      "profiles": ["default", "vivident"]
     },
     {
       "kind": "file",
@@ -520,10 +516,7 @@
       "mode": {
         "default": "normal"
       },
-      "profiles": [
-        "default",
-        "vivident"
-      ]
+      "profiles": ["default", "vivident"]
     },
     {
       "kind": "file",
