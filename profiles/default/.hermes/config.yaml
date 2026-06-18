@@ -27,7 +27,7 @@ agent:
   image_input_mode: auto
   disabled_toolsets: []
   verbose: false
-  reasoning_effort: medium
+  reasoning_effort: xhigh
   personalities:
     helpful: You are a helpful, friendly AI assistant.
     concise: You are a concise assistant. Keep responses brief and to the point.
@@ -128,6 +128,7 @@ checkpoints:
   retention_days: 7
   delete_orphans: true
   min_interval_hours: 24
+context_file_max_chars: 20000
 file_read_max_chars: 100000
 tool_output:
   max_bytes: 50000
@@ -288,6 +289,7 @@ display:
   tui_agents_nudge: true
   bell_on_complete: false
   show_reasoning: false
+  memory_notifications: 'on'
   streaming: true
   timestamps: false
   final_response_markdown: strip
@@ -309,11 +311,12 @@ display:
   tool_progress_command: false
   tool_progress_overrides: {}
   tool_preview_length: 0
+  tool_progress_grouping: accumulate
   ephemeral_system_ttl: 0
   platforms:
     telegram:
       streaming: true
-      show_reasoning: false
+      show_reasoning: true
     discord:
       streaming: false
   runtime_footer:
@@ -420,6 +423,7 @@ delegation:
   child_timeout_seconds: 600
   reasoning_effort: ''
   max_concurrent_children: 3
+  max_async_children: 3
   max_spawn_depth: 1
   orchestrator_enabled: true
   subagent_auto_approve: false
@@ -502,12 +506,13 @@ approvals:
   mcp_reload_confirm: true
   destructive_slash_confirm: false
 command_allowlist:
-- script execution via -e/-c flag
 - recursive delete
-- shell command via -c/-lc flag
-- git force push (rewrites remote history)
 - execute_code
+- script execution via -e/-c flag
+- git force push (rewrites remote history)
 - delete in root path
+- script execution via heredoc
+- shell command via -c/-lc flag
 quick_commands: {}
 hooks: {}
 hooks_auto_accept: false
@@ -562,6 +567,8 @@ model_catalog:
 network:
   force_ipv4: false
 gateway:
+  message_timestamps:
+    enabled: false
   strict: false
   media_delivery_allow_dirs: []
   trust_recent_files: true
