@@ -5,7 +5,9 @@
       "age147lw095r5j3qmyzs2kf3r6vn87nllrkd9jt6x8e5fm2v8u75j5ssr5q47q"
     ]
   },
-  "profiles": ["vivident"],
+  "profiles": [
+    "vivident"
+  ],
   "entries": [
     {
       "kind": "directory",
@@ -214,16 +216,6 @@
       }
     },
     {
-      "kind": "file",
-      "localPath": {
-        "default": "~/.config/opencode/opencode.jsonc"
-      },
-      "mode": {
-        "default": "normal"
-      },
-      "profiles": ["default", "vivident"]
-    },
-    {
       "kind": "directory",
       "localPath": {
         "default": "~/.config/opencode/node_modules"
@@ -234,6 +226,19 @@
       "permission": {
         "default": "0755"
       }
+    },
+    {
+      "kind": "file",
+      "localPath": {
+        "default": "~/.config/opencode/opencode.jsonc"
+      },
+      "mode": {
+        "default": "normal"
+      },
+      "profiles": [
+        "default",
+        "vivident"
+      ]
     },
     {
       "kind": "file",
@@ -352,6 +357,20 @@
       },
       "mode": {
         "default": "ignore"
+      }
+    },
+    {
+      "kind": "file",
+      "localPath": {
+        "default": "~/.config/zsh/platform.zsh"
+      },
+      "repoPath": {
+        "default": ".config/zsh/platform.zsh",
+        "wsl": ".config/zsh/platform.wsl.zsh"
+      },
+      "mode": {
+        "default": "ignore",
+        "wsl": "normal"
       }
     },
     {
@@ -533,7 +552,10 @@
       "mode": {
         "default": "secret"
       },
-      "profiles": ["default", "vivident"]
+      "profiles": [
+        "default",
+        "vivident"
+      ]
     },
     {
       "kind": "file",
@@ -544,7 +566,10 @@
       "mode": {
         "default": "normal"
       },
-      "profiles": ["default", "vivident"]
+      "profiles": [
+        "default",
+        "vivident"
+      ]
     },
     {
       "kind": "file",
@@ -638,6 +663,16 @@
       },
       "permission": {
         "default": "0644"
+      }
+    },
+    {
+      "kind": "file",
+      "localPath": {
+        "default": "~/.zshenv"
+      },
+      "mode": {
+        "default": "ignore",
+        "wsl": "normal"
       }
     },
     {
