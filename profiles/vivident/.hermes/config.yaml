@@ -27,7 +27,7 @@ agent:
   image_input_mode: auto
   disabled_toolsets: []
   verbose: false
-  reasoning_effort: medium
+  reasoning_effort: high
   personalities:
     helpful: You are a helpful, friendly AI assistant.
     concise: You are a concise assistant. Keep responses brief and to the point.
@@ -438,6 +438,9 @@ skills:
   guard_agent_created: false
   write_approval: false
   creation_nudge_interval: 15
+  disabled:
+  - claude-code
+  - codex
 curator:
   enabled: true
   interval_hours: 168
@@ -612,6 +615,7 @@ secrets:
 paste_collapse_threshold: 5
 paste_collapse_threshold_fallback: 5
 paste_collapse_char_threshold: 2000
+_config_version: 29
 session_reset:
   mode: none
   idle_minutes: 1440
