@@ -17,6 +17,7 @@ agent:
   service_tier: normal
   tool_use_enforcement: auto
   task_completion_guidance: true
+  parallel_tool_call_guidance: true
   environment_probe: true
   environment_hint: ''
   coding_context: auto
@@ -154,6 +155,18 @@ compression:
   protect_first_n: 3
   abort_on_summary_failure: false
   codex_gpt55_autoraise: true
+kanban:
+  dispatch_in_gateway: true
+  dispatch_interval_seconds: 60
+  failure_limit: 2
+  worker_log_rotate_bytes: 2097152
+  worker_log_backup_count: 1
+  orchestrator_profile: ''
+  default_assignee: ''
+  max_in_progress_per_profile: null
+  auto_decompose: true
+  auto_decompose_per_tick: 3
+  dispatch_stale_timeout_seconds: 14400
 prompt_caching:
   cache_ttl: 5m
   long_lived_prefix: true
@@ -316,7 +329,7 @@ display:
   platforms:
     telegram:
       streaming: true
-      show_reasoning: true
+      show_reasoning: false
     discord:
       streaming: false
   runtime_footer:
@@ -444,6 +457,7 @@ curator:
   min_idle_hours: 2
   stale_after_days: 30
   archive_after_days: 90
+  consolidate: false
   prune_builtins: true
   backup:
     enabled: true
@@ -489,7 +503,7 @@ telegram:
   channel_prompts: {}
   allowed_chats: ''
   extra:
-    rich_messages: true
+    rich_messages: false
 mattermost:
   require_mention: true
   free_response_channels: ''
@@ -506,14 +520,17 @@ approvals:
   mcp_reload_confirm: true
   destructive_slash_confirm: false
 command_allowlist:
-- recursive delete
-- execute_code
-- script execution via -e/-c flag
-- git force push (rewrites remote history)
+- docker compose restart/stop/kill/down (container lifecycle)
 - delete in root path
-- script execution via heredoc
+- execute_code
 - shell command via -c/-lc flag
+- docker restart/stop/kill (container lifecycle)
+- script execution via heredoc
+- recursive delete
+- git force push (rewrites remote history)
+- script execution via -e/-c flag
 quick_commands: {}
+platform_hints: {}
 hooks: {}
 hooks_auto_accept: false
 personalities: {}
@@ -533,18 +550,6 @@ security:
 cron:
   wrap_response: true
   max_parallel_jobs: null
-kanban:
-  dispatch_in_gateway: true
-  dispatch_interval_seconds: 60
-  failure_limit: 2
-  worker_log_rotate_bytes: 2097152
-  worker_log_backup_count: 1
-  orchestrator_profile: ''
-  default_assignee: ''
-  max_in_progress_per_profile: null
-  auto_decompose: true
-  auto_decompose_per_tick: 3
-  dispatch_stale_timeout_seconds: 14400
 code_execution:
   mode: project
   timeout: 300
@@ -618,7 +623,7 @@ secrets:
 paste_collapse_threshold: 5
 paste_collapse_threshold_fallback: 5
 paste_collapse_char_threshold: 2000
-_config_version: 29
+_config_version: 30
 session_reset:
   mode: none
   idle_minutes: 1440
@@ -706,9 +711,6 @@ known_plugin_toolsets:
   - spotify
   discord:
   - spotify
-fallback_model:
-  provider: opencode-go
-  model: deepseek-v4-pro
 mcp_servers:
   cloudflare:
     url: https://mcp.cloudflare.com/mcp
