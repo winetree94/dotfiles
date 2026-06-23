@@ -316,7 +316,7 @@ display:
   platforms:
     telegram:
       streaming: true
-      show_reasoning: false
+      show_reasoning: true
     discord:
       streaming: false
   runtime_footer:
@@ -492,7 +492,7 @@ telegram:
   channel_prompts: {}
   allowed_chats: ''
   extra:
-    rich_messages: true
+    rich_messages: false
 mattermost:
   require_mention: true
   free_response_channels: ''
