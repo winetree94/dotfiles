@@ -32,10 +32,10 @@
   path = ~/.gitconfig.wsl
   path = ~/.gitconfig.profile
 [credential "https://github.com"]
-	helper = 
+	helper =
 	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = 
+	helper =
 	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
 [windows]
 	appendAtomically = false
