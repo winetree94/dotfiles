@@ -8,7 +8,6 @@
   pager = delta
 	longpaths = true
 	protectNTFS = false
-	editor = vi
 [interactive]
   diffFilter = delta --color-only
 [delta]
@@ -41,5 +40,3 @@
 	appendAtomically = false
 [gpg]
 	format = ssh
-[sequence]
-	editor = vi
