@@ -666,6 +666,15 @@
       }
     },
     {
+      "kind": "directory",
+      "localPath": {
+        "default": "~/.vivident"
+      },
+      "mode": {
+        "default": "secret"
+      }
+    },
+    {
       "kind": "file",
       "localPath": {
         "default": "~/.zshenv"
