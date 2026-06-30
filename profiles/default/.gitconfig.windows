@@ -7,4 +7,4 @@
 [core]
 	autocrlf = false
 	eol = lf
-	safecrlf = warn
+  safecrlf = warn
