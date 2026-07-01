@@ -8,6 +8,7 @@
   pager = delta
 	longpaths = true
 	protectNTFS = false
+	editor = nvim
 [interactive]
   diffFilter = delta --color-only
 [delta]
@@ -30,13 +31,9 @@
   path = ~/.gitconfig.windows
   path = ~/.gitconfig.wsl
   path = ~/.gitconfig.profile
-[credential "https://github.com"]
-	helper = 
-	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
-[credential "https://gist.github.com"]
-	helper = 
-	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
 [windows]
 	appendAtomically = false
 [gpg]
 	format = ssh
+[sequence]
+	editor = nvim
