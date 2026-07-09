@@ -1,7 +1,7 @@
 ---
 description: Fast commit and push
 agent: build
-model: opencode-go/deepseek-v4-pro
+model: openai/gpt-5.4-mini
 subtask: true
 ---
 
