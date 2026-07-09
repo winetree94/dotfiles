@@ -1,3 +1,8 @@
 .claude
 .opencode
 .hermes
+# BEGIN dotweave managed secret artifact rules
+!profiles/
+!profiles/**/
+!profiles/**/*.dotweave.secret
+# END dotweave managed secret artifact rules
