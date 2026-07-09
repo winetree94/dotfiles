@@ -3,11 +3,12 @@
     "commit": "",
     "pr": ""
   },
-  "model": "opus[1m]",
+  "model": "claude-fable-5[1m]",
   "enabledPlugins": {
     "figma@claude-plugins-official": true
   },
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
-  "theme": "dark"
+  "theme": "dark",
+  "skipWorkflowUsageWarning": true
 }
