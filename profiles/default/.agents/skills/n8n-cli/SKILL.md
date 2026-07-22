@@ -9,6 +9,10 @@ allowed-tools: Bash(n8n-cli:*), Bash(echo:*), Bash(cat:*), Read, Write
 The `n8n-cli` command-line tool manages an n8n instance via its REST API.
 It auto-detects piped output and switches to JSON, making it composable for scripts and LLM tool use.
 
+## Instance-Specific Guidance
+
+When operating the user's configured instance at `n8n.winetree94.com`, read [references/winetree94-instance.md](references/winetree94-instance.md) before creating, updating, or debugging a workflow. It records the installed CLI location, reusable credential metadata, and an instance-specific webhook limitation with its supported chatbot pattern.
+
 ## Setup
 
 ```bash
