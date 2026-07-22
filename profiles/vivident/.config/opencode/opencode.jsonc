@@ -9,7 +9,8 @@
     }
   },
   "disabled_providers": [
-    // "openrouter",
+    "openrouter",
+    "opencode",
     "amazon-bedrock",
     "synthetic",
     "minimax-cn",
