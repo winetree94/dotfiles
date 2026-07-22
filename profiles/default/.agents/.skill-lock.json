@@ -135,6 +135,51 @@
       "skillFolderHash": "76a98a285cb0434f3d39e1a873823556330e398b",
       "installedAt": "2026-07-20T15:26:19.612Z",
       "updatedAt": "2026-07-20T15:26:19.612Z"
+    },
+    "paseo": {
+      "source": "getpaseo/paseo",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/getpaseo/paseo.git",
+      "skillPath": "skills/paseo/SKILL.md",
+      "skillFolderHash": "fbac9ad78fb0cd9f35b923f5084503a8e7ac9249",
+      "installedAt": "2026-07-22T02:33:05.576Z",
+      "updatedAt": "2026-07-22T02:33:05.576Z"
+    },
+    "paseo-advisor": {
+      "source": "getpaseo/paseo",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/getpaseo/paseo.git",
+      "skillPath": "skills/paseo-advisor/SKILL.md",
+      "skillFolderHash": "c3c468dbc2878d9817932d5c3d42ec0d10f4d1e6",
+      "installedAt": "2026-07-22T02:33:05.578Z",
+      "updatedAt": "2026-07-22T02:33:05.578Z"
+    },
+    "paseo-committee": {
+      "source": "getpaseo/paseo",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/getpaseo/paseo.git",
+      "skillPath": "skills/paseo-committee/SKILL.md",
+      "skillFolderHash": "30ca497471fbefa4ca5d1283882ad60ac3b2f336",
+      "installedAt": "2026-07-22T02:33:05.579Z",
+      "updatedAt": "2026-07-22T02:33:05.579Z"
+    },
+    "paseo-handoff": {
+      "source": "getpaseo/paseo",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/getpaseo/paseo.git",
+      "skillPath": "skills/paseo-handoff/SKILL.md",
+      "skillFolderHash": "1382c728106daf41ec0814d3ed4e69a5795f425e",
+      "installedAt": "2026-07-22T02:33:05.580Z",
+      "updatedAt": "2026-07-22T02:33:05.580Z"
+    },
+    "paseo-loop": {
+      "source": "getpaseo/paseo",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/getpaseo/paseo.git",
+      "skillPath": "skills/paseo-loop/SKILL.md",
+      "skillFolderHash": "b79df654d1bfd8f48a539f6177266006dc5c093d",
+      "installedAt": "2026-07-22T02:33:05.582Z",
+      "updatedAt": "2026-07-22T02:33:05.582Z"
     }
   },
   "dismissed": {
