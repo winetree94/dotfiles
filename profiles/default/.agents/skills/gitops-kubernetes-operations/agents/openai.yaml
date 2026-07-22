@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitOps Kubernetes Operations"
+  short_description: "Route projects and operate Kubernetes via GitOps"
+  default_prompt: "Use $gitops-kubernetes-operations to resolve the target environment and perform this infrastructure task safely through GitOps."
