@@ -1,7 +1,7 @@
 ---
 description: Fast commit and push
 agent: build
-model: openai/gpt-5.6-luna
+model: minimax-coding-plan/MiniMax-M2.7-highspeed
 subtask: true
 ---
 
