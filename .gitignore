@@ -5,4 +5,5 @@
 !profiles/
 !profiles/**/
 !profiles/**/*.dotweave.secret
+!profiles/**/*.dotweave.symlink
 # END dotweave managed secret artifact rules

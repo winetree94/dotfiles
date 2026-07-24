@@ -1,7 +1,7 @@
 ---
 description: Fast commit and push
 agent: build
-model: deepseek/deepseek-v4-flash
+model: minimax-coding-plan/MiniMax-M2.7-highspeed
 subtask: true
 ---
 
