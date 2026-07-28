@@ -1,6 +1,6 @@
 ---
 name: tinyrack-dart-packages
-description: Build and maintain Dart or Flutter projects that consume public packages from tinyrack-net/dart-packages, including cliweave and dartage. Use when adding, upgrading, integrating, or debugging these packages. When a package bug or reusable capability is needed, pauses, proposes the upstream change, and drives a latest-origin/main worktree through PR, CI, merge, pub.dev release, and consumer reintegration.
+description: Build and maintain Dart or Flutter projects that consume public packages from tinyrack-net/dart-packages, including cliweave, dartage, and shipworld. Use when adding, upgrading, integrating, or debugging these packages. When a package bug or reusable capability is needed, pauses, proposes the upstream change, and drives a latest-origin/main worktree through PR, CI, merge, pub.dev release, and consumer reintegration.
 ---
 
 # Tinyrack Dart Packages
@@ -22,6 +22,7 @@ published by the verified `tinyrack.net` publisher. Current packages include:
 |---|---|
 | `cliweave` | Typed command routing, help, completion, and terminal output |
 | `dartage` | Pure-Dart age v1 encryption and decryption |
+| `shipworld` | Release, signing, and desktop packaging for Dart CLI and Flutter desktop apps |
 
 Do not assume this table is exhaustive. Inspect the upstream root `pubspec.yaml`
 and `packages/*/pubspec.yaml` when package membership matters.
@@ -168,6 +169,19 @@ cd ../..
 dart test -t interop
 ```
 
+For `shipworld`, also run the repository coverage gate on Windows and validate
+that the package works outside the pub workspace:
+
+```powershell
+dart run tool/verify_coverage.dart shipworld
+dart run packages/shipworld/tool/validate_standalone.dart
+```
+
+Changes to `shipworld` desktop packaging must also exercise the relevant
+Windows MSIX, macOS signing/archive, Linux AppImage, Homebrew, or Flutter
+payload jobs defined by the current CI workflow. Do not treat a host-platform
+unit test as sufficient validation for another platform's generated artifact.
+
 For a Flutter package, run its equivalent checks from the package directory:
 
 ```bash
@@ -192,7 +206,8 @@ CI workflows. Fix failures before opening or updating the PR.
 - Wait for all current required GitHub checks to pass. Inspect the repository's
   workflows rather than relying on remembered job names; they currently cover
   formatting and analysis, package tests across platforms, `dartage` interop,
-  documentation, and publish dry runs.
+  documentation, publish dry runs, per-package coverage, and `shipworld`
+  standalone and Flutter desktop payload validation.
 - Address review and CI failures in new commits. Do not bypass checks or
   force-push.
 
