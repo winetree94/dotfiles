@@ -621,30 +621,6 @@
     {
       "kind": "file",
       "localPath": {
-        "default": "~/.ssh/winetree94_id_rsa"
-      },
-      "mode": {
-        "default": "secret"
-      },
-      "permission": {
-        "default": "0600"
-      }
-    },
-    {
-      "kind": "file",
-      "localPath": {
-        "default": "~/.ssh/winetree94_id_rsa.pub"
-      },
-      "mode": {
-        "default": "secret"
-      },
-      "permission": {
-        "default": "0644"
-      }
-    },
-    {
-      "kind": "file",
-      "localPath": {
         "default": "~/.ssh/winetree94-openclaw.key"
       },
       "mode": {
@@ -658,6 +634,30 @@
       "kind": "file",
       "localPath": {
         "default": "~/.ssh/winetree94-openclaw.key.pub"
+      },
+      "mode": {
+        "default": "secret"
+      },
+      "permission": {
+        "default": "0644"
+      }
+    },
+    {
+      "kind": "file",
+      "localPath": {
+        "default": "~/.ssh/winetree94_id_rsa"
+      },
+      "mode": {
+        "default": "secret"
+      },
+      "permission": {
+        "default": "0600"
+      }
+    },
+    {
+      "kind": "file",
+      "localPath": {
+        "default": "~/.ssh/winetree94_id_rsa.pub"
       },
       "mode": {
         "default": "secret"
