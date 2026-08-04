@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tinyrack Flutter UI"
+  short_description: "Build Flutter interfaces with tinyrack_ui"
+  default_prompt: "Use $tinyrack-flutter-ui to build a Flutter interface with the published tinyrack_ui package."

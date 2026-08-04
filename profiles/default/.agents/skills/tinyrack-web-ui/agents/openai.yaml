@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tinyrack Web UI"
+  short_description: "Build React interfaces with @tinyrack/ui"
+  default_prompt: "Use $tinyrack-web-ui to build a React interface with the published @tinyrack/ui package."
