@@ -667,6 +667,30 @@
       }
     },
     {
+      "kind": "file",
+      "localPath": {
+        "default": "~/.ssh/vivident_intranet_id_rsa"
+      },
+      "mode": {
+        "default": "secret"
+      },
+      "permission": {
+        "default": "0600"
+      }
+    },
+    {
+      "kind": "file",
+      "localPath": {
+        "default": "~/.ssh/vivident_intranet_id_rsa.pub"
+      },
+      "mode": {
+        "default": "secret"
+      },
+      "permission": {
+        "default": "0644"
+      }
+    },
+    {
       "kind": "directory",
       "localPath": {
         "default": "~/.vivident"
