@@ -1,7 +1,6 @@
 [user]
   name = winetree94
   email = me@winetree94.com
-	signingkey = /home/winetree94/.ssh/winetree94_id_rsa.pub
 [init]
 	defaultBranch = main
 [core]

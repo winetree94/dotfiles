@@ -1,3 +1,5 @@
+[user]
+	signingkey = /home/winetree94/.ssh/winetree94_id_rsa.pub
 [credential]
   helper = libsecret
   helper = oauth
