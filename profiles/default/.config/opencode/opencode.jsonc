@@ -10,6 +10,7 @@
   },
   "disabled_providers": [
     // "openrouter",
+    "opencode",
     "amazon-bedrock",
     "synthetic",
     "minimax-cn",
