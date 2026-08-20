@@ -367,6 +367,7 @@
       },
       "repoPath": {
         "default": ".config/zsh/platform.zsh",
+        "mac": ".config/zsh/platform.mac.zsh",
         "wsl": ".config/zsh/platform.wsl.zsh"
       },
       "mode": {

@@ -5,10 +5,18 @@ export PATH="$HOME/.bun/bin:$PATH"
 export PATH="/home/winetree94/.cache/.bun/bin:$PATH"
 
 # android
-export JAVA_HOME="/usr/lib/jvm/java-21-openjdk-amd64"
-export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
-export PATH="$ANDROID_SDK_ROOT/platform-tools:$PATH"
-export PATH="$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$PATH"
+case "$OSTYPE" in
+  darwin*)
+    export ANDROID_HOME="$HOME/Library/Android/Sdk"
+    export PATH="$ANDROID_HOME/platform-tools:$PATH"
+    export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
+    ;;
+  linux*)
+    export ANDROID_HOME="$HOME/Android/Sdk"
+    export PATH="$ANDROID_HOME/platform-tools:$PATH"
+    export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
+    ;;
+esac
 
 # brew
 export PATH="/home/linuxbrew/.linuxbrew/opt/libpq/bin:$PATH"
