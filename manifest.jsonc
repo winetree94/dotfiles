@@ -1,6 +1,6 @@
 {
   "version": 9,
-  "repositoryFormat": 1,
+  "repositoryFormat": 2,
   "age": {
     "recipients": [
       "age147lw095r5j3qmyzs2kf3r6vn87nllrkd9jt6x8e5fm2v8u75j5ssr5q47q"
@@ -622,6 +622,30 @@
     {
       "kind": "file",
       "localPath": {
+        "default": "~/.ssh/vivident_intranet_id_rsa"
+      },
+      "mode": {
+        "default": "secret"
+      },
+      "permission": {
+        "default": "0600"
+      }
+    },
+    {
+      "kind": "file",
+      "localPath": {
+        "default": "~/.ssh/vivident_intranet_id_rsa.pub"
+      },
+      "mode": {
+        "default": "secret"
+      },
+      "permission": {
+        "default": "0644"
+      }
+    },
+    {
+      "kind": "file",
+      "localPath": {
         "default": "~/.ssh/winetree94-openclaw.key"
       },
       "mode": {
@@ -659,30 +683,6 @@
       "kind": "file",
       "localPath": {
         "default": "~/.ssh/winetree94_id_rsa.pub"
-      },
-      "mode": {
-        "default": "secret"
-      },
-      "permission": {
-        "default": "0644"
-      }
-    },
-    {
-      "kind": "file",
-      "localPath": {
-        "default": "~/.ssh/vivident_intranet_id_rsa"
-      },
-      "mode": {
-        "default": "secret"
-      },
-      "permission": {
-        "default": "0600"
-      }
-    },
-    {
-      "kind": "file",
-      "localPath": {
-        "default": "~/.ssh/vivident_intranet_id_rsa.pub"
       },
       "mode": {
         "default": "secret"
