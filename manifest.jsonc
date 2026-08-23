@@ -315,6 +315,18 @@
       }
     },
     {
+      "kind": "file",
+      "localPath": {
+        "default": "~/.config/tmux/copy-to-clipboard"
+      },
+      "mode": {
+        "default": "normal"
+      },
+      "permission": {
+        "default": "0755"
+      }
+    },
+    {
       "kind": "directory",
       "localPath": {
         "default": "~/.config/zed"
