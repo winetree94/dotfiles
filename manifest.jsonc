@@ -380,11 +380,11 @@
       "repoPath": {
         "default": ".config/zsh/platform.zsh",
         "mac": ".config/zsh/platform.mac.zsh",
-        "wsl": ".config/zsh/platform.wsl.zsh"
+        "wsl": ".config/zsh/platform.wsl.zsh",
+        "linux": ".config/zsh/platform.linux.zsh"
       },
       "mode": {
-        "default": "ignore",
-        "wsl": "normal"
+        "default": "normal"
       }
     },
     {
