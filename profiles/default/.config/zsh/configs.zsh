@@ -17,4 +17,7 @@ export FZF_BASE=${HOMEBREW_PREFIX}/opt/fzf
 # export OPENCODE_EXPERIMENTAL_FILEWATCHER=true
 export OPENCODE_EXPERIMENTAL_PLAN_MODE=true
 
+# for ubuntu 26 compatibility
+export PLAYWRIGHT_HOST_PLATFORM_OVERRIDE=ubuntu24.04-x64
+
 eval "$(mise activate zsh)"
