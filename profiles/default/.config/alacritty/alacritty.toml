@@ -7,8 +7,8 @@ option_as_alt = "Both"
 hide_when_typing = false
 
 [font]
-normal = { family = "Cascadia Mono NF", style = "Regular" }
-size = 11
+normal = { family = "Agave Nerd Font Mono", style = "Regular" }
+size = 13
 
 
 [keyboard]
