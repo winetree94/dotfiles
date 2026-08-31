@@ -22,44 +22,44 @@
     "fireworks-ai"
   ],
   "provider": {
-    "litellm": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "litellm",
-      "options": {
-        "baseURL": "https://llm.winetree94.com/v1",
-        "apiKey": "{env:LITELLM_API_KEY}"
-      },
-      "models": {
-        "gemma-4-E4B-it-Q4_K_M": {
-          "name": "gemma-4-E4B-it-Q4_K_M",
-          "limit": {
-            "context": 131072,
-            "output": 131072
-          }
-        },
-        "gemma-4-26B-A4B-it-UD-Q4_K_M": {
-          "name": "gemma-4-26B-A4B-it-UD-Q4_K_M",
-          "limit": {
-            "context": 131072,
-            "output": 131072
-          }
-        }
-      }
-    },
-    "vllm-server": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Remote vLLM",
-      "options": {
-        "baseURL": "http://10.78.151.6:8002/v1",
-        "apiKey": "EMPTY"
-      },
-      "models": {
-        "Qwen3.5-397B-A17B-NVFP4": {
-          "name": "Qwen3.5-397B-A17B-NVFP4",
-          "id": "Qwen3.5-397B-A17B-NVFP4"
-        }
-      }
-    }
+    // "litellm": {
+    //   "npm": "@ai-sdk/openai-compatible",
+    //   "name": "litellm",
+    //   "options": {
+    //     "baseURL": "https://llm.winetree94.com/v1",
+    //     "apiKey": "{env:LITELLM_API_KEY}"
+    //   },
+    //   "models": {
+    //     "gemma-4-E4B-it-Q4_K_M": {
+    //       "name": "gemma-4-E4B-it-Q4_K_M",
+    //       "limit": {
+    //         "context": 131072,
+    //         "output": 131072
+    //       }
+    //     },
+    //     "gemma-4-26B-A4B-it-UD-Q4_K_M": {
+    //       "name": "gemma-4-26B-A4B-it-UD-Q4_K_M",
+    //       "limit": {
+    //         "context": 131072,
+    //         "output": 131072
+    //       }
+    //     }
+    //   }
+    // },
+    // "vllm-server": {
+    //   "npm": "@ai-sdk/openai-compatible",
+    //   "name": "Remote vLLM",
+    //   "options": {
+    //     "baseURL": "http://10.78.151.6:8002/v1",
+    //     "apiKey": "EMPTY"
+    //   },
+    //   "models": {
+    //     "Qwen3.5-397B-A17B-NVFP4": {
+    //       "name": "Qwen3.5-397B-A17B-NVFP4",
+    //       "id": "Qwen3.5-397B-A17B-NVFP4"
+    //     }
+    //   }
+    // }
   },
   "mcp": {
     // "web-reader": {
