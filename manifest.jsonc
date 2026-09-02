@@ -304,8 +304,16 @@
     {
       "kind": "file",
       "localPath": {
-        "default": "~/.config/tmux/tmux.conf",
-        "win": "~/.config/psmux/psmux.conf"
+        "default": "~/.config/rclone/rclone.conf"
+      },
+      "mode": {
+        "default": "normal"
+      }
+    },
+    {
+      "kind": "file",
+      "localPath": {
+        "default": "~/.config/tmux/copy-to-clipboard"
       },
       "mode": {
         "default": "normal"
@@ -317,7 +325,8 @@
     {
       "kind": "file",
       "localPath": {
-        "default": "~/.config/tmux/copy-to-clipboard"
+        "default": "~/.config/tmux/tmux.conf",
+        "win": "~/.config/psmux/psmux.conf"
       },
       "mode": {
         "default": "normal"
@@ -380,8 +389,8 @@
       "repoPath": {
         "default": ".config/zsh/platform.zsh",
         "mac": ".config/zsh/platform.mac.zsh",
-        "wsl": ".config/zsh/platform.wsl.zsh",
-        "linux": ".config/zsh/platform.linux.zsh"
+        "linux": ".config/zsh/platform.linux.zsh",
+        "wsl": ".config/zsh/platform.wsl.zsh"
       },
       "mode": {
         "default": "normal"
