@@ -156,6 +156,15 @@
       }
     },
     {
+      "kind": "file",
+      "localPath": {
+        "default": "~/.config/gcx/config.yaml"
+      },
+      "mode": {
+        "default": "secret"
+      }
+    },
+    {
       "kind": "directory",
       "localPath": {
         "default": "~/.config/ghostty"
