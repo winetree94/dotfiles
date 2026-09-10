@@ -1,5 +1,5 @@
 modelRoles:
-  default: deepseek/deepseek-flash
+  default: deepseek/deepseek-v4-flash:high
 symbolPreset: nerd
 composer:
   shape: band

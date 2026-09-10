@@ -253,18 +253,6 @@
     {
       "kind": "file",
       "localPath": {
-        "default": "~/.config/pi/agent/AGENTS.md"
-      },
-      "mode": {
-        "default": "normal"
-      },
-      "permission": {
-        "default": "0644"
-      }
-    },
-    {
-      "kind": "file",
-      "localPath": {
         "default": "~/.config/pi/agent/config.yml"
       },
       "mode": {
@@ -277,37 +265,13 @@
     {
       "kind": "file",
       "localPath": {
-        "default": "~/.config/pi/agent/keybindings.json"
+        "default": "~/.config/pi/agent/models.yml"
       },
       "mode": {
         "default": "normal"
       },
       "permission": {
         "default": "0644"
-      }
-    },
-    {
-      "kind": "file",
-      "localPath": {
-        "default": "~/.config/pi/agent/settings.json"
-      },
-      "mode": {
-        "default": "normal"
-      },
-      "permission": {
-        "default": "0644"
-      }
-    },
-    {
-      "kind": "directory",
-      "localPath": {
-        "default": "~/.config/pi/agent/skills"
-      },
-      "mode": {
-        "default": "normal"
-      },
-      "permission": {
-        "default": "0755"
       }
     },
     {
