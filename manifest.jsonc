@@ -107,6 +107,24 @@
       }
     },
     {
+      "kind": "file",
+      "localPath": {
+        "default": "~/.codex/ds.config.toml"
+      },
+      "mode": {
+        "default": "normal"
+      }
+    },
+    {
+      "kind": "file",
+      "localPath": {
+        "default": "~/.codex/ds.models.json"
+      },
+      "mode": {
+        "default": "normal"
+      }
+    },
+    {
       "kind": "directory",
       "localPath": {
         "default": "~/.codex/skills"
