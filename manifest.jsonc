@@ -149,10 +149,14 @@
       }
     },
     {
-      "kind": "directory",
+      "kind": "file",
+      "repoPath": {
+        "default": ".config/alacritty/alacritty.toml",
+        "mac": ".config/alacritty/alacritty.mac.toml"
+      },
       "localPath": {
-        "default": "~/.config/alacritty",
-        "win": "%APPDATA%/alacritty"
+        "default": "~/.config/alacritty/alacritty.toml",
+        "win": "%APPDATA%/alacritty/alacritty.toml"
       },
       "mode": {
         "default": "normal"
