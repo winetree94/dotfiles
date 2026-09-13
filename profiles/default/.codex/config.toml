@@ -1,0 +1,67 @@
+model = "deepseek-flash"
+model_provider = "cliproxyapi"
+
+approval_policy = "never"
+
+sandbox_mode = "danger-full-access"
+
+model_reasoning_effort = "medium"
+plan_mode_reasoning_effort = "xhigh"
+
+experimental_realtime_webrtc_call_base_url = "https://llm.winetree94.com/v1" # Codex App voice chat requires WebRTC. If you do not use voice chat, you can omit this option.
+experimental_realtime_ws_base_url = "https://llm.winetree94.com/v1" # Codex App voice chat requires WebRTC. If you do not use voice chat, you can omit this option.
+
+[model_providers.cliproxyapi]
+base_url = "https://llm.winetree94.com/v1"
+env_key = "CLIPROXYAPI_API_KEY"
+name = "OpenAI"
+wire_api = "responses"
+requires_openai_auth = true
+supports_websockets = true # Choose whether to enable websockets as needed
+[projects."/home/winetree94"]
+trust_level = "trusted"
+
+[projects."/home/winetree94/Workspaces/winetree94/dev-machines"]
+trust_level = "trusted"
+
+[projects."/home/winetree94/Workspaces/tinyrack/tinest"]
+trust_level = "trusted"
+
+[projects."/home/winetree94/Workspaces/tinyrack/homelab"]
+trust_level = "trusted"
+
+[projects."/home/winetree94/Workspaces/vivident/intranet"]
+trust_level = "trusted"
+
+[projects."/home/winetree94/.config/tmux"]
+trust_level = "trusted"
+
+[projects."/home/winetree94/Workspaces/tinyrack/tinyauth"]
+trust_level = "trusted"
+
+[projects."/home/winetree94/Workspaces/vivident/eevee"]
+trust_level = "trusted"
+
+[projects."/home/winetree94/Workspaces/tinyrack/dotweave"]
+trust_level = "trusted"
+
+[projects."/home/winetree94/Workspaces/tinyrack/homepage"]
+trust_level = "trusted"
+
+[projects."/home/winetree94/.config/nvim"]
+trust_level = "trusted"
+
+[projects."/home/winetree94/Workspaces/tinyrack/infrastructure"]
+trust_level = "trusted"
+
+[projects."/home/winetree94/Workspaces/tinyrack/design"]
+trust_level = "trusted"
+
+[projects."/home/winetree94/Workspaces/tinyrack/ansible-github-actions-runners"]
+trust_level = "trusted"
+
+[projects."/home/winetree94/Workspaces/vivident/oshiz.one"]
+trust_level = "trusted"
+
+[projects."/home/winetree94/.codex"]
+trust_level = "trusted"

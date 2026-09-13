@@ -109,6 +109,15 @@
     {
       "kind": "file",
       "localPath": {
+        "default": "~/.codex/config.toml"
+      },
+      "mode": {
+        "default": "normal"
+      }
+    },
+    {
+      "kind": "file",
+      "localPath": {
         "default": "~/.codex/ds.config.toml"
       },
       "mode": {
@@ -150,13 +159,13 @@
     },
     {
       "kind": "file",
-      "repoPath": {
-        "default": ".config/alacritty/alacritty.toml",
-        "mac": ".config/alacritty/alacritty.mac.toml"
-      },
       "localPath": {
         "default": "~/.config/alacritty/alacritty.toml",
         "win": "%APPDATA%/alacritty/alacritty.toml"
+      },
+      "repoPath": {
+        "default": ".config/alacritty/alacritty.toml",
+        "mac": ".config/alacritty/alacritty.mac.toml"
       },
       "mode": {
         "default": "normal"
