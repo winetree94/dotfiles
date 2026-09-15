@@ -1,7 +1,7 @@
 ---
 description: Fast commit and push
 agent: build
-model: opencode-go/gpt-5.6-luna
+model: cpa/deepseek-flash
 subtask: true
 ---
 

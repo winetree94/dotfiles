@@ -13,7 +13,7 @@ experimental_realtime_ws_base_url = "https://llm.winetree94.com/v1" # Codex App 
 
 [model_providers.cliproxyapi]
 base_url = "https://llm.winetree94.com/v1"
-env_key = "CLIPROXYAPI_API_KEY"
+env_key = "CLIPROXY_API_KEY"
 name = "CliProxyApi"
 wire_api = "responses"
 requires_openai_auth = true
