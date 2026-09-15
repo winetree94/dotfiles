@@ -6,3 +6,7 @@ source ~/.config/zsh/entry.zsh
 [[ -f /home/winetree94/.config/.dart-cli-completion/zsh-config.zsh ]] && . /home/winetree94/.config/.dart-cli-completion/zsh-config.zsh || true
 ## [/Completion]
 
+
+# >>> Codex installer >>>
+export PATH="/home/winetree94/.local/bin:$PATH"
+# <<< Codex installer <<<
