@@ -4,20 +4,10 @@
 
 테이블·조인을 선택하기 전에 [data-model.md](data-model.md)를 읽는다.
 
-## 안전하게 연결하기
+## 연결하기
 
-1. 값을 출력하지 않고 `psql` 설치 여부와 환경 변수 설정 여부를 확인한다.
-2. URL에 libpq가 지원하지 않는 `sslmode=no-verify`가 있을 수 있다. 메모리 안에서 해당 쿼리 매개변수만 `sslmode=require`로 바꾸며 결과 URL을 출력·저장하지 않는다.
-3. 모든 쿼리는 명시적 읽기 전용 트랜잭션, `ON_ERROR_STOP`, 사용자 psql 설정 제외, 페이저 비활성화, 짧은 실행 제한 시간으로 실행한다.
-
-다음 PowerShell 형식을 사용한다.
-
-```powershell
-$databaseUrl = $env:OSHIZ_PRODUCTION_READONLY_DATABASE -replace '([?&]sslmode=)no-verify(?=(&|$))', '${1}require'
-psql "$databaseUrl" -X --set=ON_ERROR_STOP=1 --pset=pager=off --command="BEGIN READ ONLY; SET LOCAL statement_timeout = '30s'; SET LOCAL lock_timeout = '3s'; SELECT ...; COMMIT;"
-```
-
-변수가 없으면 멈추고 `OSHIZ_PRODUCTION_READONLY_DATABASE` 설정이 필요하다고 알린다. 대화에 인증 정보를 붙여 넣도록 요구하지 않는다.
+1. 값을 출력하지 않고 `psql` 설치 여부와 `OSHIZ_PRODUCTION_READONLY_DATABASE` 환경 변수 설정 여부를 확인한다.
+2. 모든 쿼리는 명시적 읽기 전용 트랜잭션, `ON_ERROR_STOP`, 사용자 psql 설정 제외, 페이저 비활성화, 짧은 실행 제한 시간으로 실행한다.
 
 ## 운영 데이터 접근 제한
 
