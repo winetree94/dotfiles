@@ -1,6 +1,6 @@
 ---
 name: homelab-infrastructure
-description: Manage the personal homelab Kubernetes cluster, Cloudflare Tunnel public ingress with the cf CLI, local OPNsense/NAS/Proxmox infrastructure, and Tinyrack CI machines. Use for the homelab context, opnsense, openmediavault, xeon, or tinyrack homelab and ansible-github-actions-runners repositories. Excludes the tinyrack cloud cluster and mail-server workloads.
+description: Manage the personal homelab Kubernetes cluster, Cloudflare Tunnel ingress with cf, OPNsense, OpenMediaVault NAS with Garage/Syncthing/borgmatic, Proxmox, Intel B70 GPU server, and Tinyrack CI machines. Use for homelab, opnsense, openmediavault, xeon, ubuntu-gpu, or the tinyrack homelab, ubuntu-b70, and ansible-github-actions-runners repositories. Excludes the tinyrack cloud cluster and mail-server workloads.
 ---
 
 # Homelab Infrastructure
@@ -12,15 +12,20 @@ Retain relevant private/internal IP addresses and subnet CIDRs in this skill and
 | Target | Repository under `~/Workspaces` | Context | SSH alias |
 | --- | --- | --- | --- |
 | Homelab cluster | `tinyrack/homelab` | `homelab` | `homelab` |
+| NAS and storage services | No canonical repository confirmed; OMV/device configuration | None | `openmediavault` |
+| Proxmox hypervisor | No canonical repository confirmed; Proxmox configuration | None | `xeon` |
+| Dual Intel Arc Pro B70 server | `tinyrack/ubuntu-b70` (Ansible) | None | `ubuntu-gpu` |
 | Personal CI machines | `tinyrack/ansible-github-actions-runners` | None | Resolve from its inventory |
 
 Use explicit user targets first; otherwise resolve from this table and current repository configuration. State the resolved target before infrastructure commands. Use `kubectl --context <context>` and an explicit Flux context; do not rely on the current context. A service name alone is insufficient: n8n, SearXNG, and Issuary also exist in other environments.
 
 - For in-cluster Traefik routes, local routing, or connectivity across environments, read [references/proxy-network.md](references/proxy-network.md).
-- For OPNsense, NAS, Proxmox, or CI machine work, read [references/hosts-runners.md](references/hosts-runners.md).
+- For OPNsense, NAS/Garage/Syncthing/borgmatic, Proxmox guests, the B70 GPU server, or CI machine work, read [references/hosts-runners.md](references/hosts-runners.md).
 - For cluster bootstrap, replacement, or data restoration, read [references/recovery.md](references/recovery.md).
 
 ## Object storage
+
+Garage runs in Docker on `openmediavault`, outside Kubernetes. Homelab's Traefik routes the storage endpoint to the NAS; Kubernetes consumers and proxy configuration remain in the homelab GitOps repository. NAS service administration and borgmatic offsite backups are documented in [hosts-runners.md](references/hosts-runners.md#openmediavault-nas-and-storage).
 
 Manage buckets and objects through `rclone`. The configured remote `homelab_garage:` uses region `home` and endpoint `https://storage.intranet.winetree94.com`. It uses environment authentication (`env_auth = true`) and private object/bucket ACLs; supply credentials for the intended storage backend without printing or persisting them in the skill or Git.
 

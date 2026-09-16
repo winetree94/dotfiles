@@ -1,8 +1,10 @@
 # Blocked Prerequisites
 
-When following a skill or instruction, stop the task if a required prerequisite is unavailable, such as failed authentication, insufficient permissions, a missing tool, or an inaccessible required service. Do not silently bypass the prescribed workflow, substitute another tool or account, skip required checks, install missing tools, or change authentication or environment settings to continue.
+When a required prerequisite is unavailable, first determine whether it can be repaired safely within the task. Continue automatically with a repair when it is user-local, narrowly scoped, reversible, and does not alter authentication, permissions, shared systems, or the prescribed workflow. Appropriate examples include creating a task-specific virtual environment, installing a clearly identified runtime dependency into that environment, restoring project dependencies from the project's lockfile, creating a temporary directory, or using an already-installed compatible interpreter. Keep generated environments and caches outside repositories unless the repository explicitly manages them, verify the repaired prerequisite, and briefly report the repair.
 
-Report the blocked step, the relevant error without secrets, and the specific action the user must take to resolve it. Request that action and wait for the user's response. Resume after the prerequisite is verified, or follow an alternative explicitly authorized by the user. This rule concerns unavailable prerequisites, not ordinary code or test failures that the requested work is intended to fix; it does not prevent prerequisite repair when the user has explicitly requested that repair.
+Stop and ask the user when recovery requires authentication or permission changes, access to an unavailable service, system-wide or privileged installation, persistent shell or operating-system configuration changes, an untrusted or ambiguous dependency, substitution of a different tool or account, bypassing a required check, or another action with material external impact. Do not silently skip the prescribed workflow or weaken its checks.
+
+When blocked, report the failed step, the relevant error without secrets, and the specific action the user must take. Resume after the prerequisite is verified, or follow an alternative explicitly authorized by the user. This rule concerns unavailable prerequisites, not ordinary code or test failures that the requested work is intended to fix.
 
 # Global Agent Configuration
 

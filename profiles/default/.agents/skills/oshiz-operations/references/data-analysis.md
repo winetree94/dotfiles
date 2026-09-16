@@ -1,13 +1,8 @@
----
-name: oshiz-data-analysis
-description: Analyze Oshiz (오시즈) production data with psql through OSHIZ_PRODUCTION_READONLY_DATABASE. Use when the user requests Oshiz metrics, funnels, retention, revenue, user behavior, events, chats, Idolive, cohorts, or other database-backed analysis.
----
-
 # Oshiz Data Analysis
 
 Use `psql` and the `OSHIZ_PRODUCTION_READONLY_DATABASE` environment variable to answer data questions against the Oshiz production read replica. Treat every connection as production access.
 
-Read [references/data-model.md](references/data-model.md) before choosing tables or joins.
+Read [data-model.md](data-model.md) before choosing tables or joins.
 
 ## Connect safely
 
