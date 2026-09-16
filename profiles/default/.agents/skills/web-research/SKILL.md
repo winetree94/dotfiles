@@ -1,10 +1,10 @@
 ---
 name: web-research
-description: Research, inspect, extract, and enumerate web content with a private SearXNG instance. Use when an agent needs to search the web, discover sources, inspect candidate pages, and gather evidence efficiently.
+description: Research, inspect, extract, and enumerate web content with a private SearXNG instance, falling back to the Serper API when SearXNG is unavailable. Use when an agent needs to search the web, discover sources, inspect candidate pages, and gather evidence efficiently.
 allowed-tools: Bash(curl:*) Bash(jq:*)
 ---
 
-# Web Research with SearXNG
+# Web Research
 
 Use this skill when you need web discovery before reading pages in detail.
 
@@ -16,6 +16,18 @@ Primary search backend for this environment:
 - Preferred response format: `json`
 
 This instance has been verified to respond to `format=json`.
+
+## Backend availability and fallback
+
+Use SearXNG first. Bound requests with connection and total timeouts (for example,
+`curl --fail --connect-timeout 10 --max-time 30`) and check both HTTP success and
+the JSON response. Preserve failure status when piping commands with
+`set -o pipefail`.
+
+If `search.winetree94.com` is unavailable because of connection/DNS/TLS failures,
+timeouts, access errors, rate limiting (HTTP 429), server errors, or an unusable
+response instead of search JSON, briefly report the failure and use Serper.
+An empty but valid search result is not an outage; refine the query first.
 
 ## When to use it
 
@@ -31,7 +43,7 @@ Do not stop at search results alone when the task needs source-backed conclusion
 ## Core workflow
 
 1. Convert the task into 1 to 3 targeted search queries.
-2. Query SearXNG JSON results first.
+2. Query SearXNG JSON results first; use the authorized Serper fallback if unavailable.
 3. Extract the highest-signal URLs.
 4. Fetch the selected pages with `WebFetch` for readable content.
 5. Cross-check important claims across more than one source when accuracy matters.
@@ -91,6 +103,36 @@ curl -sS 'https://search.winetree94.com/search?q=site:developer.mozilla.org+Abor
   | jq -r '.results[:5][] | .url'
 ```
 
+## Serper API fallback
+
+- Endpoint: `POST https://google.serper.dev/search`
+- Authentication: `X-API-KEY` header populated from `SERPER_API_KEY`.
+- Request: JSON with `q`; optional `num` limits requested results.
+- Organic results: `.organic[]` with `title`, `link`, and `snippet` (not
+  SearXNG's `.results[]`, `url`, and `content`).
+
+Check that the environment variable is set without printing its value. Do not
+hardcode the key, write it into files, or enable shell tracing or verbose HTTP
+logging around authenticated calls. Use `jq` to encode queries as JSON rather
+than interpolating them into a JSON string:
+
+```bash
+set -o pipefail
+: "${SERPER_API_KEY:?Set SERPER_API_KEY before using the Serper fallback}"
+jq -nc --arg q 'site:docs.python.org pathlib relative_to' '{q: $q, num: 5}' \
+  | curl --fail --silent --show-error --connect-timeout 10 --max-time 30 \
+      'https://google.serper.dev/search' \
+      -H "X-API-KEY: ${SERPER_API_KEY}" \
+      -H 'Content-Type: application/json' \
+      --data-binary @- \
+  | jq -r '.organic[:5][] | [.title, .link, (.snippet // "")] | @tsv'
+```
+
+Apply the same source triage and page-fetching workflow to Serper results. Do
+not forward SearXNG-specific parameters such as `engines`, `categories`, or
+`time_range` unchanged; check Serper's supported parameters when those filters
+are needed.
+
 ## Query construction guidance
 
 Prefer focused queries over broad ones.
@@ -125,7 +167,7 @@ After discovering URLs, use `WebFetch` to read the actual page content.
 
 Typical pattern:
 
-1. search with SearXNG JSON
+1. search with SearXNG JSON, or Serper when SearXNG is unavailable
 2. extract 2 to 5 URLs
 3. fetch the strongest candidates
 4. summarize only what the fetched pages support
