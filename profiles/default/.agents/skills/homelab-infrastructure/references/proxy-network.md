@@ -10,7 +10,7 @@ Manage Cloudflare DNS, tunnel routes, and other Cloudflare-side configuration wi
 
 The homelab repository's `apps/base/proxies` manages in-cluster Traefik routes to local devices such as OPNsense, OpenMediaVault, and Proxmox. Read the resource matching the requested hostname and its sibling Traefik Cilium policy before editing.
 
-Vivident connectivity (OPNsense routes and Pod LAN address verified on 2026-09-16):
+Vivident connectivity:
 
 - Homelab LAN `10.132.244.0/22` sends company traffic through homelab OPNsense (`10.132.244.1`). Its static routes for Vivident main `10.78.0.0/16` and legacy `10.79.0.0/16` both use gateway `10.132.246.252`.
 - That gateway is the Multus/macvlan `net1` address of Pod `vivident-tailscale-router-0`, in context `homelab`, namespace `vivident`. The Pod forwards traffic through `tailscale0` to the company subnet routers using accepted Tailscale routes.

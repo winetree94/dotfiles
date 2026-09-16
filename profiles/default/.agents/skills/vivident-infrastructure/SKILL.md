@@ -1,6 +1,6 @@
 ---
 name: vivident-infrastructure
-description: Manage Vivident (비비던트) infrastructure, including the Argo CD intranet Kubernetes cluster, OPNsense routers, Caddy, Tailscale site routing, and company GitHub self-hosted runners. Use for vivident-intranet, vivident-firewall, vivident-firewall-legacy, intranet.moelive.tech services, or vivident intranet and ansible-actions-runner repositories. The homelab-hosted vivident-tailscale-router belongs to homelab-infrastructure.
+description: Manage Vivident (비비던트) infrastructure, including the Argo CD intranet Kubernetes cluster, OPNsense routers, office switches, Caddy, Tailscale site routing, and company GitHub self-hosted runners. Use for vivident-intranet, vivident-firewall, vivident-firewall-legacy, the office Dell S4148T or HP 1930 switches, intranet.moelive.tech services, or vivident intranet and ansible-actions-runner repositories. The homelab-hosted vivident-tailscale-router belongs to homelab-infrastructure.
 ---
 
 # Vivident Infrastructure
@@ -39,7 +39,7 @@ Seal new secrets with the repository's `vivident-intranet.key.pub` certificate b
 
 ## Object storage
 
-Manage buckets and objects through `rclone`. Live CNPG ObjectStores and the Longhorn BackupTarget checked on 2026-09-16 use AWS S3 bucket `vivident-intranet`, region `ap-northeast-2`, endpoint `https://s3.ap-northeast-2.amazonaws.com`. Database backup prefixes are under `apps/` and `infra/`; Longhorn uses `longhorn/`. Read the current ObjectStore/BackupTarget for the exact prefix before operations.
+Manage buckets and objects through `rclone`. The backup storage mapping uses AWS S3 bucket `vivident-intranet`, region `ap-northeast-2`, endpoint `https://s3.ap-northeast-2.amazonaws.com`. Database backup prefixes are under `apps/` and `infra/`; Longhorn uses `longhorn/`. Read the current ObjectStore/BackupTarget for the exact prefix before operations.
 
 Use the configured `vivident_intranet_s3:` rclone remote for this bucket. It uses `type = s3`, `provider = Other`, `env_auth = true`, region `ap-northeast-2`, the AWS endpoint above, and private object/bucket ACLs. Supply the appropriate AWS credentials through the environment without printing or persisting them in this skill or Git; do not substitute Garage or Hetzner remotes or assume shared credentials.
 
@@ -69,6 +69,10 @@ Intranet services are reverse-proxied by Caddy on the main router to Kubernetes.
 For service connectivity problems, inspect the relevant DNS resolution, client route, OPNsense firewall and Tailscale routing, main-router Caddy configuration, and Kubernetes service/endpoints. Determine which hop fails before making changes. Discover actual proxy upstreams and deployment configuration from current state; do not invent IP addresses, ports, namespaces, or configuration paths.
 
 The `vivident-tailscale-router` workload on the personal homelab is owned by `homelab-infrastructure`, in context `homelab`. Load that skill when investigating the home side of company connectivity. Do not select the company cluster just because the workload name contains Vivident.
+
+### Office switches
+
+The main office uses a Dell S4148T-ON core switch, with an HP 1930 8-port switch serving the wireless side. For switch access, port mapping, or LAN link diagnosis, read [references/office-switches.md](references/office-switches.md). Verify live port and MAC mappings before changes; the legacy site's Dell N1548 is a separate device.
 
 ## GitHub Self-Hosted Runners
 

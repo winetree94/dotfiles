@@ -15,8 +15,6 @@ Primary search backend for this environment:
 - Supported methods: `GET` and `POST`
 - Preferred response format: `json`
 
-This instance has been verified to respond to `format=json`.
-
 ## Backend availability and fallback
 
 Use SearXNG first. Bound requests with connection and total timeouts (for example,

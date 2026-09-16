@@ -2,7 +2,7 @@
 
 ## Local infrastructure
 
-These SSH aliases were verified against local SSH configuration; check current configuration before use.
+Check these SSH aliases against current local SSH configuration before use.
 
 | Device | SSH alias | Configuration ownership |
 | --- | --- | --- |
@@ -20,7 +20,7 @@ General workstation configuration belongs to `~/Workspaces/winetree94/dev-machin
 
 ## OpenMediaVault NAS and storage
 
-Read-only host inspection on 2026-09-16 confirmed Docker-hosted Garage and Syncthing on `ssh openmediavault` (NAS address `10.132.245.8`). These are host services, not Kubernetes workloads.
+Garage and Syncthing are Docker-hosted on `ssh openmediavault` (NAS address `10.132.245.8`). These are host services, not Kubernetes workloads.
 
 - Garage containers are `garage-garaged-1` and `garage-webui`; Syncthing runs as `syncthing`. Discover current Compose sources using the containers' `com.docker.compose.project.working_dir` and `com.docker.compose.project.config_files` labels, including override files, rather than editing a running container.
 - The mounted data disk contains `docker-configs/garage`, `docker-configs/syncthing`, `docker-data/garaged/{meta,data,garage.toml}`, and `docker-data/syncthing/config`. Syncthing maps the disk's `winetree94-nas` directory to `/data`. Resolve the actual `/srv/dev-disk-by-uuid-*` mount through `findmnt` and container mounts rather than guessing a disk UUID.
@@ -29,15 +29,15 @@ Read-only host inspection on 2026-09-16 confirmed Docker-hosted Garage and Synct
 
 ### Offsite backups
 
-`/etc/borgmatic/config.yaml` configures Borg over SSH to a Hetzner Storage Box (`your-storagebox.de`, port `23`, repository path `/./borg-repository`), not Hetzner S3 object storage. Resolve the account-specific hostname from the current config. `borgmatic.timer` runs daily with up to ten minutes of randomized delay and persistent scheduling; configured retention is `keep_daily: 7`.
+`/etc/borgmatic/config.yaml` configures Borg over SSH to a Hetzner Storage Box (`your-storagebox.de`, port `23`, repository path `/./borg-repository`), not Hetzner S3 object storage. Resolve the account-specific hostname from the current config. Read `borgmatic.timer` and the Borgmatic configuration for the current schedule and retention policy.
 
-The inspected source is `/srv/dev-disk-by-uuid-35dc6271-fb3c-4363-bed9-300cdc56315d/*`, the NAS data disk's contents. This is a file-level backup, not a whole-machine/block-device image: the OS root disk is a separate device and is not included by that source. Recheck source expansion, exclusions, mount state, and database/application consistency before asserting complete coverage. The latest inspected service result was successful, but no restore test was performed.
+Resolve backup sources from `/etc/borgmatic/config.yaml` and disk mounts from `findmnt`. Borgmatic provides file-level backups; do not infer whole-machine or OS-disk coverage from a NAS data-disk source. Check source expansion, exclusions, mount state, and database/application consistency before asserting complete coverage. Check recent backup results and available restore-test evidence separately; a successful backup job does not prove recoverability.
 
 Use read-only timer/service status and configuration inspection for diagnosis. Backup creation, pruning, consistency checks with repair, and restores are separate operations, not part of a documentation check. Keep NAS disk backups distinct from the cluster's CNPG and Longhorn backups stored inside Garage.
 
 ## Xeon Proxmox host
 
-`ssh xeon` is the hypervisor for the homelab cluster and virtualized CI machines. Read-only inspection on 2026-09-16 found:
+`ssh xeon` is the hypervisor for the homelab cluster and virtualized CI machines. Use this guest mapping to locate the relevant configuration owner:
 
 | VM ID | Guest | Guest configuration owner |
 | --- | --- | --- |
@@ -45,13 +45,13 @@ Use read-only timer/service status and configuration inspection for diagnosis. B
 | `101` | `windows-ci` | Personal GitHub Actions Ansible repository below |
 | `102` | `ubuntu-ci` | Personal GitHub Actions Ansible repository below |
 
-Recheck `qm list`, `pct list`, and the selected guest's configuration before operations; VM IDs and runtime state can change. No LXC guests were listed at inspection. Do not infer that every CI inventory host, such as `macmini`, is a Proxmox guest.
+Recheck `qm list`, `pct list`, and the selected guest's configuration before operations; VM IDs and runtime state can change. Do not infer that every CI inventory host, such as `macmini`, is a Proxmox guest.
 
-Proxmox owns VM hardware, disks, and lifecycle; the guest repositories own their OS/workloads. Storage `local-lvm` holds the inspected homelab VM disk. Proxmox storage `nas` is a CIFS mount of the NAS's `proxmox` share at `/mnt/pve/nas`, configured for backups and other content. A configured backup destination does not prove a scheduled or successful VM backup. Check current storage, backup jobs, and guest activity before host maintenance or disk/VM changes.
+Proxmox owns VM hardware, disks, and lifecycle; the guest repositories own their OS/workloads. Resolve guest disk placement from the selected VM configuration and current Proxmox storage configuration, including `local-lvm`. Proxmox storage `nas` is a CIFS mount of the NAS's `proxmox` share at `/mnt/pve/nas`, configured for backups and other content. A configured backup destination does not prove a scheduled or successful VM backup. Check current storage, backup jobs, and guest activity before host maintenance or disk/VM changes.
 
 ## Intel B70 GPU server
 
-`ssh ubuntu-gpu` is a separate Ubuntu GPU/LLM server with two Intel Arc Pro B70 cards, managed by `~/Workspaces/tinyrack/ubuntu-b70`. Read-only inspection confirmed Ubuntu 26.04, two Intel Battlemage G31 PCI devices, and running Docker and Grafana Alloy services.
+`ssh ubuntu-gpu` is a separate Ubuntu GPU/LLM server with two Intel Arc Pro B70 cards, managed by `~/Workspaces/tinyrack/ubuntu-b70`. Inspect the current OS version, GPU inventory, and Docker/Alloy service status when needed for diagnosis.
 
 Make persistent changes through this repository's Ansible and Git workflow, not ad hoc SSH edits. Read its `AGENTS.md`, README, Makefile, inventory, affected roles, and selected `profiles/<model>/` manifest/Compose files. Profiles own pinned model revisions, checksums, and container images; inspect current configuration instead of assuming a fixed inference model or GPU parallelism mode.
 

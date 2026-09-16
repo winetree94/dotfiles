@@ -20,14 +20,12 @@ Read repository instructions, README, branch, and working-tree changes before ed
 
 ## Hetzner resources
 
-This cluster runs on Hetzner. The following mapping was verified with read-only `hcloud` queries on 2026-09-16; recheck current resources before changes rather than treating IDs or addresses as permanent.
+This cluster runs on Hetzner. Use this mapping to locate resources; query current resource identities, server type/location, and Floating IP assignments before changes.
 
-| Resource | Verified value |
+| Resource | Identifier |
 | --- | --- |
 | hcloud context | `winetree94` |
 | Server name / ID | `tinyrack` / `115687231` |
-| Server type / location | `cx43` / `hel1` |
-| Attached Floating IP | None listed at verification |
 
 The same hcloud context also contains `mail-server`; the context alone does not select this environment. Use explicit `hcloud --context winetree94` and match both resource identity and intended environment. Inspect with:
 
@@ -43,16 +41,16 @@ Retain relevant private/internal IP addresses and subnet CIDRs in this skill and
 
 ## Object storage
 
-Manage Object Storage buckets and objects with `rclone`, not `hcloud`. Live CNPG ObjectStores and Longhorn BackupTargets checked on 2026-09-16 use `hetzner_fsn:` (region `fsn1`, endpoint `https://fsn1.your-objectstorage.com`), even though the server is in `hel1`.
+Manage Object Storage buckets and objects with `rclone`, not `hcloud`. Use the backup storage mapping below and confirm it against current CNPG ObjectStores and Longhorn BackupTargets. The `hetzner_fsn:` remote uses region `fsn1` and endpoint `https://fsn1.your-objectstorage.com`.
 
 | Purpose | rclone path |
 | --- | --- |
 | CNPG backups | `hetzner_fsn:tinyrack-prod/apps/<app>/<database-prefix>` |
 | Longhorn backups | `hetzner_fsn:tinyrack-prod/longhorn` |
 
-Verified CNPG prefixes include `apps/memos/database`, `apps/issuary/database`, and `apps/discourse/database-15`; recheck current ObjectStores before a specific operation. The bucket is shared with mail-server, whose paths are under `clusters/public/`. Never treat the entire `tinyrack-prod` bucket as exclusive to this cluster or run a whole-bucket sync/deletion for a cluster-specific task.
+Resolve application and database prefixes from current ObjectStores before a specific operation. The bucket is shared with mail-server, whose paths are under `clusters/public/`. Never treat the entire `tinyrack-prod` bucket as exclusive to this cluster or run a whole-bucket sync/deletion for a cluster-specific task.
 
-`hetzner_hel:` is also configured (region `hel1`, endpoint `https://hel1.your-objectstorage.com`), but none of the inspected CNPG/Longhorn targets use it. Select remotes by the actual storage endpoint, not the machine's location. Both Hetzner remotes use `env_auth = true` and private object/bucket ACLs. Establish the correct credentials without exposing them, inspect `rclone listremotes`, and use scoped listings such as `rclone lsf hetzner_fsn:tinyrack-prod/apps/ --dirs-only`.
+`hetzner_hel:` is also configured (region `hel1`, endpoint `https://hel1.your-objectstorage.com`). Confirm which remote matches the requested target before use. Select remotes by the actual storage endpoint, not the machine's location. Both Hetzner remotes use `env_auth = true` and private object/bucket ACLs. Establish the correct credentials without exposing them, inspect `rclone listremotes`, and use scoped listings such as `rclone lsf hetzner_fsn:tinyrack-prod/apps/ --dirs-only`.
 
 Preserve private ACLs and inspect the exact impact before deletion or `rclone sync`. Kubernetes backup definitions remain GitOps-managed; bucket/object management does not replace the CNPG/Longhorn recovery workflow. Storage Boxes and block Volumes are separate products.
 

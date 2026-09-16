@@ -37,7 +37,7 @@ If the variable is missing, stop and report that `OSHIZ_PRODUCTION_READONLY_DATA
 4. Add bounded date predicates early, especially for `public.analytics_events`, `public.user_stat_logs`, `public.user_action_events`, and chat messages.
 5. Account for soft deletion with `deleted_at IS NULL` when the table has that column, unless the analysis explicitly concerns deleted records.
 6. Check join cardinality before aggregating. Pre-aggregate one-to-many tables or compare row counts before and after joins to avoid multiplication.
-7. Use `EXPLAIN` without `ANALYZE` for potentially expensive queries. Avoid unrestricted exact counts on large tables; use `pg_stat_user_tables.n_live_tup` for initial sizing.
+7. Use `EXPLAIN` without `ANALYZE` for potentially expensive queries. Avoid unrestricted exact counts on large tables; query `pg_stat_user_tables.n_live_tup` for current estimates when sizing a query. These statistics are approximate, not exact counts.
 8. Validate results with at least one independent check, such as reconciling totals, checking null rates, comparing distinct users before and after joins, or testing a second formulation.
 
 Useful discovery queries:

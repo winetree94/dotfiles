@@ -1,10 +1,10 @@
 # Oshiz Production Data Model
 
-This reference was verified through read-only catalog queries on 2026-07-30. Treat it as an orientation map, not a fixed contract; inspect the live catalog before analysis.
+Treat this reference as an orientation map, not a fixed contract; inspect the live catalog before analysis. Keep point-in-time findings in the analysis report rather than this reference.
 
 ## Schemas
 
-| Schema | Observed purpose |
+| Schema | Purpose |
 | --- | --- |
 | `public` | Users, analytics, sessions, attribution, economy, purchases, progression, quests, and product state |
 | `dm_chat` | Direct chat rooms, messages, read state, and notification attempts |
@@ -30,10 +30,6 @@ This reference was verified through read-only catalog queries on 2026-07-30. Tre
 | Actions and counters | `public.user_action_events`, `public.user_action_counters`, `public.user_action_flags` | Inspect action semantics and uniqueness before defining activity or conversion |
 | Idolive sessions | `idolive.idola_sessions` | User, event, character, status, turns, language, created/completed times; JSON context is sensitive and unnecessary for most aggregate analysis |
 | Direct chat | `dm_chat.rooms`, `dm_chat.messages` | Aggregate room/message metadata only; never select message content, room previews, gift payloads, or stable IDs |
-
-## Scale notes
-
-At verification time, the largest observed tables included about 2.0M analytics events, 567K stat logs, 507K user-item rows, 496K user-character rows, 341K action events, and 208K direct messages. These are approximate planner statistics, not exact counts. Always use bounded predicates and re-check current estimates.
 
 ## Common join keys
 

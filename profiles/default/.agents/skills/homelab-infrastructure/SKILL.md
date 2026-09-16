@@ -29,12 +29,12 @@ Garage runs in Docker on `openmediavault`, outside Kubernetes. Homelab's Traefik
 
 Manage buckets and objects through `rclone`. The configured remote `homelab_garage:` uses region `home` and endpoint `https://storage.intranet.winetree94.com`. It uses environment authentication (`env_auth = true`) and private object/bucket ACLs; supply credentials for the intended storage backend without printing or persisting them in the skill or Git.
 
-Live CNPG ObjectStores and Longhorn BackupTargets were checked on 2026-09-16:
+Use these backup paths to locate the target; confirm the current CNPG ObjectStore or Longhorn BackupTarget before operations:
 
 | Purpose | rclone path |
 | --- | --- |
 | Application database backups | `homelab_garage:tinyrack-homelab/apps/<app>/<database-prefix>` |
-| Grafana database backups | `homelab_garage:tinyrack-homelab/infrastructure/monitoring/grafana-database-18` |
+| Grafana database backups | `homelab_garage:tinyrack-homelab/infrastructure/monitoring/<grafana-database-prefix>` |
 | Longhorn backups | `homelab_garage:tinyrack-homelab/clusters/tinyrack-homelab/longhorn` |
 
 The repository's OpenWebUI values also configure bucket `tinyrack-homelab-openwebui-storage` on this endpoint. Check its current application configuration before operations. Use `rclone listremotes` and narrowly scoped listings such as `rclone lsf homelab_garage:tinyrack-homelab/apps/ --dirs-only`; derive exact database prefixes from current ObjectStores rather than assuming one PostgreSQL version.

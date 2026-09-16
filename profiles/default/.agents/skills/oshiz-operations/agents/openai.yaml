@@ -1,4 +1,0 @@
-interface:
-  display_name: "Oshiz 운영 관리"
-  short_description: "오시즈의 데이터, 앱, 배포와 운영 업무를 관리합니다."
-  default_prompt: "Use $oshiz-operations to investigate and handle this Oshiz operational request safely."

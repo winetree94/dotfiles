@@ -24,17 +24,13 @@ Manage Cloudflare-side configuration for `mail.winetree94.com`, including its DN
 
 ## Hetzner resources
 
-This cluster runs on Hetzner. The following mapping was verified with read-only `hcloud` queries on 2026-09-16; recheck resource identities and assignments before changes.
+This cluster runs on Hetzner. Use this mapping to locate resources; query current resource identities, server type/location, Floating IP assignment, PTR, and delete protection before changes.
 
-| Resource | Verified value |
+| Resource | Identifier |
 | --- | --- |
 | hcloud context | `winetree94` |
 | Server name / ID | `mail-server` / `115401154` |
-| Server type / location | `cx33` / `nbg1` |
 | Floating IP name / ID | `mail-server` / `147638286` |
-| Floating IP assignment | Server `115401154` |
-| Floating IP PTR | `mail.winetree94.com` |
-| Floating IP delete protection | Enabled at verification |
 
 The same context contains the `tinyrack` server. Always select the context explicitly and match the intended resource, not just the currently active project:
 
@@ -50,11 +46,11 @@ Retain relevant private/internal IP addresses and subnet CIDRs in this skill and
 
 ## Object storage
 
-Manage Object Storage buckets and objects with `rclone`, not `hcloud`. Live CNPG ObjectStores and Longhorn BackupTargets checked on 2026-09-16 use `hetzner_fsn:` (region `fsn1`, endpoint `https://fsn1.your-objectstorage.com`), independently of the mail server's `nbg1` location.
+Manage Object Storage buckets and objects with `rclone`, not `hcloud`. Use the backup storage mapping below and confirm it against current CNPG ObjectStores and Longhorn BackupTargets. The `hetzner_fsn:` remote uses region `fsn1` and endpoint `https://fsn1.your-objectstorage.com`; choose storage by its endpoint, independently of the server location.
 
 | Purpose | rclone path |
 | --- | --- |
-| Stalwart CNPG backups | `hetzner_fsn:tinyrack-prod/clusters/public/apps/stalwart/database-17` and `database-18` under the same parent |
+| Stalwart CNPG backups | `hetzner_fsn:tinyrack-prod/clusters/public/apps/stalwart/<database-prefix>` |
 | Longhorn backups | `hetzner_fsn:tinyrack-prod/clusters/public/longhorn` |
 
 Recheck current ObjectStores for the database version and recovery source. `tinyrack-prod` is shared with the Tinyrack cluster, which uses `apps/` and `longhorn/` outside the mail prefix. Scope mail operations to `clusters/public/`; do not sync or delete the entire shared bucket for mail-only work.
