@@ -1,29 +1,29 @@
-# YouTube Scripts
+# YouTube 대본
 
-## Voice and pacing
+## 말투와 호흡
 
-Write for the user's winetree94 channel in approachable Korean spoken language, normally `~요`, with natural transitions and candid opinions. Light humor can fit the speaker; avoid forced catchphrases, exaggerated promotion, and stiff translated prose.
+사용자의 winetree94 채널에 맞춰 친근한 한국어 구어체로 쓴다. 보통 `~요`체를 사용하고 자연스러운 연결과 솔직한 의견을 담는다. 화자에게 어울리는 가벼운 유머는 괜찮지만 억지 유행어, 과장된 홍보, 딱딱한 번역투는 피한다.
 
-Use short speech or breath units with blank lines between units. Break long explanations where the speaker would naturally pause, keeping each thought intelligible. Do not enforce a syllable count or split technical names into fragments. Existing completed scripts in `~/Obsidian/Youtube/Scripts/Completed/` provide cadence examples, not factual sources for a different product.
+짧은 발화나 호흡 단위로 쓰고 단위 사이에 빈 줄을 둔다. 긴 설명은 화자가 자연스럽게 쉬는 곳에서 나누되 각 생각이 온전히 전달되게 한다. 음절 수를 강제하거나 기술 명칭을 잘게 쪼개지 않는다. `~/Obsidian/Youtube/Scripts/Completed/`의 기존 대본은 호흡을 참고하는 예시이며 다른 제품의 사실 근거가 아니다.
 
-## Narrative
+## 이야기 전개
 
-For a complete script, open with a concrete hook and give the audience a reason to continue. Mention a verified price early when value is central; do not force pricing into unrelated subjects.
+전체 대본은 구체적인 관심거리로 시작하고 계속 볼 이유를 제시한다. 가성비가 핵심이면 확인된 가격을 초반에 언급하되 무관한 주제에 가격을 억지로 넣지 않는다.
 
-Choose the body to fit the topic. Hardware reviews may cover appearance and interfaces; tutorials should explain the reason for consequential steps and then show them; conceptual pieces need not invent an unboxing or installation sequence. Show the actual result and discuss supported benefits, limitations, or comparisons. Include personal experience only when provided.
+본론은 주제에 맞춘다. 하드웨어 리뷰는 외관과 인터페이스를 다룰 수 있고, 튜토리얼은 중요한 단계의 이유를 설명한 뒤 보여준다. 개념 설명에 개봉이나 설치 과정을 지어낼 필요는 없다. 실제 결과를 보여주고 근거가 있는 장점, 한계, 비교를 다룬다. 개인 경험은 제공된 경우에만 넣는다.
 
-Close a complete channel script with a short takeaway, channel introduction, and a natural invitation to subscribe, like, or comment. The established closing `그럼 다시 돌아오겠습니다` may be used. Do not tack on an introduction, seven-stage narrative, or outro when asked to edit only an excerpt.
+완성된 채널 대본은 짧은 핵심 정리, 채널 소개, 자연스러운 구독·좋아요·댓글 권유로 마무리한다. 기존 마무리 문구인 `그럼 다시 돌아오겠습니다`를 사용할 수 있다. 일부만 수정하는 요청에는 도입, 일곱 단계 전개, 아웃트로를 덧붙이지 않는다.
 
-## Production notation
+## 제작 표기
 
-- Use `* * *` on its own line for major section breaks.
-- Use `# BIOS 화면` or similar `# <screen description>` labels for what should appear on screen.
-- Preserve established shot cues such as `# Selfie` and `# prompt`.
-- Use `## <topic>` for optional subtopics; screen labels are production cues, not prose heading mistakes to normalize.
-- Keep spoken text distinct from filming/editing instructions. Add frontmatter only when the existing workflow needs it.
+- 큰 구간 사이에는 `* * *`를 한 줄로 넣는다.
+- 화면에 나올 내용은 `# BIOS 화면`처럼 `# <화면 설명>`으로 표시한다.
+- `# Selfie`, `# prompt` 같은 기존 촬영 지시를 유지한다.
+- 필요한 하위 주제는 `## <주제>`로 표시한다. 화면 표시는 제작 지시이므로 일반 문서의 잘못된 제목으로 보고 고치지 않는다.
+- 발화와 촬영·편집 지시를 구분한다. 기존 작업 흐름에 필요할 때만 프런트매터를 추가한다.
 
-When converting subtitles into a script, remove subtitle timestamps and sequence numbers unless the user requests a timed script. Preserve timing supplied for an explicitly timed production task.
+자막을 대본으로 바꿀 때는 시간 지정 대본을 요청한 경우가 아니라면 타임스탬프와 일련번호를 제거한다. 명시적으로 시간을 맞추는 제작 작업에서는 제공된 타이밍을 보존한다.
 
-## Review
+## 검토
 
-Read for speaking rhythm and coherent transitions. Check that demonstrations, prices, specifications, and personal claims are grounded; production cues are distinguishable; and a complete script has an appropriate ending. Saving a finished edit does not authorize moving the file to `Completed` or publishing it.
+말할 때의 리듬과 연결이 자연스러운지 읽어 본다. 시연, 가격, 사양, 개인적 주장에 근거가 있는지, 제작 지시가 구분되는지, 전체 대본에 적절한 마무리가 있는지 확인한다. 편집을 마쳐 저장했다는 이유만으로 `Completed` 이동이나 발행이 허용되는 것은 아니다.

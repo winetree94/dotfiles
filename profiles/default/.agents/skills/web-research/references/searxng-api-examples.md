@@ -1,36 +1,34 @@
-# SearXNG API Examples
+# SearXNG API 예시
 
-Base instance:
+기본 인스턴스: `https://search.winetree94.com`.
 
-- `https://search.winetree94.com`
-
-## Basic JSON search
+## 기본 JSON 검색
 
 ```bash
 curl -sS 'https://search.winetree94.com/search?q=opentelemetry+semantic+conventions&format=json'
 ```
 
-## Limit to a domain
+## 도메인 제한
 
 ```bash
 curl -sS 'https://search.winetree94.com/search?q=site:opentelemetry.io+semantic+conventions&format=json'
 ```
 
-## Search recent material
+## 최근 자료 검색
 
 ```bash
 curl -sS 'https://search.winetree94.com/search?q=nodejs+release+notes&time_range=year&format=json'
 ```
 
-## Use a category
+## 카테고리 사용
 
 ```bash
 curl -sS 'https://search.winetree94.com/search?q=sqlite+wal+mode&categories=it&format=json'
 ```
 
-## Inspect result fields
+## 결과 필드 확인
 
-Common top-level fields in JSON responses:
+JSON 응답의 일반적인 최상위 필드:
 
 - `query`
 - `number_of_results`
@@ -40,7 +38,7 @@ Common top-level fields in JSON responses:
 - `infoboxes`
 - `unresponsive_engines`
 
-Common fields inside `results[]`:
+`results[]` 내부의 일반적인 필드:
 
 - `title`
 - `url`
@@ -51,22 +49,22 @@ Common fields inside `results[]`:
 - `publishedDate`
 - `score`
 
-## Extract top URLs
+## 상위 URL 추출
 
 ```bash
 curl -sS 'https://search.winetree94.com/search?q=site:developer.mozilla.org+fetch+AbortSignal&format=json' \
   | jq -r '.results[:5][] | .url'
 ```
 
-## Extract a compact table
+## 간단한 표 추출
 
 ```bash
 curl -sS 'https://search.winetree94.com/search?q=site:docs.python.org+asyncio+timeout&format=json' \
   | jq -r '.results[:10][] | [.engine, .title, .url] | @tsv'
 ```
 
-## Notes
+## 참고 사항
 
-- Use `GET` for simple queries.
-- Use `POST` when query strings are long or you want cleaner command composition.
-- Search results are only a discovery step. Fetch the destination pages before making strong claims.
+- 간단한 검색은 `GET`을 사용한다.
+- 검색 문자열이 길거나 명령 구성을 깔끔하게 하고 싶으면 `POST`를 사용한다.
+- 검색 결과는 출처를 찾는 단계일 뿐이다. 확정적인 주장을 하기 전에 대상 페이지를 가져와 읽는다.

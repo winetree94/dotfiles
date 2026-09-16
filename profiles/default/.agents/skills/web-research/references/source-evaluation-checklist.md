@@ -1,24 +1,24 @@
-# Source Evaluation Checklist
+# 출처 평가 체크리스트
 
-Use this checklist before treating a web source as authoritative.
+웹 출처를 신뢰할 만한 근거로 삼기 전에 다음을 확인한다.
 
-## Prefer
+## 우선할 출처
 
-- official documentation
-- maintainers' release notes or blog posts
-- source repositories and issue trackers
-- standards bodies and vendor docs
+- 공식 문서.
+- 유지 관리자의 릴리스 노트·블로그 글.
+- 소스 저장소·이슈 추적기.
+- 표준 기관·공급자 문서.
 
-## Check
+## 확인할 항목
 
-- whether the page directly supports the claim
-- publication date or version relevance
-- whether the content is primary or just repeating another source
-- whether examples match the user's stack or version
+- 페이지가 해당 주장을 직접 뒷받침하는가.
+- 발행 날짜·버전이 현재 질문과 맞는가.
+- 1차 자료인가, 다른 출처를 반복하는가.
+- 예제가 사용자의 기술 구성·버전과 맞는가.
 
-## Avoid over-trusting
+## 과도하게 신뢰하지 말 것
 
-- SEO spam and content farms
-- pages without authorship or provenance
-- stale answers for version-sensitive topics
-- summaries that cite no primary evidence
+- 검색 순위만 노린 스팸과 대량 콘텐츠 사이트.
+- 작성자·출처가 불분명한 페이지.
+- 버전에 민감한 주제의 오래된 답변.
+- 1차 근거를 인용하지 않는 요약.

@@ -1,85 +1,73 @@
 ---
 name: web-research
-description: Research, inspect, extract, and enumerate web content with a private SearXNG instance, falling back to the Serper API when SearXNG is unavailable. Use when an agent needs to search the web, discover sources, inspect candidate pages, and gather evidence efficiently.
+description: "웹에서 정보를 찾고 출처를 검토·비교해 근거를 수집한다. 최신 정보 확인, 공식 자료 탐색, 사실 검증, 출처에 근거한 답변이 필요할 때 사용한다."
 allowed-tools: Bash(curl:*) Bash(jq:*)
 ---
 
-# Web Research
+# 웹 조사
 
-Use this skill when you need web discovery before reading pages in detail.
+페이지를 자세히 읽기 전에 웹에서 자료를 찾을 때 사용한다.
 
-Primary search backend for this environment:
+이 환경의 기본 검색 백엔드:
 
-- Base URL: `https://search.winetree94.com`
-- Search endpoint: `https://search.winetree94.com/search`
-- Supported methods: `GET` and `POST`
-- Preferred response format: `json`
+- 기본 URL: `https://search.winetree94.com`
+- 검색 엔드포인트: `https://search.winetree94.com/search`
+- 지원 메서드: `GET`, `POST`
+- 우선할 응답 형식: `json`
 
-## Backend availability and fallback
+## 백엔드 가용성과 대체 경로
 
-Use SearXNG first. Bound requests with connection and total timeouts (for example,
-`curl --fail --connect-timeout 10 --max-time 30`) and check both HTTP success and
-the JSON response. Preserve failure status when piping commands with
-`set -o pipefail`.
+SearXNG를 먼저 사용한다. 예를 들어 `curl --fail --connect-timeout 10 --max-time 30`처럼 연결·전체 시간 제한을 두고 HTTP 성공 여부와 JSON 응답을 모두 확인한다. 파이프 사용 시 `set -o pipefail`로 실패 상태를 보존한다.
 
-If `search.winetree94.com` is unavailable because of connection/DNS/TLS failures,
-timeouts, access errors, rate limiting (HTTP 429), server errors, or an unusable
-response instead of search JSON, briefly report the failure and use Serper.
-An empty but valid search result is not an outage; refine the query first.
+`search.winetree94.com`이 연결·DNS·TLS 오류, 시간 초과, 접근 오류, 요청 제한(HTTP 429), 서버 오류 또는 검색 JSON 대신 사용할 수 없는 응답을 반환하면 실패를 간단히 알리고 Serper를 사용한다. 유효한 검색 결과가 비어 있는 것은 장애가 아니므로 먼저 검색어를 다듬는다.
 
-## When to use it
+## 사용 시점
 
-Use this skill for:
+- 주제에 맞는 출처 찾기.
+- 공식 문서, 변경 이력, 이슈, 블로그 글 발견.
+- 넓은 주제를 소수 후보 URL로 좁히기.
+- 인용·요약 전에 여러 출처 비교.
 
-- finding relevant sources for a topic
-- discovering official docs, changelogs, issues, or blog posts
-- narrowing broad topics into a small set of candidate URLs
-- comparing multiple sources before citing or summarizing them
+출처에 근거한 결론이 필요하면 검색 결과에서 멈추지 않는다. 검색 후 가장 적합한 페이지를 가져와 읽는다.
 
-Do not stop at search results alone when the task needs source-backed conclusions. Search first, then fetch and inspect the best pages.
+## 핵심 절차
 
-## Core workflow
+1. 요청을 구체적인 검색어 1~3개로 바꾼다.
+2. SearXNG JSON을 먼저 조회하고 사용할 수 없으면 허용된 Serper 대체 경로를 사용한다.
+3. 가장 유용한 URL을 추린다.
+4. `WebFetch`로 선택한 페이지의 읽기 쉬운 본문을 가져온다.
+5. 정확성이 중요하면 핵심 주장을 여러 출처로 교차 확인한다.
+6. URL과 함께 결과를 보고하고 출처가 다르면 불확실성을 밝힌다.
 
-1. Convert the task into 1 to 3 targeted search queries.
-2. Query SearXNG JSON results first; use the authorized Serper fallback if unavailable.
-3. Extract the highest-signal URLs.
-4. Fetch the selected pages with `WebFetch` for readable content.
-5. Cross-check important claims across more than one source when accuracy matters.
-6. Return findings with URLs and note uncertainty when sources disagree.
+## 검색 API
 
-## Search API
+SearXNG는 `GET /search`, `POST /search`, `GET /`, `POST /`를 지원한다.
 
-SearXNG supports `GET /search`, `POST /search`, `GET /`, and `POST /`.
+필수 매개변수는 검색어 `q`다. 유용한 선택 매개변수:
 
-Required parameter:
+- `format=json`: 기계가 읽기 쉬운 결과.
+- `categories=general,news,science,it`: 쉼표로 구분한 카테고리.
+- `engines=google,bing,duckduckgo`: 필요할 때 지정하는 검색 엔진 목록.
+- `language=en`: 결과 언어.
+- `pageno=1`: 페이지 번호.
+- `time_range=day|month|year`: 엔진이 지원하면 최근 자료로 제한.
+- `safesearch=0|1|2`: 안전 검색 수준.
 
-- `q`: search query
+## 권장 명령 형식
 
-Useful optional parameters:
-
-- `format=json`: machine-readable results
-- `categories=general,news,science,it`: comma-separated categories
-- `engines=google,bing,duckduckgo`: comma-separated engines when needed
-- `language=en`: result language
-- `pageno=1`: page number
-- `time_range=day|month|year`: recent material when supported by engines
-- `safesearch=0|1|2`: safe-search level
-
-## Preferred command patterns
-
-Simple search:
+간단한 검색:
 
 ```bash
 curl -sS 'https://search.winetree94.com/search?q=rust+borrow+checker&format=json'
 ```
 
-Search with categories and time range:
+카테고리·기간 조건 검색:
 
 ```bash
 curl -sS 'https://search.winetree94.com/search?q=postgres+17+release+notes&categories=it&time_range=year&format=json'
 ```
 
-POST form request:
+POST 폼 요청:
 
 ```bash
 curl -sS -X POST 'https://search.winetree94.com/search' \
@@ -87,32 +75,28 @@ curl -sS -X POST 'https://search.winetree94.com/search' \
   -d 'format=json'
 ```
 
-Extract titles and URLs with `jq`:
+`jq`로 제목·URL 추출:
 
 ```bash
 curl -sS 'https://search.winetree94.com/search?q=site:github.com+searxng+search+api&format=json' \
   | jq -r '.results[] | [.title, .url] | @tsv'
 ```
 
-Inspect top results only:
+상위 결과만 확인:
 
 ```bash
 curl -sS 'https://search.winetree94.com/search?q=site:developer.mozilla.org+AbortController&format=json' \
   | jq -r '.results[:5][] | .url'
 ```
 
-## Serper API fallback
+## Serper API 대체 경로
 
-- Endpoint: `POST https://google.serper.dev/search`
-- Authentication: `X-API-KEY` header populated from `SERPER_API_KEY`.
-- Request: JSON with `q`; optional `num` limits requested results.
-- Organic results: `.organic[]` with `title`, `link`, and `snippet` (not
-  SearXNG's `.results[]`, `url`, and `content`).
+- 엔드포인트: `POST https://google.serper.dev/search`.
+- 인증: `SERPER_API_KEY`를 `X-API-KEY` 헤더로 전달.
+- 요청: `q`를 포함한 JSON. 선택적 `num`으로 결과 수 제한.
+- 일반 검색 결과: `.organic[]`의 `title`, `link`, `snippet`. SearXNG의 `.results[]`, `url`, `content`와 다름.
 
-Check that the environment variable is set without printing its value. Do not
-hardcode the key, write it into files, or enable shell tracing or verbose HTTP
-logging around authenticated calls. Use `jq` to encode queries as JSON rather
-than interpolating them into a JSON string:
+값을 출력하지 않고 환경 변수 설정 여부를 확인한다. 키를 하드코딩하거나 파일에 쓰지 않는다. 인증 호출에서 셸 추적이나 상세 HTTP 로그를 켜지 않는다. 검색어를 JSON 문자열에 직접 끼워 넣지 말고 `jq`로 인코딩한다.
 
 ```bash
 set -o pipefail
@@ -126,60 +110,43 @@ jq -nc --arg q 'site:docs.python.org pathlib relative_to' '{q: $q, num: 5}' \
   | jq -r '.organic[:5][] | [.title, .link, (.snippet // "")] | @tsv'
 ```
 
-Apply the same source triage and page-fetching workflow to Serper results. Do
-not forward SearXNG-specific parameters such as `engines`, `categories`, or
-`time_range` unchanged; check Serper's supported parameters when those filters
-are needed.
+Serper 결과에도 같은 출처 선별·페이지 조회 절차를 적용한다. SearXNG 전용 `engines`, `categories`, `time_range`를 그대로 전달하지 않는다. 필터가 필요하면 Serper가 지원하는 매개변수를 확인한다.
 
-## Query construction guidance
+## 검색어 작성
 
-Prefer focused queries over broad ones.
+넓은 검색어보다 구체적인 검색어를 우선한다.
 
-- official docs: `site:docs.example.com feature name`
-- GitHub issues: `site:github.com/org/repo/issues exact error text`
-- release notes: `product version release notes`
-- comparisons: `topic A vs B official benchmark`
-- debugging: exact error string plus framework or library name
+- 공식 문서: `site:docs.example.com feature name`.
+- GitHub 이슈: `site:github.com/org/repo/issues exact error text`.
+- 릴리스 노트: `product version release notes`.
+- 비교: `topic A vs B official benchmark`.
+- 디버깅: 정확한 오류 문구와 프레임워크·라이브러리 이름.
 
-When the first query is weak, refine by adding one of:
+첫 결과가 부실하면 `site:` 공식 도메인 제한, 제품·패키지·저장소 이름, 버전 번호, `time_range` 기간 조건을 추가한다.
 
-- an official domain restriction with `site:`
-- the product, package, or repo name
-- a version number
-- a time constraint using `time_range`
+## 결과 선별
 
-## Result triage
+해당하면 다음 순서로 출처를 우선한다.
 
-Prefer sources in this order when applicable:
+1. 공식 문서.
+2. 프로젝트 저장소와 이슈 추적기.
+3. 1차 발표와 릴리스 노트.
+4. 신뢰할 만한 2차 설명.
 
-1. official documentation
-2. project repositories and issue trackers
-3. primary announcements or release notes
-4. reputable secondary explanations
+긁어 모은 콘텐츠 사이트, AI 요약, 1차 근거 없이 주장을 반복하는 페이지는 주의한다.
 
-Be cautious with scraped content farms, AI-generated summaries, and pages that repeat claims without primary evidence.
+## 검색 후 페이지 가져오기
 
-## Fetching pages after search
+URL을 찾으면 `WebFetch`로 실제 본문을 읽는다. 보통 SearXNG JSON 또는 장애 시 Serper로 검색하고, URL 2~5개를 추린 뒤 가장 적합한 후보를 읽는다. 가져온 페이지가 뒷받침하는 내용만 요약한다.
 
-After discovering URLs, use `WebFetch` to read the actual page content.
+## 결과 보고
 
-Typical pattern:
+- 실제로 확인한 페이지 URL을 인용한다.
+- 직접적인 근거와 추론을 구분한다.
+- 검색 결과가 부족하거나 서로 충돌하면 알린다.
+- 최신성이 중요한지와 `time_range` 사용 여부를 밝힌다.
 
-1. search with SearXNG JSON, or Serper when SearXNG is unavailable
-2. extract 2 to 5 URLs
-3. fetch the strongest candidates
-4. summarize only what the fetched pages support
+## 참고 문서
 
-## Reporting expectations
-
-When returning research results:
-
-- cite the page URLs you actually inspected
-- distinguish direct evidence from inference
-- mention if search results were sparse or conflicting
-- mention if freshness matters and whether you used `time_range`
-
-## References
-
-- [SearXNG API examples](references/searxng-api-examples.md)
-- [Source evaluation checklist](references/source-evaluation-checklist.md)
+- [SearXNG API 예시](references/searxng-api-examples.md)
+- [출처 평가 체크리스트](references/source-evaluation-checklist.md)

@@ -1,23 +1,24 @@
-# Proxy and Network Boundaries
+# 프록시와 네트워크 경계
 
-## Public ingress and Cloudflare
+## 외부 인그레스와 Cloudflare
 
-Public services use Cloudflare Tunnel only; direct public access to origin IPs is blocked by OPNsense. Do not create direct-origin DNS records or WAN port forwards for web or management services. OPNsense administration is available only through trusted internal/private access, not directly from the internet. The only permitted inbound port forwards are those required for VPN endpoints, with exact ports/protocols verified from current VPN configuration.
+공개 서비스는 Cloudflare Tunnel만 사용하고 원본 IP 직접 접근은 OPNsense가 차단한다. 웹·관리 서비스에 원본 직결 DNS나 WAN 포트 포워딩을 만들지 않는다. OPNsense 관리는 신뢰하는 내부·사설 연결에서만 허용하며 인터넷에 직접 노출하지 않는다. 인바운드 포트 포워딩은 현재 VPN 설정에서 정확한 포트·프로토콜을 확인한 필수 VPN 엔드포인트만 허용한다.
 
-Manage Cloudflare DNS, tunnel routes, and other Cloudflare-side configuration with `cf`. Inspect current CLI help and schema before choosing commands, and verify account/profile, zone, hostname, tunnel identity, and connector health. Keep in-cluster connector manifests and backend routing in the homelab GitOps repository. Changes to OPNsense belong to its actual configuration mechanism. Tunnel failures must be fixed along that path rather than by exposing the origin or router on the WAN.
+Cloudflare DNS, 터널 경로 등 Cloudflare 측 설정은 `cf`로 관리한다. 명령 선택 전에 현재 CLI 도움말과 스키마를 읽고 계정·프로필, 영역, 호스트명, 터널 식별 정보, 커넥터 상태를 확인한다. 클러스터 커넥터 매니페스트와 백엔드 라우팅은 홈랩 GitOps 저장소에 둔다. OPNsense는 실제로 사용하는 설정 방식으로 변경한다. 터널 장애는 이 경로에서 해결하며 원본 서버나 라우터를 WAN에 노출해 우회하지 않는다.
 
-## Local network and remote sites
+<a id="local-network-and-remote-sites"></a>
+## 로컬 네트워크와 원격 사이트
 
-The homelab repository's `apps/base/proxies` manages in-cluster Traefik routes to local devices such as OPNsense, OpenMediaVault, and Proxmox. Read the resource matching the requested hostname and its sibling Traefik Cilium policy before editing.
+홈랩 저장소의 `apps/base/proxies`는 OPNsense, OpenMediaVault, Proxmox 등 로컬 기기로 연결하는 클러스터 내부 Traefik 경로를 관리한다. 편집 전에 요청한 호스트명에 해당하는 리소스와 함께 있는 Traefik Cilium 정책을 읽는다.
 
-Vivident connectivity:
+Vivident 연결 구성:
 
-- Homelab LAN `10.132.244.0/22` sends company traffic through homelab OPNsense (`10.132.244.1`). Its static routes for Vivident main `10.78.0.0/16` and legacy `10.79.0.0/16` both use gateway `10.132.246.252`.
-- That gateway is the Multus/macvlan `net1` address of Pod `vivident-tailscale-router-0`, in context `homelab`, namespace `vivident`. The Pod forwards traffic through `tailscale0` to the company subnet routers using accepted Tailscale routes.
-- `apps/base/vivident-tailscale-router` enables IPv4 forwarding and MASQUERADE for home LAN traffic leaving `tailscale0`; it does not advertise the home subnet (`TS_ROUTES=""`). This provides home-to-company access, not symmetric subnet advertisement.
+- 홈랩 LAN `10.132.244.0/22`는 회사 트래픽을 홈랩 OPNsense(`10.132.244.1`)로 보낸다. Vivident 메인 `10.78.0.0/16`과 레거시 `10.79.0.0/16` 정적 경로는 모두 게이트웨이 `10.132.246.252`를 사용한다.
+- 이 게이트웨이는 `homelab` 컨텍스트, `vivident` 네임스페이스의 `vivident-tailscale-router-0` Pod에 있는 Multus·macvlan `net1` 주소다. Pod는 수락한 Tailscale 경로를 이용해 `tailscale0`에서 회사 서브넷 라우터로 트래픽을 전달한다.
+- `apps/base/vivident-tailscale-router`는 IPv4 포워딩과 홈 LAN에서 `tailscale0`로 나가는 트래픽의 MASQUERADE를 활성화한다. 홈 서브넷은 광고하지 않는다(`TS_ROUTES=""`). 홈에서 회사로 접근하는 구성이며 양방향 서브넷 광고가 아니다.
 
-The workload belongs to homelab, not the company cluster. Recheck its manifests and live router state when diagnosing connectivity; load `vivident-infrastructure` when the company side also needs investigation.
+이 워크로드는 회사 클러스터가 아닌 홈랩이 관리한다. 연결 진단 시 매니페스트와 실제 라우터 상태를 다시 확인한다. 회사 측도 조사해야 하면 `vivident-infrastructure`를 읽는다.
 
-Tinyrack cloud services and mail may use homelab storage for backups. Inspect the owning service's backup configuration before identifying a storage backend. Changes to the source backup job stay in its owning repository; changes to the homelab destination use this skill.
+Tinyrack 클라우드 서비스와 메일이 홈랩 스토리지를 백업에 사용할 수 있다. 스토리지 백엔드를 판단하기 전에 해당 서비스의 백업 설정을 확인한다. 원본 백업 작업은 소유 저장소에서 변경하고 홈랩 목적지는 이 스킬로 변경한다.
 
-For connectivity diagnosis, establish DNS, client routing, proxy listeners/endpoints, backend reachability, and relevant firewall policy. Do not open ports or alter routes solely because a README lists a historical address. Router state and actual traffic paths require current read-only inspection.
+연결 진단에서는 DNS, 클라이언트 라우팅, 프록시 리스너·엔드포인트, 백엔드 도달 가능성, 관련 방화벽 정책을 확인한다. README에 과거 주소가 있다는 이유만으로 포트를 열거나 경로를 바꾸지 않는다. 라우터 상태와 실제 트래픽 경로는 현재 상태를 읽기 전용으로 조사해야 한다.

@@ -1,21 +1,21 @@
 ---
 name: oshiz-operations
-description: Handle Oshiz (오시즈) operational work, including production data analysis, incidents, deployments, releases, customer support, and product operations. Use current project instructions for implementation and infrastructure facts. Vivident shared infrastructure remains owned by vivident-infrastructure.
+description: "오시즈의 서비스 운영과 운영 데이터 분석을 수행한다. 장애 대응, 배포·릴리스, 고객 지원, 제품 운영, 지표·사용자 행동 분석이 필요할 때 사용한다."
 ---
 
-# Oshiz Operations
+# 오시즈 운영
 
-Oshiz is operated by Vivident.
+오시즈는 Vivident가 운영한다.
 
-## Route the work
+## 작업 경로 선택
 
-- For application, infrastructure, deployment, incident, release, product, asset, catalog, or prompt work, use the Oshiz project at `~/Workspaces/vivident/eevee`. Verify the checkout exists, read its root and affected-directory instructions, then use the project-local skills and current configuration. Do not copy component, environment, or workflow details into this global skill.
-- For metrics, funnels, retention, revenue, user behavior, events, chats, Idolive, cohorts, or support investigations that require production data, read [references/data-analysis.md](references/data-analysis.md) and [references/data-model.md](references/data-model.md).
-- For Vivident's shared intranet, network, routers, or company runners, use `vivident-infrastructure`. Do not select it solely because Vivident operates Oshiz.
+- 앱, 인프라, 배포, 장애, 릴리스, 제품, 자산, 카탈로그, 프롬프트 작업은 `~/Workspaces/vivident/eevee`의 오시즈 프로젝트를 사용한다. 체크아웃이 있는지 확인하고 루트와 관련 디렉터리 지침을 읽은 뒤 프로젝트 내부 스킬과 현재 설정을 따른다. 구성 요소, 환경, 절차의 세부 사항을 이 전역 스킬에 복사하지 않는다.
+- 지표, 퍼널, 리텐션, 매출, 사용자 행동, 이벤트, 채팅, Idolive, 코호트, 고객 지원 조사에 운영 데이터가 필요하면 [references/data-analysis.md](references/data-analysis.md)와 [references/data-model.md](references/data-model.md)를 읽는다.
+- Vivident 공통 인트라넷, 네트워크, 라우터, 회사 러너는 `vivident-infrastructure`를 사용한다. Vivident가 오시즈를 운영한다는 이유만으로 선택하지 않는다.
 
-Read only the references required for the request. When one request spans modes, combine their constraints rather than choosing the less restrictive one.
+요청에 필요한 참고 문서만 읽는다. 여러 작업 유형이 겹치면 제약을 함께 적용하며 더 느슨한 쪽만 선택하지 않는다.
 
-## Preserve service-level boundaries
+## 서비스 운영 경계 유지
 
-- Never perform customer-account, payment, entitlement, reward, or content corrections through ad hoc database writes. Locate the supported admin or application workflow; if none is documented, stop and ask for direction.
-- Keep production-data privacy and read-only constraints in the data-analysis references. Keep changing application and infrastructure facts in the owning project rather than mirroring them here.
+- 고객 계정, 결제, 이용 권한, 보상, 콘텐츠를 임의의 DB 쓰기로 수정하지 않는다. 지원되는 관리자·앱 절차를 찾고, 문서화된 절차가 없으면 멈추고 방향을 묻는다.
+- 운영 데이터의 개인정보·읽기 전용 제약은 데이터 분석 참고 문서에 둔다. 바뀌는 앱·인프라 현황은 해당 프로젝트에 유지하고 여기 복제하지 않는다.

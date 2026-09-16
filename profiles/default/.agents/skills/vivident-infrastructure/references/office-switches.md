@@ -1,53 +1,53 @@
-# Vivident office switches
+# Vivident 사무실 스위치
 
-## Main-office topology
+## 메인 사무실 구성
 
-Use the inventory and port mapping below to locate devices; recheck live configuration before changes.
+아래 장비·포트 표로 기기를 찾고 변경 전에는 실제 설정을 다시 확인한다.
 
-| Device or port | Role |
+| 기기·포트 | 역할 |
 | --- | --- |
-| Dell S4148T-ON | Main-office core switch running OS10; check the current version with `show version` |
-| Dell ethernet1/1/54 | Asus PN42 OPNsense router, `vivident-firewall`, LAN `re1`, `10.78.142.1/16`; access VLAN 10; check current link speed and negotiation |
-| Dell ethernet1/1/53 | HP 1930 8-port switch serving wireless devices |
-| Dell ethernet1/1/51 and 1/1/52 | NAS links, port-channel 1; do not repurpose as ordinary access ports |
-| Other active Dell access ports | Wired workstations and servers |
+| Dell S4148T-ON | OS10을 실행하는 메인 사무실 코어 스위치. 현재 버전은 `show version`으로 확인 |
+| Dell ethernet1/1/54 | Asus PN42 OPNsense 라우터, `vivident-firewall`, LAN `re1`, `10.78.142.1/16`. 액세스 VLAN 10. 현재 링크 속도·협상 상태 확인 |
+| Dell ethernet1/1/53 | 무선 기기를 연결하는 HP 1930 8포트 스위치 |
+| Dell ethernet1/1/51 및 1/1/52 | NAS 링크, port-channel 1. 일반 액세스 포트로 전용하지 않음 |
+| 그 밖의 활성 Dell 액세스 포트 | 유선 워크스테이션과 서버 |
 
-The legacy office has a Dell N1548 on the separate `10.79.0.0/16` network. Do not use main-office management or port mappings for it.
+레거시 사무실에는 별도 `10.79.0.0/16` 네트워크의 Dell N1548이 있다. 메인 사무실 관리 정보·포트 매핑을 적용하지 않는다.
 
-Topology and local access notes: `~/Obsidian/Vivident/Memo/switch.md`. Treat older diagrams as inventory hints, not proof of current router or multi-WAN configuration.
+구성과 로컬 접근 메모는 `~/Obsidian/Vivident/Memo/switch.md`에 있다. 오래된 도표는 장비를 찾는 단서이지 현재 라우터·멀티 WAN 구성의 증거가 아니다.
 
-## Management access
+## 관리 접근
 
 ### Dell S4148T-ON
 
-- Management address: `192.168.1.254`; use Telnet and verify reachability when connecting.
-- Credentials: company Bitwarden item `Dell S4148T (Telnet)`, searchable by `S4148T`. Use `bw-vivident` in an alias-loading shell, for example `zsh -lic 'bw-vivident status'`. Pass credentials directly to the client without logging passwords or session tokens.
-- The documented local path uses a PC on the same office LAN with an unused `192.168.1.x/24` address; the note suggests `192.168.1.100`, with no gateway. Check for conflicts before assigning it. Address configuration is a device change, not a read-only diagnostic.
-- Do not assume the management subnet is routed through Tailscale or reachable from the normal `10.78.0.0/16` source address.
+- 관리 주소는 `192.168.1.254`다. Telnet을 사용하고 연결 시 도달 가능성을 확인한다.
+- 인증 정보는 회사 Bitwarden의 `Dell S4148T (Telnet)` 항목이며 `S4148T`로 검색할 수 있다. 별칭을 불러오는 셸에서 `bw-vivident`를 사용한다. 예: `zsh -lic 'bw-vivident status'`. 비밀번호·세션 토큰을 기록하지 않고 클라이언트에 직접 전달한다.
+- 문서의 로컬 접근은 같은 사무실 LAN의 PC에 사용하지 않는 `192.168.1.x/24` 주소를 설정한다. 메모의 예시는 게이트웨이 없는 `192.168.1.100`이며 할당 전에 충돌을 확인한다. 주소 설정은 읽기 전용 진단이 아닌 기기 변경이다.
+- 관리 서브넷이 Tailscale로 라우팅되거나 일반 `10.78.0.0/16` 출발지에서 도달 가능하다고 가정하지 않는다.
 
-For an authorized router-assisted connection, a temporary secondary address on `re1` can provide a directly connected route. However, the router's LAN outbound NAT can translate even explicitly bound `192.168.1.100` connections into `10.78.142.1`. Check current routes, `pfctl -sn`, and packet headers before diagnosing a Telnet timeout as a switch failure. Successful ARP resolution alone does not prove TCP reachability.
+승인된 라우터 경유 연결에서는 `re1`에 임시 보조 주소를 추가해 직접 연결 경로를 만들 수 있다. 다만 LAN 아웃바운드 NAT가 명시적으로 `192.168.1.100`에 바인딩한 연결도 `10.78.142.1`로 바꿀 수 있다. Telnet 시간 초과를 스위치 장애로 판단하기 전에 현재 경로, `pfctl -sn`, 패킷 헤더를 확인한다. ARP 성공만으로 TCP 연결 가능성을 판단하지 않는다.
 
-If a temporary NAT exception is needed, limit it to the chosen management source, `192.168.1.254`, TCP port 23, and `re1`, before the matching LAN NAT rule. Preserve existing rules and dynamic anchors, validate syntax, and never load a lone exception as the entire ruleset or flush unrelated states. After access, remove only the task's exception and secondary address and verify cleanup. This access procedure does not itself authorize router configuration changes.
+임시 NAT 예외가 필요하면 해당 LAN NAT 규칙 앞에 선택한 관리 출발지, `192.168.1.254`, TCP 23, `re1`로 한정한다. 기존 규칙·동적 앵커를 보존하고 구문을 검증한다. 예외 하나를 전체 규칙 집합으로 불러오거나 무관한 상태를 비우지 않는다. 접근 후에는 작업에서 추가한 예외·보조 주소만 제거하고 정리 여부를 확인한다. 이 접근 절차 자체가 라우터 설정 변경을 허가하는 것은 아니다.
 
-With the secondary address and required NAT handling in place, use a source-bound connection on the router:
+보조 주소와 필요한 NAT 처리가 준비되면 라우터에서 출발지를 지정해 연결한다.
 
 ```sh
 telnet -s 192.168.1.100 192.168.1.254
 ```
 
-### HP 1930 and wireless management
+### HP 1930과 무선 관리
 
-The office note lists:
+사무실 메모에 기록된 정보:
 
-- Switch UI: `https://wireless.switch.intranet.moelive.tech`
-- Wireless management: `https://wifi.intranet.moelive.tech`
-- Company Bitwarden searches: `wireless` or `wifi`, using `bw-vivident`.
+- 스위치 UI: `https://wireless.switch.intranet.moelive.tech`
+- 무선 관리: `https://wifi.intranet.moelive.tech`
+- 회사 Bitwarden 검색어: `wireless` 또는 `wifi`. `bw-vivident` 사용.
 
-These URLs come from the note; verify resolution and access when used.
+메모에서 가져온 URL이므로 사용 시 이름 해석과 접근을 확인한다.
 
-## Read-only Dell diagnostics
+## Dell 읽기 전용 진단
 
-OS10 diagnostic commands; check command help for the installed version:
+OS10 진단 명령이며 설치 버전의 도움말을 확인한다.
 
 ```text
 terminal length 0
@@ -63,12 +63,12 @@ show logging log-file 100
 show processes cpu
 ```
 
-Replace `<current-router-re1-mac>` with the router's current `re1` address before using the MAC lookup to confirm a port. `terminal length 0` affects pagination for the management session.
+MAC 조회로 포트를 확인하기 전에 `<current-router-re1-mac>`을 현재 라우터 `re1` 주소로 바꾼다. `terminal length 0`은 관리 세션의 페이지 표시를 바꾼다.
 
-- Bound log reads by count. Unbounded log reads and broad historical filtering can cause high CLI-process CPU usage. Check logging command syntax for the installed OS10 version; do not assume `show logging last 40` is supported.
-- Compare switch and router clocks before correlating events. Do not interpret the displayed timezone as proof of correct time.
-- Interface counters can span months. Record their reset age and compare deltas; accumulated drops or throttles alone do not establish an incident's cause.
-- Check link state, CRC/errors, traffic direction, flow control, MAC learning, and STP together. A forwarding state observed after recovery does not prove the state during an outage.
-- For automated sessions, match the actual CLI prompt and configuration-mode suffix explicitly. A generic prompt pattern ending in `>` can mistake a syslog severity prefix for a prompt. Suppress credential echo in captured output.
+- 로그 조회는 개수를 제한한다. 무제한 조회나 광범위한 과거 로그 필터링은 CLI 프로세스 CPU 사용량을 높일 수 있다. 설치된 OS10의 문법을 확인하고 `show logging last 40`이 지원된다고 가정하지 않는다.
+- 이벤트를 대조하기 전에 스위치·라우터 시계를 비교한다. 표시된 시간대만으로 시각이 정확하다고 판단하지 않는다.
+- 인터페이스 카운터는 수개월 누적될 수 있다. 마지막 초기화 후 경과 시간과 증분을 비교한다. 누적 드롭·스로틀만으로 장애 원인을 단정하지 않는다.
+- 링크 상태, CRC·오류, 트래픽 방향, 흐름 제어, MAC 학습, STP를 함께 확인한다. 복구 후 forwarding 상태가 장애 중 상태를 증명하지는 않는다.
+- 자동화 세션은 실제 CLI 프롬프트와 설정 모드 접미사를 명시적으로 구분한다. `>`로 끝나는 일반 패턴은 syslog 심각도 접두사를 프롬프트로 오인할 수 있다. 수집 출력에서 인증 정보 에코를 숨긴다.
 
-For authorized changes, distinguish running configuration from startup configuration and report whether persistence was requested and performed. Link-affecting commands may interrupt the management session; reconnect and verify the actual result before retrying a mutation.
+승인된 변경은 실행 중 설정과 시작 설정을 구분하고 영구 저장 요청·수행 여부를 보고한다. 링크 변경 명령은 관리 연결을 끊을 수 있으므로 다시 연결해 실제 결과를 확인한 뒤 재시도한다.

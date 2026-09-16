@@ -1,74 +1,58 @@
 ---
 name: tinyrack-dart-packages
-description: Build and maintain Dart or Flutter projects that consume public packages from tinyrack-net/dart-packages, including cliweave, dartage, and shipworld. Use when adding, upgrading, integrating, or debugging these packages. When a package bug or reusable capability is needed, pauses, proposes the upstream change, and drives a latest-origin/main worktree through PR, CI, merge, pub.dev release, and consumer reintegration.
+description: "tinyrack-net/dart-packages의 패키지를 프로젝트에 연동하고 패키지 자체를 개선한다. cliweave, dartage, shipworld 등 해당 패키지의 도입·업그레이드·디버깅·기능 추가·릴리스에 사용한다."
 ---
 
-# Tinyrack Dart Packages
+# Tinyrack Dart 패키지
 
-Use the published package as the consumer-facing source of truth. Keep reusable
-APIs and behavior in `tinyrack-net/dart-packages`; keep product-specific policy,
-models, orchestration, and presentation in the consuming project.
+소비자 프로젝트에서는 배포된 패키지를 기준으로 삼는다. 재사용 API와 동작은 `tinyrack-net/dart-packages`에, 제품별 정책·모델·흐름 제어·화면 표현은 소비자 프로젝트에 둔다.
 
-The canonical upstream checkout is:
+업스트림 기준 체크아웃:
 
 ```text
 ~/Workspaces/tinyrack/dart-packages
 ```
 
-It is a Dart pub workspace whose packages are independently versioned and
-published by the verified `tinyrack.net` publisher. Current packages include:
+Dart pub 워크스페이스이며 각 패키지는 독립적인 버전으로 검증된 발행자 `tinyrack.net`이 배포한다. 현재 패키지는 다음과 같다.
 
-| Package | Purpose |
-|---|---|
-| `cliweave` | Typed command routing, help, completion, and terminal output |
-| `dartage` | Pure-Dart age v1 encryption and decryption |
-| `shipworld` | Release, signing, and desktop packaging for Dart CLI and Flutter desktop apps |
+| 패키지 | 용도 |
+| --- | --- |
+| `cliweave` | 타입이 지정된 명령 라우팅, 도움말, 자동 완성, 터미널 출력 |
+| `dartage` | 순수 Dart 기반 age v1 암호화·복호화 |
+| `shipworld` | Dart CLI·Flutter 데스크톱 앱의 릴리스, 서명, 데스크톱 패키징 |
 
-Do not assume this table is exhaustive. Inspect the upstream root `pubspec.yaml`
-and `packages/*/pubspec.yaml` when package membership matters.
+이 표가 전체 목록이라고 가정하지 않는다. 패키지 구성이 중요하면 업스트림 루트 `pubspec.yaml`과 `packages/*/pubspec.yaml`을 확인한다.
 
-## Consumer Package Usage
+## 소비자에서 패키지 사용
 
-1. Inspect the consumer's `pubspec.yaml`, lockfile, resolved package metadata,
-   and imported libraries before editing code.
-2. Inspect the installed package version's README and public `lib/*.dart`
-   entrypoints. Treat that resolved version as authoritative; do not infer APIs
-   from memory, an unrelated checkout, or a newer unreleased revision.
-3. Depend on a pub.dev release with an appropriate version constraint. Do not
-   use git dependencies, path dependencies, `dependency_overrides`, or edits to
-   the pub cache as a substitute for an upstream release.
-4. Import only public `package:<name>/<library>.dart` entrypoints. Never import
-   from another package's `lib/src/` tree.
-5. Preserve public types, error semantics, asynchronous behavior, platform
-   behavior, and security guarantees. Add product-specific adaptation in the
-   consumer rather than leaking product concepts into the shared package.
-6. For a `0.x` package, read its changelog and migration guide before upgrading;
-   minor releases may contain breaking API changes.
+1. 코드 편집 전에 소비자의 `pubspec.yaml`, 잠금 파일, 해석된 패키지 메타데이터, 가져오는 라이브러리를 확인한다.
+2. 설치 버전의 README와 공개 `lib/*.dart` 진입점을 읽는다. 해석된 버전을 기준으로 삼고 기억, 무관한 체크아웃, 더 최신의 미배포 리비전에서 API를 추측하지 않는다.
+3. 적절한 버전 조건으로 pub.dev 릴리스를 사용한다. 업스트림 릴리스 대신 git·path 의존성, `dependency_overrides`, pub 캐시 편집을 사용하지 않는다.
+4. 공개 `package:<name>/<library>.dart` 진입점만 가져온다. 다른 패키지의 `lib/src/`를 가져오지 않는다.
+5. 공개 타입, 오류 의미, 비동기·플랫폼 동작, 보안 보장을 유지한다. 제품 개념을 공통 패키지에 넣지 말고 소비자에서 필요한 연결 코드를 작성한다.
+6. `0.x` 패키지는 업그레이드 전에 변경 이력·마이그레이션 가이드를 읽는다. 마이너 릴리스에도 호환성을 깨는 API 변경이 있을 수 있다.
 
-Use the project's existing package manager command. For a pure Dart project:
+프로젝트의 기존 패키지 관리 명령을 사용한다. 순수 Dart 프로젝트:
 
 ```bash
 dart pub add <package>:^<version>
 dart pub get
 ```
 
-For a Flutter project or a package whose `pubspec.yaml` declares an SDK
-dependency on `flutter`:
+Flutter 프로젝트 또는 `pubspec.yaml`에 `flutter` SDK 의존성이 있는 패키지:
 
 ```bash
 flutter pub add <package>:^<version>
 flutter pub get
 ```
 
-Do not introduce Flutter SDK dependencies into a pure-Dart package unless the
-package's purpose explicitly requires Flutter.
+패키지 목적상 Flutter가 명시적으로 필요하지 않으면 순수 Dart 패키지에 Flutter SDK 의존성을 넣지 않는다.
 
-## Consumer Verification
+## 소비자 검증
 
-Follow the consuming repository's `AGENTS.md` and established validation loop
-first. At minimum, run the relevant checks after integration.
+먼저 소비자 저장소의 `AGENTS.md`와 기존 검증 절차를 따른다. 연동 후에는 최소한 관련 검사를 실행한다.
 
-For Dart:
+Dart:
 
 ```bash
 dart format .
@@ -76,7 +60,7 @@ dart analyze --fatal-infos
 dart test
 ```
 
-For Flutter:
+Flutter:
 
 ```bash
 dart format .
@@ -84,29 +68,22 @@ flutter analyze
 flutter test
 ```
 
-Also run the consumer's executable, build, integration tests, or platform tests
-that exercise the changed package behavior. Fix integration code in the
-consumer; do not patch downloaded package files.
+변경한 패키지 동작을 사용하는 소비자 실행 파일, 빌드, 통합·플랫폼 테스트도 실행한다. 연동 코드는 소비자에서 수정하며 내려받은 패키지 파일을 고치지 않는다.
 
-## Upstream Contribution Boundary
+## 업스트림 기여 범위
 
-Use the contribution workflow when the published package has a bug, lacks a
-reusable capability, or needs a public API required by more than one product.
-Do not upstream product-specific behavior merely to avoid writing an adapter.
+배포 패키지에 버그가 있거나, 재사용 기능이 부족하거나, 여러 제품에 필요한 공개 API가 없을 때 기여 절차를 사용한다. 어댑터 작성을 피하려고 제품 전용 동작을 업스트림에 넣지 않는다.
 
-### Step 1: Pause and Propose
+### 1단계: 중단하고 제안하기
 
-- Stop the consumer task at the point where the upstream limitation is found.
-- Explain the observed behavior and why consumer-side composition cannot solve
-  it correctly.
-- Propose the package, public API or behavior change, compatibility impact,
-  tests, and expected semantic-version increment.
-- Wait for explicit user approval before changing the upstream repository.
+- 업스트림 한계를 발견한 지점에서 소비자 작업을 멈춘다.
+- 관찰한 동작과 소비자 측 조합으로 올바르게 해결할 수 없는 이유를 설명한다.
+- 대상 패키지, 공개 API·동작 변경, 호환성 영향, 테스트, 예상 시맨틱 버전 증가를 제안한다.
+- 업스트림 저장소를 변경하기 전에 사용자 명시적 승인을 기다린다.
 
-### Step 2: Create a Fresh Worktree
+### 2단계: 새 작업 트리 만들기
 
-Never branch from the canonical checkout's local `main`; it may be stale. Fetch
-and create a named feature branch directly from the latest `origin/main`:
+기준 체크아웃의 로컬 `main`은 오래됐을 수 있으므로 여기서 분기하지 않는다. 최신 `origin/main`을 가져온 뒤 바로 이름을 정한 기능 브랜치를 만든다.
 
 ```bash
 cd ~/Workspaces/tinyrack/dart-packages
@@ -116,37 +93,24 @@ cd ../dart-packages-<change-slug>
 dart pub get
 ```
 
-Before creating the branch or worktree, check existing branches and worktrees
-and choose non-conflicting names. Do not modify, reset, or clean the canonical
-checkout to make it current.
+브랜치·작업 트리를 만들기 전에 기존 목록을 확인해 충돌하지 않는 이름을 고른다. 최신 상태로 맞추려고 기준 체크아웃을 수정·초기화·정리하지 않는다.
 
-### Step 3: Develop the Package Change
+### 3단계: 패키지 변경 개발
 
-- Read the upstream `AGENTS.md`, root `pubspec.yaml`, package README, changelog,
-  public entrypoints, implementation, and tests before editing.
-- Keep changes inside the affected package unless workspace configuration, CI,
-  or publishing must change.
-- Preserve the public/private boundary: exported libraries belong under `lib/`;
-  implementation details belong under `lib/src/`.
-- Add focused regression or feature tests. Cover platform-specific behavior on
-  every supported platform where practical.
-- Update user-facing API documentation, examples, README, and migration guidance
-  whenever behavior or public API changes.
-- Update the affected package's `CHANGELOG.md` and `pubspec.yaml` version in the
-  same PR. Use semantic versioning and remember that `0.x` breaking changes
-  normally increment the minor version.
-- Keep package metadata valid for pub.dev, including description, SDK bounds,
-  repository, topics, license visibility, and public API documentation.
-- For a new package, add it to the root pub workspace and add appropriate CI and
-  tag-triggered publish workflows following the existing package conventions.
+- 편집 전에 업스트림 `AGENTS.md`, 루트 `pubspec.yaml`, 패키지 README, 변경 이력, 공개 진입점, 구현, 테스트를 읽는다.
+- 워크스페이스 설정·CI·발행 변경이 꼭 필요한 경우 외에는 해당 패키지 안에서 수정한다.
+- 공개 라이브러리는 `lib/`, 내부 구현은 `lib/src/`에 두어 공개·비공개 경계를 유지한다.
+- 집중된 회귀·기능 테스트를 추가한다. 가능하면 지원하는 모든 플랫폼에서 플랫폼별 동작을 검증한다.
+- 동작·공개 API가 바뀌면 사용자 API 문서, 예제, README, 마이그레이션 안내를 갱신한다.
+- 같은 PR에서 해당 패키지 `CHANGELOG.md`와 `pubspec.yaml` 버전을 갱신한다. 시맨틱 버전을 따르며 `0.x`의 호환성 파괴 변경은 보통 마이너 버전을 올린다.
+- 설명, SDK 범위, 저장소, 주제, 라이선스 표시, 공개 API 문서 등 pub.dev 메타데이터를 유효하게 유지한다.
+- 새 패키지는 루트 pub 워크스페이스에 추가하고 기존 관례에 맞는 CI·태그 기반 발행 워크플로를 추가한다.
 
-For Flutter packages, follow existing Flutter constraints if present and use
-Flutter commands for resolution, analysis, tests, and package validation. Do
-not convert unrelated pure-Dart workspace packages to Flutter.
+Flutter 패키지는 기존 Flutter 버전 조건이 있으면 따르고 의존성 해석, 분석, 테스트, 패키지 검증에 Flutter 명령을 쓴다. 무관한 순수 Dart 워크스페이스 패키지를 Flutter로 바꾸지 않는다.
 
-### Step 4: Verify the Upstream Change
+### 4단계: 업스트림 변경 검증
 
-For every changed pure-Dart package, run from that package directory:
+변경한 순수 Dart 패키지마다 해당 디렉터리에서 실행한다.
 
 ```bash
 dart format .
@@ -156,10 +120,9 @@ dart doc
 dart pub publish --dry-run
 ```
 
-Run `dart pub get` and workspace-wide analysis from the repository root when
-workspace metadata or cross-package relationships change.
+워크스페이스 메타데이터나 패키지 간 관계가 바뀌면 저장소 루트에서 `dart pub get`과 워크스페이스 전체 분석을 실행한다.
 
-For `dartage`, run both the offline and reference interoperability suites:
+`dartage`는 오프라인·참조 구현 상호운용 테스트를 모두 실행한다.
 
 ```bash
 dart test -x interop
@@ -169,20 +132,16 @@ cd ../..
 dart test -t interop
 ```
 
-For `shipworld`, also run the repository coverage gate on Windows and validate
-that the package works outside the pub workspace:
+`shipworld`는 Windows에서 저장소 커버리지 검사를 수행하고 pub 워크스페이스 밖에서도 작동하는지 확인한다.
 
 ```powershell
 dart run tool/verify_coverage.dart shipworld
 dart run packages/shipworld/tool/validate_standalone.dart
 ```
 
-Changes to `shipworld` desktop packaging must also exercise the relevant
-Windows MSIX, macOS signing/archive, Linux AppImage, Homebrew, or Flutter
-payload jobs defined by the current CI workflow. Do not treat a host-platform
-unit test as sufficient validation for another platform's generated artifact.
+`shipworld` 데스크톱 패키징 변경은 현재 CI에 정의된 관련 Windows MSIX, macOS 서명·아카이브, Linux AppImage, Homebrew, Flutter 페이로드 작업도 실행해야 한다. 호스트 플랫폼 단위 테스트만으로 다른 플랫폼의 생성물을 충분히 검증했다고 판단하지 않는다.
 
-For a Flutter package, run its equivalent checks from the package directory:
+Flutter 패키지는 해당 디렉터리에서 대응하는 검사를 실행한다.
 
 ```bash
 dart format .
@@ -192,62 +151,43 @@ dart doc
 flutter pub publish --dry-run
 ```
 
-Run any additional commands required by the current upstream `AGENTS.md` and
-CI workflows. Fix failures before opening or updating the PR.
+현재 업스트림 `AGENTS.md`와 CI가 요구하는 추가 명령도 실행한다. 실패를 해결한 뒤 PR을 열거나 갱신한다.
 
-### Step 5: Open and Validate the PR
+### 5단계: PR 열고 검증하기
 
-- Inspect `git status`, `git diff`, and recent commits before committing.
-- Commit only the intended package and supporting workspace changes.
-- Push the feature branch and open a PR against `tinyrack-net/dart-packages`
-  `main`.
-- Summarize the consumer problem, public API or behavior change, compatibility
-  impact, version change, and verification performed.
-- Wait for all current required GitHub checks to pass. Inspect the repository's
-  workflows rather than relying on remembered job names; they currently cover
-  formatting and analysis, package tests across platforms, `dartage` interop,
-  documentation, publish dry runs, per-package coverage, and `shipworld`
-  standalone and Flutter desktop payload validation.
-- Address review and CI failures in new commits. Do not bypass checks or
-  force-push.
+- 커밋 전에 `git status`, `git diff`, 최근 커밋을 확인한다.
+- 의도한 패키지와 관련 워크스페이스 변경만 커밋한다.
+- 기능 브랜치를 푸시하고 `tinyrack-net/dart-packages`의 `main` 대상으로 PR을 연다.
+- 소비자 문제, 공개 API·동작 변경, 호환성 영향, 버전 변경, 검증 내용을 요약한다.
+- 현재 필수 GitHub 검사가 모두 통과할 때까지 기다린다. 기억 속 작업 이름 대신 저장소 워크플로를 확인한다. 현재는 포맷·분석, 플랫폼별 패키지 테스트, `dartage` 상호운용, 문서, 발행 모의 실행, 패키지별 커버리지, `shipworld` 독립 실행·Flutter 데스크톱 페이로드 검증을 포함한다.
+- 리뷰·CI 실패는 새 커밋으로 해결한다. 검사를 우회하거나 강제 푸시하지 않는다.
 
-### Step 6: Merge and Release
+### 6단계: 병합과 릴리스
 
-- Merge only after approval and green required checks.
-- Fetch the updated `main` and identify the exact merged commit. Read the
-  package version from its merged `pubspec.yaml`; do not invent or reuse a
-  version.
-- Create the package-specific annotated tag on that merged commit:
+- 승인과 필수 검사 통과 후에만 병합한다.
+- 갱신된 `main`을 가져와 정확한 병합 커밋을 확인한다. 병합된 `pubspec.yaml`에서 버전을 읽고 버전을 지어내거나 재사용하지 않는다.
+- 해당 병합 커밋에 패키지별 주석 태그를 만든다.
 
-  ```bash
+```bash
   git tag -a <package>-v<X>.<Y>.<Z> <merged-commit> -m "<package> <X>.<Y>.<Z>"
   git push origin <package>-v<X>.<Y>.<Z>
   ```
 
-- Monitor the matching `.github/workflows/publish-<package>.yml` run until it
-  succeeds. A merged PR without a successful publish workflow is not a
-  completed release.
-- Confirm pub.dev serves the exact version through
-  `https://pub.dev/api/packages/<package>` before updating the consumer.
-- If publishing fails, diagnose and fix the release process upstream. Never
-  repoint an existing tag or silently publish a different commit.
+- 해당 `.github/workflows/publish-<package>.yml` 실행이 성공할 때까지 확인한다. PR만 병합되고 발행이 성공하지 않았다면 릴리스 완료가 아니다.
+- 소비자 갱신 전에 `https://pub.dev/api/packages/<package>`에서 정확한 버전이 제공되는지 확인한다.
+- 발행 실패는 업스트림 릴리스 절차에서 진단·수정한다. 기존 태그를 옮기거나 몰래 다른 커밋을 발행하지 않는다.
 
-### Step 7: Return to the Consumer
+### 7단계: 소비자로 돌아가기
 
-- Remove the completed worktree from the canonical upstream checkout:
+- 기준 업스트림 체크아웃에서 완료된 작업 트리를 제거한다.
 
-  ```bash
+```bash
   cd ~/Workspaces/tinyrack/dart-packages
   git worktree remove ../dart-packages-<change-slug>
   ```
 
-- Return to the original consumer repository and replace its package constraint
-  with the newly published version using `dart pub add` or `flutter pub add`.
-- Resolve dependencies without overrides and verify the lockfile selected the
-  released pub.dev version.
-- Resume the consumer change at the point where work paused and run the full
-  consumer validation loop, including relevant builds and integration tests.
+- 원래 소비자 저장소로 돌아가 `dart pub add` 또는 `flutter pub add`로 패키지 조건을 새 배포 버전으로 바꾼다.
+- 재정의 없이 의존성을 해석하고 잠금 파일이 배포된 pub.dev 버전을 선택했는지 확인한다.
+- 멈춘 지점부터 소비자 변경을 재개하고 관련 빌드·통합 테스트를 포함한 전체 소비자 검증을 실행한다.
 
-Do not report the original consumer task complete until the upstream release is
-available, the consumer uses it from pub.dev, and both upstream and consumer
-verification have passed.
+업스트림 릴리스가 제공되고, 소비자가 pub.dev에서 이를 사용하며, 업스트림·소비자 검증이 모두 통과하기 전에는 원래 소비자 작업을 완료했다고 보고하지 않는다.

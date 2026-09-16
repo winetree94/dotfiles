@@ -1,73 +1,44 @@
 ---
 name: agent-configuration
-description: Manage shared global agent instructions and skills across harnesses such as Codex and Claude. Use when creating, editing, installing, moving, or repairing global AGENTS.md/CLAUDE.md files, global skills, or their discovery links. Keep canonical sources in ~/.agents and use symlinks for harness-specific paths. Excludes ordinary project-local instructions and unrelated model, credential, or MCP settings.
+description: "여러 에이전트 환경이 공유하는 전역 지침과 사용자 관리 스킬을 관리한다. 전역 지침·스킬을 작성하거나 수정·설치·이전하고, 검색 경로와 연결을 복구할 때 사용한다."
 ---
 
-# Agent Configuration
+# 전역 에이전트 설정 관리
 
-## Canonical sources
+## 원본 위치
 
-All harnesses share these sources of truth:
+모든 에이전트 실행 환경은 다음 원본을 공유한다.
 
-| Content | Only canonical location |
+| 내용 | 유일한 원본 위치 |
 | --- | --- |
-| Global agent instructions | `~/.agents/AGENTS.md` |
-| Global skills and their supporting files | `~/.agents/skills/<skill-name>/` |
+| 전역 에이전트 지침 | `~/.agents/AGENTS.md` |
+| 전역 스킬과 부속 파일 | `~/.agents/skills/<skill-name>/` |
 
-Create and edit global instructions and skills only at these canonical paths.
-Do not create independent copies, generated mirrors, or harness-specific forks.
-When a skill installer or authoring guide defaults to another directory, override
-its destination to `~/.agents/skills`. Use `skill-creator` for skill authoring
-when available, while retaining this canonical location.
+전역 지침과 스킬은 이 경로에서만 만들고 수정한다. 별도 복사본, 자동 생성된 미러, 실행 환경별 파생본을 만들지 않는다. 스킬 설치 도구나 작성 가이드가 다른 디렉터리를 기본값으로 쓰더라도 대상 경로를 `~/.agents/skills`로 바꾼다. `skill-creator`를 사용할 수 있으면 스킬 작성에 활용하되, 원본 위치는 그대로 유지한다.
 
-## Harness integration
+## 실행 환경 연결
 
-| Harness entrypoint | Required integration |
+| 실행 환경의 진입점 | 연결 방식 |
 | --- | --- |
-| `~/.codex/AGENTS.md` | Symlink to `~/.agents/AGENTS.md` |
-| `~/.claude/CLAUDE.md` | Symlink to `~/.agents/AGENTS.md` |
-| Codex global skill discovery | Automatically discovers `~/.agents/skills`; no duplicate copy or additional link needed |
-| `~/.claude/skills` | Directory symlink to `~/.agents/skills` |
+| `~/.codex/AGENTS.md` | `~/.agents/AGENTS.md`를 가리키는 심볼릭 링크 |
+| `~/.claude/CLAUDE.md` | `~/.agents/AGENTS.md`를 가리키는 심볼릭 링크 |
+| Codex의 전역 스킬 검색 | `~/.agents/skills`를 자동으로 검색하므로 복사본이나 추가 링크 불필요 |
+| `~/.claude/skills` | `~/.agents/skills`를 가리키는 디렉터리 심볼릭 링크 |
 
-For other harnesses, establish the supported global entrypoint first, then link
-it to the same canonical file or directory. Relative or absolute symlinks are
-acceptable if they resolve correctly. Do not store a literal unexpanded `~` in
-a symlink target, link the canonical path back to a harness, or create cycles.
+다른 실행 환경은 지원하는 전역 진입점을 먼저 확인한 뒤 같은 원본 파일이나 디렉터리에 연결한다. 올바르게 해석되면 상대·절대 경로 링크 모두 사용할 수 있다. 링크 대상에 확장되지 않은 `~` 문자를 그대로 넣거나, 원본에서 실행 환경 쪽으로 역방향 링크를 만들거나, 순환 링크를 만들지 않는다.
 
-Codex's harness-provided system skills and plugin assets are not separately
-maintained user-global skills. Do not replace the entire `~/.codex/skills`
-directory or move built-in/plugin-managed assets as part of configuring discovery.
-User-managed global skills belong in `~/.agents/skills`.
+Codex가 제공하는 시스템 스킬과 플러그인 자산은 사용자가 별도로 관리하는 전역 스킬이 아니다. 검색 경로를 설정하면서 `~/.codex/skills` 전체를 교체하거나 내장·플러그인 관리 자산을 옮기지 않는다. 사용자 관리 전역 스킬은 `~/.agents/skills`에 둔다.
 
-## Changes and migration
+## 변경과 이전
 
-1. Inspect canonical content, destination file types, and symlink targets before
-   changes. Edit canonical files directly; avoid editors or replacement operations
-   that would turn harness entrypoint symlinks into regular files.
-2. Leave a correct symlink unchanged. For a missing entrypoint, create its parent
-   directory as needed and create the symlink to the canonical source.
-3. If an entrypoint is a regular file/directory or points elsewhere, compare its
-   contents with the canonical source. Preserve unique instructions and skills
-   before replacing it. Do not use force-linking or recursive deletion to discard
-   content; resolve conflicting instructions with the user when intent is unclear.
-4. When migration is in scope, move approved unique content into the canonical
-   location and retain a recoverable backup of displaced content outside active
-   discovery paths. Replace only the reconciled entrypoint with a symlink.
-5. Update skill descriptions and references when renaming or consolidating skills.
-   Put selection criteria in each skill's description and task-specific cross-skill
-   guidance in its body. Do not duplicate a skill-routing catalog in global
-   instructions; reserve those instructions for rules that apply across tasks.
+1. 변경 전에 원본 내용, 대상 파일의 유형, 심볼릭 링크 대상을 확인한다. 원본 파일을 직접 수정하고, 실행 환경의 진입점 링크를 일반 파일로 바꾸는 편집·교체 방식은 피한다.
+2. 올바른 링크는 그대로 둔다. 진입점이 없으면 필요한 상위 디렉터리를 만들고 원본을 가리키는 링크를 만든다.
+3. 진입점이 일반 파일·디렉터리이거나 다른 곳을 가리키면 원본과 내용을 비교한다. 교체 전에 고유한 지침과 스킬을 보존한다. 강제 링크나 재귀 삭제로 내용을 버리지 않는다. 지침이 충돌하고 의도가 불분명하면 사용자에게 확인한다.
+4. 이전이 작업 범위에 포함되면 승인된 고유 내용을 원본 위치로 옮기고, 교체되는 내용은 활성 검색 경로 밖에 복구 가능한 백업으로 남긴다. 내용 정리가 끝난 진입점만 링크로 교체한다.
+5. 스킬 이름을 바꾸거나 통합하면 설명과 참조도 갱신한다. 선택 기준은 각 스킬의 설명에, 특정 작업에서 다른 스킬을 사용하는 기준은 본문에 둔다. 전역 지침에 스킬 선택 목록을 중복해서 넣지 말고, 모든 작업에 공통으로 적용되는 규칙만 둔다.
 
-This policy concerns global instructions and skills. Preserve project-local
-instructions and skills, harness runtime configuration, credentials, and MCP
-settings unless the user explicitly includes them in the task. Required tool or
-authentication failures follow the canonical AGENTS.md's blocked-prerequisite rule.
+이 정책은 전역 지침과 스킬에 적용된다. 사용자가 명시적으로 작업에 포함하지 않았다면 프로젝트 내부 지침·스킬, 실행 환경 설정, 인증 정보, MCP 설정은 유지한다. 필수 도구나 인증 문제는 원본 AGENTS.md의 필수 준비 사항 규칙을 따른다.
 
-## Verification
+## 검증
 
-Check symlink type and resolved target, not only matching contents. For example,
-use `test -L`, `readlink`, and `realpath` on the three known linked entrypoints.
-Confirm each resolves to the intended canonical source and that referenced skill
-files exist. Validate new or changed skills with the available skill validator.
-Report file/link validation separately from actual harness discovery; do not
-claim a running session reloaded the changes unless that was verified.
+내용이 같은지만 보지 말고 심볼릭 링크 유형과 실제 대상을 확인한다. 예를 들어 알려진 세 진입점에 `test -L`, `readlink`, `realpath`를 사용한다. 각 링크가 의도한 원본을 가리키는지, 참조한 스킬 파일이 존재하는지 확인한다. 새로 만들거나 수정한 스킬은 사용 가능한 스킬 검증기로 검사한다. 파일·링크 검증과 실제 실행 환경의 스킬 검색 확인은 구분해서 보고한다. 확인하지 않았다면 실행 중인 세션이 변경 사항을 다시 불러왔다고 말하지 않는다.

@@ -1,19 +1,19 @@
-# Blocked Prerequisites
+# 필수 준비 사항으로 작업이 막혔을 때
 
-When a required prerequisite is unavailable, first determine whether it can be repaired safely within the task. Continue automatically with a repair when it is user-local, narrowly scoped, reversible, and does not alter authentication, permissions, shared systems, or the prescribed workflow. Appropriate examples include creating a task-specific virtual environment, installing a clearly identified runtime dependency into that environment, restoring project dependencies from the project's lockfile, creating a temporary directory, or using an already-installed compatible interpreter. Keep generated environments and caches outside repositories unless the repository explicitly manages them, verify the repaired prerequisite, and briefly report the repair.
+작업에 필요한 환경이나 도구를 사용할 수 없다면, 먼저 작업 범위 안에서 안전하게 복구할 수 있는지 판단한다. 사용자 개인 환경에 한정되고, 범위가 좁으며, 되돌릴 수 있고, 인증·권한·공용 시스템·정해진 작업 절차를 바꾸지 않는 복구는 별도 확인 없이 진행한다. 예를 들어 작업 전용 가상 환경 생성, 그 환경에 명확히 식별된 런타임 의존성 설치, 프로젝트 잠금 파일에 따른 의존성 복원, 임시 디렉터리 생성, 이미 설치된 호환 인터프리터 사용이 이에 해당한다. 프로젝트가 직접 관리하는 경우가 아니라면 생성한 환경과 캐시는 저장소 밖에 둔다. 복구 결과를 확인하고, 무엇을 복구했는지 간단히 알린다.
 
-Stop and ask the user when recovery requires authentication or permission changes, access to an unavailable service, system-wide or privileged installation, persistent shell or operating-system configuration changes, an untrusted or ambiguous dependency, substitution of a different tool or account, bypassing a required check, or another action with material external impact. Do not silently skip the prescribed workflow or weaken its checks.
+복구에 인증이나 권한 변경, 현재 접근할 수 없는 서비스 이용, 시스템 전체 또는 관리자 권한 설치, 영구적인 셸·운영체제 설정 변경, 신뢰할 수 없거나 정체가 불분명한 의존성, 다른 도구나 계정으로의 대체, 필수 검사 생략, 그 밖에 외부에 실질적인 영향을 주는 조치가 필요하면 멈추고 사용자에게 확인한다. 정해진 절차를 몰래 건너뛰거나 검사를 느슨하게 해서는 안 된다.
 
-When blocked, report the failed step, the relevant error without secrets, and the specific action the user must take. Resume after the prerequisite is verified, or follow an alternative explicitly authorized by the user. This rule concerns unavailable prerequisites, not ordinary code or test failures that the requested work is intended to fix.
+작업이 막히면 실패한 단계, 비밀 정보를 제외한 관련 오류, 사용자가 해야 할 구체적인 조치를 알린다. 필요한 조건이 충족됐는지 확인한 뒤 재개하거나, 사용자가 명시적으로 허용한 대안을 따른다. 이 규칙은 필요한 환경이나 도구를 사용할 수 없는 상황에 적용하며, 요청받은 작업에서 해결해야 하는 일반적인 코드 오류나 테스트 실패에는 적용하지 않는다.
 
-# Global Agent Configuration
+# 전역 에이전트 설정
 
-Keep canonical global instructions and user-managed skills only in `~/.agents/AGENTS.md` and `~/.agents/skills`, respectively. Other harness entrypoints must use symlinks, not independent copies. Codex discovers the skill directory automatically.
+전역 지침의 원본은 `~/.agents/AGENTS.md`에, 사용자가 관리하는 스킬의 원본은 `~/.agents/skills`에만 둔다. 다른 에이전트 실행 환경의 진입점은 별도 복사본이 아닌 심볼릭 링크로 연결한다. Codex는 이 스킬 디렉터리를 자동으로 검색한다.
 
-# Public IP Addresses
+# 공인 IP 주소
 
-When creating or updating skills and their references, retain relevant private/internal IP addresses and subnet CIDRs. Do not embed actual external public IP addresses or public address ranges. Identify public-facing resources by hostname, SSH alias, context, or resource name/ID, and resolve public addresses from current configuration when needed without copying them into skill documentation.
+스킬과 참고 문서를 작성하거나 수정할 때 관련 사설·내부 IP 주소와 서브넷 CIDR은 유지한다. 실제 외부 공인 IP 주소나 공인 주소 대역은 문서에 넣지 않는다. 외부에 공개된 리소스는 호스트명, SSH 별칭, 컨텍스트, 리소스 이름이나 ID로 식별한다. 공인 주소가 필요하면 현재 설정에서 조회하고, 조회한 값을 스킬 문서에 옮겨 적지 않는다.
 
-# Secrets
+# 비밀 정보
 
-Manage secrets in Bitwarden. Use `bw` for personal secrets and the `bw-vivident` alias for Vivident secrets; do not substitute one vault for the other. Run alias-based commands in a shell that loads the user's aliases, such as `zsh -lic 'bw-vivident status'`. Retrieve only the secrets needed for the task and pass them directly to the consuming tool without exposing secret values or session tokens in conversation, logs, instructions, or Git.
+비밀 정보는 Bitwarden으로 관리한다. 개인 비밀 정보에는 `bw`를, Vivident 비밀 정보에는 `bw-vivident` 별칭을 사용하며, 두 보관함을 서로 대신 사용하지 않는다. 별칭이 필요한 명령은 `zsh -lic 'bw-vivident status'`처럼 사용자 별칭을 불러오는 셸에서 실행한다. 작업에 꼭 필요한 비밀 정보만 조회해 사용하는 도구에 직접 전달한다. 비밀 값이나 세션 토큰을 대화, 로그, 지침, Git에 노출하지 않는다.

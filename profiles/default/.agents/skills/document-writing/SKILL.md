@@ -1,34 +1,34 @@
 ---
 name: document-writing
-description: Write and revise standalone prose documents, technical guides, notes, blog articles, and video scripts with clear structure, grounded claims, and medium-appropriate style. Applies regardless of storage location. Includes the user's Korean blog voice and YouTube script conventions; does not impose those styles on ordinary technical documents, code, or conversational replies.
+description: "독자와 매체에 맞게 글을 작성하고 다듬는다. 기술 문서, 노트, 블로그 글, 영상 대본의 초안 작성이나 내용·구성·문체 개선이 필요할 때 사용한다."
 ---
 
-# Document Writing
+# 문서 작성
 
-## Select the medium
+## 매체 선택
 
-Determine the intended reader, purpose, language, and requested extent from the task and existing document. Preserve its established voice when making scoped edits. Use Korean for new personal documents unless the request or destination establishes another language.
+요청과 기존 문서에서 독자, 목적, 언어, 요청 범위를 파악한다. 부분 수정에서는 기존 문체를 유지한다. 요청이나 저장 위치에서 다른 언어를 정하지 않았다면 새 개인 문서는 한국어로 쓴다.
 
-- For blog articles and their translations, read [references/blog.md](references/blog.md).
-- For YouTube scripts and script excerpts, read [references/youtube.md](references/youtube.md).
-- For technical guides, notes, reports, and other prose, use the common principles below without importing blog greetings, first-person narration, or script formatting.
+- 블로그 글과 번역은 [references/blog.md](references/blog.md)를 읽는다.
+- YouTube 대본과 대본 일부는 [references/youtube.md](references/youtube.md)를 읽는다.
+- 기술 가이드, 노트, 보고서 등은 아래 공통 원칙을 적용한다. 블로그 인사말, 1인칭 서술, 대본 형식을 가져오지 않는다.
 
-Use `document-management` to resolve or organize standalone document files in the Obsidian vault. Writing guidance also applies outside that vault; it does not change a document's requested destination. Follow the owning project's conventions for repository documentation.
+Obsidian 보관함에서 독립 문서 파일을 찾거나 정리할 때는 `document-management`를 사용한다. 작성 지침은 보관함 밖에서도 적용하지만 요청된 저장 위치를 바꾸지는 않는다. 저장소 문서는 해당 프로젝트의 관례를 따른다.
 
-## Common principles
+## 공통 원칙
 
-Lead with what the reader needs: the conclusion or action for a technical guide, the context for an account of experience, or the decision and rationale for a proposal. Choose sections that support that purpose rather than filling a mandatory template.
+독자에게 필요한 것부터 쓴다. 기술 가이드는 결론이나 행동, 경험담은 맥락, 제안서는 결정과 근거로 시작한다. 정해진 틀을 채우기보다 목적에 맞는 구성을 선택한다.
 
-Keep sentences clear and paragraphs focused. Remove redundant introductions, repeated conclusions, promotional filler, and unnecessary jargon. Use lists for actual sets or steps, tables for comparisons, and headings to make longer documents navigable. Do not turn a small edit into a stylistic rewrite of the whole document.
+문장은 명확하게, 문단은 하나의 주제에 집중해서 쓴다. 불필요한 도입, 반복되는 결론, 홍보성 군더더기, 불필요한 전문 용어를 덜어낸다. 실제 목록이나 단계에는 목록을, 비교에는 표를, 긴 문서의 탐색에는 제목을 사용한다. 작은 수정을 문서 전체의 문체 개편으로 확대하지 않는다.
 
-Distinguish verified facts, the author's opinions, and unresolved assumptions. Never invent first-person experience, quotations, measurements, prices, or outcomes to make a narrative complete. Omit unsupported nonessential claims; identify missing evidence when it is central to the requested document. Preserve relevant limitations and uncertainty.
+확인된 사실, 작성자의 의견, 미확인 가정을 구분한다. 이야기를 완성하려고 직접 경험, 인용, 측정값, 가격, 결과를 지어내지 않는다. 근거 없는 부수적인 주장은 빼고, 요청한 문서의 핵심에 필요한 근거가 없으면 이를 밝힌다. 관련 한계와 불확실성은 유지한다.
 
-Use sources that support the particular claim and place links near the relevant text. Preserve existing valid references. Use `web-research` when external research is needed; writing alone does not require browsing.
+각 주장을 뒷받침하는 출처를 사용하고 관련 문장 가까이에 링크를 둔다. 유효한 기존 참조를 보존한다. 외부 조사가 필요하면 `web-research`를 사용하되, 글을 쓴다는 이유만으로 웹을 탐색할 필요는 없다.
 
-For technical instructions, state relevant prerequisites, environment/version assumptions, commands or configuration, and observable success criteria. Explain consequential steps and their effects. Use language-tagged code fences and distinguish placeholders from executable values. Do not run potentially mutating examples merely to validate prose, or present untested examples as verified.
+기술 절차에는 필요한 준비 사항, 환경·버전 가정, 명령이나 설정, 관찰 가능한 성공 기준을 명시한다. 영향이 큰 단계는 이유와 효과를 설명한다. 코드 블록에 언어를 표시하고 자리표시자와 실행 가능한 값을 구분한다. 글을 검증하려고 상태를 바꿀 수 있는 예제를 실행하거나, 시험하지 않은 예제를 검증됐다고 표현하지 않는다.
 
-Use images and diagrams when they convey evidence or clarify the subject, not to fill space. Link actual assets and provide useful captions or alt text where appropriate. Do not fabricate screenshots or measurements as evidence.
+이미지와 도표는 근거를 보여주거나 이해를 도울 때 사용하며 분량을 채우는 용도로 넣지 않는다. 실제 자산에 연결하고 필요에 따라 유용한 설명이나 대체 텍스트를 제공한다. 스크린샷이나 측정 결과를 근거인 것처럼 꾸며내지 않는다.
 
-## Final pass
+## 최종 검토
 
-Check that the document answers its intended question, reads consistently, and contains no invented facts or unnecessary repetition. Verify names, units, commands, source references, and local asset paths within the task's scope. Preserve metadata and identifiers not involved in the edit. Apply only the selected medium's additional checks.
+문서가 의도한 질문에 답하는지, 문체가 일관적인지, 지어낸 사실이나 불필요한 반복이 없는지 확인한다. 작업 범위 안에서 이름, 단위, 명령, 출처, 로컬 자산 경로를 검증한다. 수정과 무관한 메타데이터와 식별자는 보존한다. 선택한 매체의 추가 검토 항목만 적용한다.

@@ -1,41 +1,41 @@
-# Blog Articles
+# 블로그 글
 
-## Voice and structure
+## 말투와 구성
 
-For new Korean articles, use a conversational polite style ending in `~해요` and first-person `저`, not `나` or `필자`. Keep it natural rather than appending rhetorical questions or greetings to every section. Light humor is optional; do not manufacture reactions or add decorative emoji by default.
+새 한국어 글은 `~해요`로 끝나는 자연스러운 존댓말과 1인칭 `저`를 사용한다. `나`나 `필자`는 쓰지 않는다. 모든 절에 수사적인 질문이나 인사말을 붙이지 않는다. 가벼운 유머는 써도 되지만 반응을 꾸며내거나 장식용 이모지를 기본으로 넣지 않는다.
 
-Open with why the topic matters or why the author undertook the work. Develop the actual process, choices, results, and tradeoffs, then close with a useful summary, limitations, or next steps. A `마치며` section suits longer articles; short pieces need not mechanically repeat the same structure. Use `##` sections and `###` subsections for new articles, with `* * *` between major sections where useful. Preserve an existing article's heading hierarchy during narrow edits.
+주제가 중요한 이유나 작업을 시작한 계기로 시작한다. 실제 과정, 선택, 결과, 장단점을 전개하고 유용한 정리, 한계, 다음 단계로 마무리한다. 긴 글에는 `마치며` 절이 어울리지만 짧은 글에 같은 구조를 기계적으로 반복할 필요는 없다. 새 글에는 `##` 절과 `###` 하위 절을 쓰고 필요하면 큰 절 사이에 `* * *`를 넣는다. 부분 수정에서는 기존 제목 체계를 유지한다.
 
-Maintain an experience-led, candid voice only where experience was actually supplied. Explain alternatives and disadvantages when relevant and supported, not as invented mandatory counterpoints. Use short paragraphs and restrained emphasis. Put commands, paths, and identifiers in backticks, rather than marking every product name as code.
+실제 경험이 제공된 부분에서만 경험 중심의 솔직한 목소리를 유지한다. 대안과 단점은 관련성이 있고 근거가 있을 때 설명하며, 필수 반론처럼 지어내지 않는다. 문단은 짧게 쓰고 강조는 절제한다. 명령, 경로, 식별자에는 백틱을 쓰되 모든 제품명을 코드처럼 표시하지 않는다.
 
-## Sources and images
+## 출처와 이미지
 
-Link relevant products, tools, documentation, and evidence inline with descriptive text. Do not automatically append `?ref=tinyrack.net` to new URLs; preserve existing intentional referral parameters and add them only when requested or required by the publication's established configuration.
+관련 제품, 도구, 문서, 근거는 설명이 담긴 문구에 인라인 링크로 연결한다. 새 URL에 `?ref=tinyrack.net`을 자동으로 붙이지 않는다. 기존의 의도적인 추천 매개변수는 유지하고, 요청받았거나 발행 환경의 기존 설정에서 요구할 때만 추가한다.
 
-Use real images near the explanation they support, with relative paths such as `![Product ports](./attachments/product-ports.png)`. Preserve existing image embeds during scoped edits. If an image is needed but unavailable, identify it as missing rather than inserting a broken link or pretending it exists.
+실제 이미지를 관련 설명 가까이에 두고 `![제품 포트](./attachments/product-ports.png)` 같은 상대 경로를 사용한다. 부분 수정에서는 기존 이미지 임베드를 보존한다. 필요한 이미지가 없으면 깨진 링크를 넣거나 존재하는 척하지 말고 누락 사실을 알린다.
 
-## Metadata and translations
+## 메타데이터와 번역
 
-Inspect the current article and publication conventions before creating or changing frontmatter. Preserve existing fields, including publisher-specific fields such as `commentsTerm` and `draft`, and do not normalize legacy metadata as part of a prose edit.
+프런트매터를 만들거나 바꾸기 전에 현재 글과 발행 관례를 확인한다. `commentsTerm`, `draft` 같은 발행 시스템 전용 필드를 포함해 기존 필드를 보존한다. 본문을 편집하면서 오래된 메타데이터를 일괄 정규화하지 않는다.
 
-The existing article schema uses:
+기존 글 스키마는 다음과 같다.
 
-| Field | Meaning and handling |
+| 필드 | 의미와 처리 방식 |
 | --- | --- |
-| `title` | Article title in this language |
-| `excerpt` | Concise summary, normally two to four short sentences |
-| `lang` | Language of this file: `ko`, `en`, or `ja` |
-| `routeSlug` | Publication route; preserve established values |
-| `translationKey` | Shared identifier across all translations |
-| `featureImage` | Actual representative image, usually under `./attachments/` |
-| `updatedAt` | Actual editorial update time when required by the publication |
-| `publishedAt` | Actual publication time, not the time a draft was generated |
-| `tags` | Relevant tags following the destination's vocabulary |
+| `title` | 해당 언어의 글 제목 |
+| `excerpt` | 간결한 요약. 보통 짧은 문장 두세 개에서 네 개 정도 |
+| `lang` | 파일의 언어: `ko`, `en`, `ja` |
+| `routeSlug` | 발행 경로. 기존 값 유지 |
+| `translationKey` | 모든 번역본이 공유하는 식별자 |
+| `featureImage` | 실제 대표 이미지. 보통 `./attachments/` 아래에 위치 |
+| `updatedAt` | 발행 시스템이 요구할 때 실제 편집 시각 기록 |
+| `publishedAt` | 실제 발행 시각. 초안 생성 시각이 아님 |
+| `tags` | 저장 위치의 어휘 관례에 맞는 관련 태그 |
 
-For new drafts, set known descriptive fields and follow the destination's draft convention. Do not invent publication dates or image paths to fill the schema. If a publishing workflow requires missing information, surface it before publication. Preserve original publication dates on revisions.
+새 초안에는 확인된 설명 필드를 채우고 대상 위치의 초안 관례를 따른다. 스키마를 채우려고 발행 날짜나 이미지 경로를 지어내지 않는다. 발행 절차에 필요한 정보가 빠졌다면 발행 전에 알린다. 수정 시 최초 발행 날짜는 유지한다.
 
-Use `ko.md` as the source for this user's multilingual articles unless directed otherwise. Create or update `en.md` and `ja.md` only within the requested translation scope. Keep `translationKey`, facts, code semantics, and asset references consistent, while using idiomatic local wording rather than literal translation. Do not silently treat existing translations as updated when only Korean changed.
+별도 지시가 없으면 사용자의 다국어 글은 `ko.md`를 원문으로 삼는다. `en.md`, `ja.md`는 요청받은 번역 범위 안에서만 만들거나 갱신한다. `translationKey`, 사실관계, 코드의 의미, 자산 참조는 일치시키되 직역 대신 해당 언어의 자연스러운 표현을 쓴다. 한국어만 바꿨는데 기존 번역본도 갱신된 것으로 취급하지 않는다.
 
-## Review
+## 검토
 
-Check natural voice, supported personal claims, useful technical detail, relevant limitations, valid links/images, and consistent metadata. A completed draft is not automatically published or moved to `Completed`.
+자연스러운 말투, 개인적 주장의 근거, 유용한 기술 정보, 관련 한계, 링크·이미지 유효성, 메타데이터 일관성을 확인한다. 초안을 완성했다고 자동으로 발행하거나 `Completed`로 옮기지 않는다.

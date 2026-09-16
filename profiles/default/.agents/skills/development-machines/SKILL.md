@@ -1,43 +1,43 @@
 ---
 name: development-machines
-description: Manage personal development devices through Ansible in ~/Workspaces/winetree94/dev-machines. Use for developer tool installation, workstation configuration, package updates, new-device onboarding, and changes to this repository's roles or inventory on Ubuntu, macOS, Windows, and WSL. Excludes CI runner provisioning, NAS/Proxmox administration, and the ubuntu-b70 GPU server.
+description: "개인 개발 기기의 도구와 시스템 설정을 관리한다. 개발 도구 설치, 기기 설정 변경, 패키지 갱신, 새 기기 등록이 필요할 때 사용한다."
 ---
 
-# Development Machines
+# 개발 기기 관리
 
-## Resolve the target
+## 대상 확인
 
-Repository: `~/Workspaces/winetree94/dev-machines`. Read its current `AGENTS.md`, `readme.md`, Makefile, inventory, and relevant roles before work. Inspect branch and working-tree changes and preserve unrelated edits.
+저장소는 `~/Workspaces/winetree94/dev-machines`다. 작업 전에 현재 `AGENTS.md`, `readme.md`, Makefile, 인벤토리, 관련 역할을 읽는다. 브랜치와 작업 트리 변경을 확인하고 무관한 수정은 보존한다.
 
-Resolve the requested device from the active `inventories/hosts.yml`, not a historical README table, SSH alias alone, or commented-out entry. Verify its OS group and applicable host variables; do not keep a second device/IP catalog in this skill. State the selected inventory hosts and intended change before remote execution. Ask for a target when it cannot be resolved from the request and context.
+요청한 기기는 활성 `inventories/hosts.yml`에서 찾는다. 오래된 README 표, SSH 별칭만으로 판단하거나 주석 처리된 항목을 대상으로 삼지 않는다. OS 그룹과 적용되는 호스트 변수를 확인하며 이 스킬에 별도의 기기·IP 목록을 만들지 않는다. 원격 실행 전에 선택한 인벤토리 호스트와 변경 내용을 알린다. 요청과 맥락으로 대상을 정할 수 없으면 사용자에게 묻는다.
 
-- For onboarding, connection setup, OS behavior, and WSL, read [references/platforms.md](references/platforms.md).
-- For new tools, role changes, or cross-platform support, read [references/role-conventions.md](references/role-conventions.md).
+- 기기 등록, 연결 설정, OS 동작, WSL은 [references/platforms.md](references/platforms.md)를 읽는다.
+- 새 도구, 역할 변경, 여러 플랫폼 지원은 [references/role-conventions.md](references/role-conventions.md)를 읽는다.
 
-Keep persistent workstation changes in this repository's Ansible, not ad hoc SSH commands. A request to install or configure something on a named device normally includes scoped application and verification. A code-only, planning, or diagnostic request does not authorize deployment.
+영구적인 워크스테이션 변경은 임시 SSH 명령 대신 이 저장소의 Ansible로 관리한다. 특정 기기에 설치나 설정을 요청하면 보통 해당 범위의 적용과 검증도 포함한다. 코드만 작성하거나 계획·진단을 요청한 것은 배포 허가가 아니다.
 
-## Change, apply, and verify
+## 변경·적용·검증
 
-1. Inspect the selected role and its dependencies, current variables, and tests. Make the smallest reproducible repository change and update the relevant validation tests.
-2. Run `make verify ANSIBLE_ARGS=` without host or tag filters. This covers syntax, local validation playbooks, and lint; filters can silently skip the local tests.
-3. Run `make ping ANSIBLE_ARGS="--limit <host>"`, then `make check ANSIBLE_ARGS="--limit <host>"`. For a tool-specific change, add appropriate role/dependency tags to check and apply after inspecting their prerequisites. Keep connectivity checks unfiltered by role tags.
-4. Review the check output for intended scope before `make apply ANSIBLE_ARGS="--limit <host>"` with the same selected tags. `apply` does not run `verify`, `ping`, or `check` automatically.
-5. Repeat the same scoped apply to verify convergence, then check the requested tool or service actually works. Investigate repeated unexpected changes rather than assuming a successful exit proves idempotency. Report check-mode predictions separately from real execution evidence.
+1. 선택한 역할과 의존성, 현재 변수, 테스트를 확인한다. 재현 가능한 최소 변경을 저장소에 반영하고 관련 검증 테스트를 갱신한다.
+2. 호스트·태그 필터 없이 `make verify ANSIBLE_ARGS=`를 실행한다. 구문 검사, 로컬 검증 플레이북, 린트를 포함하며, 필터를 넣으면 로컬 테스트가 조용히 누락될 수 있다.
+3. `make ping ANSIBLE_ARGS="--limit <host>"` 다음에 `make check ANSIBLE_ARGS="--limit <host>"`를 실행한다. 특정 도구 변경은 선행 조건을 확인한 뒤 check와 apply에 적절한 역할·의존성 태그를 넣는다. 연결 확인에는 역할 태그를 적용하지 않는다.
+4. check 결과가 의도한 범위인지 검토하고 같은 태그로 `make apply ANSIBLE_ARGS="--limit <host>"`를 실행한다. `apply`는 `verify`, `ping`, `check`를 자동 실행하지 않는다.
+5. 같은 범위로 apply를 반복해 상태가 수렴하는지 확인하고, 요청한 도구나 서비스가 실제로 동작하는지 검사한다. 예상 밖 변경이 반복되면 조사한다. 정상 종료만으로 멱등성을 판단하지 않는다. check 모드의 예측과 실제 실행 근거를 구분해 보고한다.
 
-Always specify an inventory limit for remote actions. Use the explicit requested host set for multi-device work; do not touch the full inventory unless all devices were requested. Preview the actual task graph when tags are involved: shared tags can include GUI companions, and filtering out bootstrap dependencies can make a fresh-host run incomplete. Do not widen a single-tool task into full provisioning without establishing that the broader change is intended.
+원격 작업에는 항상 인벤토리 제한을 명시한다. 여러 기기 작업도 요청한 호스트 집합만 사용하며, 모든 기기를 요청하지 않았다면 전체 인벤토리를 건드리지 않는다. 태그를 쓰면 실제 실행 작업 목록을 미리 확인한다. 공통 태그에 GUI 부속 앱이 포함될 수 있고, 초기 설정 의존성을 제외하면 새 호스트 설정이 불완전해질 수 있다. 사용자가 더 넓은 변경을 의도했는지 확인하지 않고 단일 도구 작업을 전체 프로비저닝으로 넓히지 않는다.
 
-Check mode is a preview, not proof of a successful or idempotent apply. Some package-manager tasks cannot fully predict first-time installation. Do not silently bypass failed prerequisite checks by running a broad apply.
+check 모드는 미리보기이며 적용 성공이나 멱등성의 증거가 아니다. 일부 패키지 관리 작업은 최초 설치를 완전히 예측하지 못한다. 선행 검사가 실패했다고 광범위한 apply로 우회하지 않는다.
 
-## Updates and other side effects
+## 갱신과 그 밖의 부수 효과
 
-`make update-check ANSIBLE_ARGS="--limit <host>"` previews the update playbook; `make update ANSIBLE_ARGS="--limit <host>"` performs it. Updating reuses the setup graph with update mode enabled, repairs missing packages, and can upgrade whole package-manager inventories and Mise runtimes. Use this path only for an explicit update task, not as a substitute for ordinary installation. Inspect platform effects and active work before upgrades or restarts; do not assume update also authorizes a reboot.
+`make update-check ANSIBLE_ARGS="--limit <host>"`는 갱신 플레이북을 미리 보고, `make update ANSIBLE_ARGS="--limit <host>"`는 실제 실행한다. 갱신은 업데이트 모드로 설정 작업 그래프를 재사용하며, 누락 패키지를 복구하고 패키지 관리자 전체 목록과 Mise 런타임을 업그레이드할 수 있다. 명시적인 갱신 작업에만 사용하고 일반 설치를 대신하지 않는다. 업그레이드나 재시작 전에 플랫폼 영향과 진행 중인 작업을 확인한다. 갱신 요청이 재부팅까지 허용한다고 가정하지 않는다.
 
-The Dotweave role does more than install a CLI: it initializes or fast-forwards the managed dotfiles checkout and runs `dotweave pull --yes` to restore tracked files into the user's home. Account for that effect before including it. Preserve an inconsistent or divergent checkout for investigation rather than resetting it.
+Dotweave 역할은 CLI 설치 외에도 관리 대상 dotfiles 체크아웃을 초기화하거나 fast-forward하고, `dotweave pull --yes`로 추적 파일을 사용자 홈에 복원한다. 포함하기 전에 이 효과를 고려한다. 체크아웃이 불일치하거나 분기됐다면 초기화하지 말고 조사할 수 있게 보존한다.
 
-Retain repository changes for reproducibility. Commit and push only within the user's requested Git workflow. Report target hosts, changed roles/configuration, applied scope, convergence and functional checks, and outstanding human-only steps; distinguish code validation from device validation.
+재현 가능하도록 저장소 변경을 남긴다. 커밋과 푸시는 사용자가 요청한 Git 작업 흐름 안에서만 한다. 대상 호스트, 바꾼 역할·설정, 적용 범위, 수렴·기능 검사, 사람이 해야 할 남은 단계를 보고한다. 코드 검증과 기기 검증은 구분한다.
 
-## Ownership boundaries
+## 담당 범위
 
-Use `homelab-infrastructure` for personal CI runner configuration, NAS/Proxmox, and `ubuntu-gpu` managed by `tinyrack/ubuntu-b70`; use `vivident-infrastructure` for company runners. A machine serving multiple roles does not transfer ownership of those configurations into this repository.
+개인 CI 러너 설정, NAS·Proxmox, `tinyrack/ubuntu-b70`이 관리하는 `ubuntu-gpu`는 `homelab-infrastructure`를, 회사 러너는 `vivident-infrastructure`를 사용한다. 한 기기가 여러 역할을 맡는다고 해당 설정의 관리 책임이 이 저장소로 옮겨오지는 않는다.
 
-Installing an agent harness is workstation provisioning; changing shared global instructions or skills uses `agent-configuration`. Dotweave application development is separate from deploying its workstation role and is outside this skill.
+에이전트 실행 도구 설치는 워크스테이션 프로비저닝에 해당한다. 공유 전역 지침·스킬 변경은 `agent-configuration`을 사용한다. Dotweave 앱 개발은 워크스테이션 역할 배포와 별개이며 이 스킬 범위 밖이다.

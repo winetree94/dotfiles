@@ -1,27 +1,27 @@
-# Role Development
+# 역할 개발
 
-Read the repository's current `AGENTS.md` and the affected tests for detailed conventions and package-specific exceptions. This reference records the structural rules, not a second package/version catalog.
+세부 관례와 패키지별 예외는 저장소의 현재 `AGENTS.md`와 관련 테스트를 읽는다. 이 문서는 구조적 규칙을 다루며 별도의 패키지·버전 목록이 아니다.
 
-## Structure and execution
+## 구조와 실행
 
-- Use one role per user-facing application. Keep OS-wide prerequisites in the existing `platform_prerequisites` bundle and application-specific dependencies with their application.
-- Use the existing `tasks/main.yml` OS dispatcher with `debian.yml`, `darwin.yml`, and `windows.yml`. Missing support is a missing OS file, not a substitute application or a shared `default.yml` fallback.
-- Reuse `brew.yml` for meaningful Unix duplication. Keep shared helper roles such as `winget`, `brew_tap`, and `mas` in their established caller-driven form rather than inventing new dispatch layers.
-- Register roles and matching tags in `playbooks/setup.yml` in dependency order. Preserve `always` tags for OS classification, GUI detection, and GUI grouping so filtered runs still work.
-- Use `ansible_facts[...]` for remote identity, paths, and OS checks. Controller-side environment lookups are not target-host paths. Keep privilege escalation task-scoped; Homebrew tasks must not run as root.
+- 사용자가 쓰는 앱 하나당 역할 하나를 둔다. OS 공통 준비 사항은 기존 `platform_prerequisites` 묶음에, 앱 전용 의존성은 해당 앱과 함께 둔다.
+- 기존 `tasks/main.yml`의 OS 분기와 `debian.yml`, `darwin.yml`, `windows.yml`을 사용한다. 미지원 OS는 해당 파일을 두지 않는 방식으로 표현한다. 다른 앱으로 대체하거나 공통 `default.yml`로 우회하지 않는다.
+- Unix 간 의미 있는 중복은 `brew.yml`로 재사용한다. `winget`, `brew_tap`, `mas` 같은 공통 보조 역할은 기존의 호출자 중심 구조를 유지하고 새 분기 계층을 만들지 않는다.
+- `playbooks/setup.yml`에 역할과 대응 태그를 의존성 순서대로 등록한다. 필터 실행도 동작하도록 OS 분류, GUI 감지·그룹화의 `always` 태그를 유지한다.
+- 원격 호스트 식별, 경로, OS 확인에는 `ansible_facts[...]`를 사용한다. 컨트롤러 환경 변수 조회 결과를 대상 호스트 경로로 쓰지 않는다. 권한 상승은 필요한 작업에만 적용하며 Homebrew 작업을 root로 실행하지 않는다.
 
-## Installation and state
+## 설치와 상태
 
-For new Ubuntu integrations, prefer the Ubuntu archive, then the vendor's signed APT repository; use Flathub for suitable GUI apps, then Snap, Homebrew formulae, and fetched official installers as the documented fallback order. Do not migrate unrelated existing roles solely to enforce this order. macOS normally uses core formulae/casks, vendor taps, then MAS; preserve documented vendor-artifact exceptions. Cross-platform version equality is not a goal.
+새 Ubuntu 연동은 Ubuntu 저장소, 공급자의 서명된 APT 저장소 순으로 우선한다. 적합한 GUI 앱은 Flathub를 사용하고, 이후 대안은 문서에 정해진 Snap, Homebrew formula, 공식 설치 파일 다운로드 순서를 따른다. 이 순서를 맞추려고 무관한 기존 역할을 이전하지 않는다. macOS는 보통 기본 formula·cask, 공급자 tap, MAS 순서를 따르되 문서화된 공급자 배포 파일 예외는 보존한다. 플랫폼 간 버전 일치 자체를 목표로 삼지 않는다.
 
-Windows installs must use the shared winget role, including its community, Store, or checksum-pinned local-manifest paths. Do not invoke installers directly or reintroduce Chocolatey/Scoop. Third-party Homebrew taps use `brew_tap` so trust is established before loading the tap.
+Windows 설치는 커뮤니티·Store·체크섬이 고정된 로컬 매니페스트 방식을 포함해 공통 winget 역할을 사용해야 한다. 설치 프로그램을 직접 호출하거나 Chocolatey·Scoop을 다시 도입하지 않는다. 타사 Homebrew tap은 불러오기 전에 신뢰를 설정하도록 `brew_tap`을 사용한다.
 
-Reuse installed-state snapshots and their per-source facts rather than probing every package repeatedly. Retain fallback behavior when snapshots were skipped by tags. Follow existing role-specific update-mode behavior instead of making every ordinary apply a global upgrade. Keep direct downloads verifiable and idempotent; do not introduce piped remote shell installers.
+패키지마다 반복 조회하지 말고 설치 상태 스냅샷과 소스별 팩트를 재사용한다. 태그로 스냅샷이 생략됐을 때의 대체 동작을 유지한다. 일반 apply가 항상 전체 업그레이드가 되게 만들지 말고 기존 역할별 업데이트 모드 동작을 따른다. 직접 다운로드는 검증 가능하고 멱등적으로 유지하며, 원격 설치 스크립트를 파이프로 셸에 전달하는 방식을 도입하지 않는다.
 
-Dotweave role changes must preserve its managed-repository identity checks, fast-forward-only updates, age-key handling, and cleanup of temporary identity files. Global agent instruction/skill paths remain subject to `agent-configuration` even when dotfiles are restored.
+Dotweave 역할 변경은 관리 저장소 식별 검사, fast-forward 전용 갱신, age 키 처리, 임시 식별 파일 정리를 유지해야 한다. dotfiles 복원 시에도 전역 에이전트 지침·스킬 경로는 `agent-configuration`을 따른다.
 
-## Verification
+## 검증
 
-Update the relevant `tests/validate_*.yml` in the same change as the roles they assert on. Cover OS support and intentional omissions, dependencies, tags, snapshot gates, check mode, and repeated-apply behavior where affected. Use existing focused tests rather than copying the full application matrix into the skill.
+역할 변경과 함께 해당 역할을 검사하는 `tests/validate_*.yml`을 갱신한다. 영향을 받는 OS 지원과 의도적 미지원, 의존성, 태그, 스냅샷 조건, check 모드, 반복 적용 동작을 검증한다. 전체 앱 지원 표를 스킬에 복사하지 말고 기존의 집중된 테스트를 활용한다.
 
-Run the unfiltered repository verification, then the main skill's scoped device workflow when deployment is requested. Validate supported platforms affected by a shared change when targets are available; distinguish static coverage from real platform testing. Do not claim cross-platform runtime validation from testing only one device.
+필터 없이 저장소 검증을 실행한 뒤, 배포 요청이 있으면 본 스킬의 대상 기기 절차를 따른다. 공통 변경으로 영향을 받는 지원 플랫폼은 대상 기기가 있으면 검증한다. 정적 검증과 실제 플랫폼 테스트를 구분하며, 기기 하나만 시험하고 여러 플랫폼의 런타임을 검증했다고 말하지 않는다.
