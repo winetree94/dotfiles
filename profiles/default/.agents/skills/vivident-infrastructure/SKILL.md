@@ -7,7 +7,7 @@ description: "Vivident의 인트라넷 클러스터, 사무실 네트워크, 회
 
 ## 인트라넷 Kubernetes
 
-회사 인트라넷 서비스는 자체 호스팅 Kubernetes 클러스터에서 실행된다.
+회사 운영을 위한 인트라넷 서비스는 자체 호스팅 Kubernetes 클러스터에서 실행된다.
 
 | 리소스 | 대상 |
 | --- | --- |
@@ -15,15 +15,9 @@ description: "Vivident의 인트라넷 클러스터, 사무실 네트워크, 회
 | GitOps 저장소 | `~/Workspaces/vivident/intranet` |
 | 클러스터 호스트 | `ssh vivident-intranet` |
 
-명시된 사용자 대상을 우선하고 없으면 표에서 찾아 인프라 명령 전에 알린다. n8n·SearXNG 같은 서비스는 다른 환경에도 있으므로 클러스터 선택 전에 의도한 배포를 확인한다. 앱 저장소 `vivident/eevee`는 인트라넷 GitOps 원본이 아니다.
+쿠버네티스 명령 실행 시 `kubectl --context vivident-intranet ...`로 대상을 항상 명시한다.
 
-`kubectl --context vivident-intranet ...`로 대상을 명시한다. 현재 컨텍스트를 전환하는 표준 명령은 다음과 같다.
-
-```sh
-kubectl config use-context vivident-intranet
-```
-
-- 편집 전에 저장소 지침, README, 브랜치, 작업 트리 변경을 확인하고 무관한 수정은 보존한다. 모든 영구 Kubernetes 리소스는 이 GitOps 저장소에서 관리·전달해야 한다.
+- 편집 전에 저장소 지침, README, 브랜치, 작업 트리 변경을 확인하고 무관한 수정은 보존한다. 모든 영구 Kubernetes 리소스는 이 GitOps 저장소에서만 관리해야 한다.
 - kubectl, Helm 등 운영 API 클라이언트로 영구 클러스터 리소스를 직접 적용·변경하지 않는다. 임시 디버깅만 예외이며 범위를 제한하고 끝나면 임시 리소스를 제거한다.
 - 진단은 클러스터 쿼리와 SSH의 읽기 전용 조회로 한다. 변경은 저장소 편집, 관련 매니페스트 검증, 기존 GitOps 전달 절차, 반영·서비스 상태 확인 순으로 한다.
 - 클러스터 호스트 작업에 sudo가 필요하면 사용자에게 명령 실행을 맡긴다. 목적과 정확한 명령을 제시하고 받은 결과로 이어간다. 비밀번호 없는 sudo를 포함해 직접 실행하지 않으며 다른 권한 실행 경로로 우회하지 않는다.
@@ -31,7 +25,7 @@ kubectl config use-context vivident-intranet
 
 ### Argo CD와 검증
 
-이 저장소는 Flux가 아닌 Argo CD를 사용한다. `apps/overlays/production`, `infra/overlays/production`은 Argo CD Application을 정의하며 보통 각각 `apps/base/<name>`, `infra/base/<name>`을 참조한다. 관련 Application의 소스, 대상 리비전, 목적지, 동기화 정책을 읽는다. 로컬 base 대신 Helm이나 여러 소스를 쓰는 경우도 있다.
+이 저장소는 Argo CD를 사용한다. `apps/overlays/production`, `infra/overlays/production`은 Argo CD Application을 정의하며 보통 각각 `apps/base/<name>`, `infra/base/<name>`을 참조한다. 관련 Application의 소스, 대상 리비전, 목적지, 동기화 정책을 읽는다. 로컬 base 대신 Helm이나 여러 소스를 쓰는 경우도 있다.
 
 해당하면 변경한 Kustomize base를 `kubectl kustomize`로 렌더링하고 Application·Helm 설정은 별도로 검증한다. 오버레이 디렉터리가 Kustomize 루트라고 가정하지 않는다. 저장소 Git 절차로 전달하고 Argo CD 반영 리비전, Sync·Health, 워크로드 롤아웃, 서비스 상태를 확인한다. 렌더링한 매니페스트를 직접 적용해 GitOps를 우회하지 않는다. 초기 구축·복구는 범위를 정한 별도 절차가 필요하며 클러스터 호스트의 권한 작업은 여전히 사용자에게 맡긴다.
 
