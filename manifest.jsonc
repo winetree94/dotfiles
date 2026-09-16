@@ -116,24 +116,6 @@
       }
     },
     {
-      "kind": "file",
-      "localPath": {
-        "default": "~/.codex/ds.config.toml"
-      },
-      "mode": {
-        "default": "normal"
-      }
-    },
-    {
-      "kind": "file",
-      "localPath": {
-        "default": "~/.codex/ds.models.json"
-      },
-      "mode": {
-        "default": "normal"
-      }
-    },
-    {
       "kind": "directory",
       "localPath": {
         "default": "~/.codex/skills"
@@ -436,42 +418,6 @@
       },
       "permission": {
         "default": "0644"
-      }
-    },
-    {
-      "kind": "directory",
-      "localPath": {
-        "default": "~/.gemini/commands"
-      },
-      "mode": {
-        "default": "normal"
-      }
-    },
-    {
-      "kind": "file",
-      "localPath": {
-        "default": "~/.gemini/GEMINI.md"
-      },
-      "mode": {
-        "default": "normal"
-      }
-    },
-    {
-      "kind": "directory",
-      "localPath": {
-        "default": "~/.gemini/policies"
-      },
-      "mode": {
-        "default": "normal"
-      }
-    },
-    {
-      "kind": "file",
-      "localPath": {
-        "default": "~/.gemini/settings.json"
-      },
-      "mode": {
-        "default": "normal"
       }
     },
     {
