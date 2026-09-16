@@ -20,4 +20,7 @@ export OPENCODE_EXPERIMENTAL_PLAN_MODE=true
 # for ubuntu 26 compatibility
 export PLAYWRIGHT_HOST_PLATFORM_OVERRIDE=ubuntu24.04-x64
 
+# bitwarden
+export BITWARDENCLI_APPDATA_DIR="$HOME/.config/bitwarden"
+
 eval "$(mise activate zsh)"
