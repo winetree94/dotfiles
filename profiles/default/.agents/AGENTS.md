@@ -11,3 +11,7 @@ Keep canonical global instructions and user-managed skills only in `~/.agents/AG
 # Public IP Addresses
 
 When creating or updating skills and their references, retain relevant private/internal IP addresses and subnet CIDRs. Do not embed actual external public IP addresses or public address ranges. Identify public-facing resources by hostname, SSH alias, context, or resource name/ID, and resolve public addresses from current configuration when needed without copying them into skill documentation.
+
+# Secrets
+
+Manage secrets in Bitwarden. Use `bw` for personal secrets and the `bw-vivident` alias for Vivident secrets; do not substitute one vault for the other. Run alias-based commands in a shell that loads the user's aliases, such as `zsh -lic 'bw-vivident status'`. Retrieve only the secrets needed for the task and pass them directly to the consuming tool without exposing secret values or session tokens in conversation, logs, instructions, or Git.
