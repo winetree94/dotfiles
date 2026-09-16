@@ -10,7 +10,13 @@ Manage Cloudflare DNS, tunnel routes, and other Cloudflare-side configuration wi
 
 The homelab repository's `apps/base/proxies` manages in-cluster Traefik routes to local devices such as OPNsense, OpenMediaVault, and Proxmox. Read the resource matching the requested hostname and its sibling Traefik Cilium policy before editing.
 
-`apps/base/vivident-tailscale-router` runs in context `homelab`, namespace `vivident`. Its manifests define a Multus/macvlan LAN attachment and Tailscale forwarding to company routes. Read those manifests for current interfaces, CIDRs, and routes; do not confuse it with the company cluster or OPNsense routers. For failures across that boundary, load `vivident-infrastructure` and inspect both sides.
+Vivident connectivity (OPNsense routes and Pod LAN address verified on 2026-09-16):
+
+- Homelab LAN `10.132.244.0/22` sends company traffic through homelab OPNsense (`10.132.244.1`). Its static routes for Vivident main `10.78.0.0/16` and legacy `10.79.0.0/16` both use gateway `10.132.246.252`.
+- That gateway is the Multus/macvlan `net1` address of Pod `vivident-tailscale-router-0`, in context `homelab`, namespace `vivident`. The Pod forwards traffic through `tailscale0` to the company subnet routers using accepted Tailscale routes.
+- `apps/base/vivident-tailscale-router` enables IPv4 forwarding and MASQUERADE for home LAN traffic leaving `tailscale0`; it does not advertise the home subnet (`TS_ROUTES=""`). This provides home-to-company access, not symmetric subnet advertisement.
+
+The workload belongs to homelab, not the company cluster. Recheck its manifests and live router state when diagnosing connectivity; load `vivident-infrastructure` when the company side also needs investigation.
 
 Tinyrack cloud services and mail may use homelab storage for backups. Inspect the owning service's backup configuration before identifying a storage backend. Changes to the source backup job stay in its owning repository; changes to the homelab destination use this skill.
 

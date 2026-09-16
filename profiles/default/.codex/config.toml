@@ -1,4 +1,4 @@
-model = "deepseek-flash"
+model = "gpt-6-astra"
 model_provider = "cliproxyapi"
 
 approval_policy = "never"

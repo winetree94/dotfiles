@@ -63,4 +63,6 @@ For the homelab cluster:
 - Seal secrets with the repository's `tinyrack-homelab-secret-key.crt`. Files named `*.secret.yaml` may be JSON SealedSecrets; inspect their kind and do not replace them with plaintext Secrets. Never commit the private key.
 - Deliver changes through the repository's Git workflow. Verify Flux source revision, relevant Kustomization/HelmRelease readiness, rollout, and service health. Report the target, Git changes, any live actions, and verification evidence.
 
+Traffic from homelab to Vivident follows: LAN client -> homelab OPNsense -> `vivident-tailscale-router` Pod -> Tailscale -> company subnet router -> company LAN. See [network details](references/proxy-network.md#local-network-and-remote-sites) for the internal addresses and forwarding configuration.
+
 The `vivident-tailscale-router` workload is owned by this homelab repository despite its name. Load `vivident-infrastructure` as well only when the company side needs investigation or changes. Load `mail-server-infrastructure` for mail workload checks and `tinyrack-infrastructure` for the cloud cluster; do not transfer ownership of their resources to homelab.
