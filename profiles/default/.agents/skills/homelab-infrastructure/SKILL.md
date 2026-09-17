@@ -47,4 +47,4 @@ Git 관리 위치가 없는 리소스는 다음 레퍼런스 문서를 읽고 �
 
 ## 외부 인프라의 관리
 
-클라우드플레어(Cloudflare), 헤츠너(Hetzner) 등 홈랩에서 활용되는 외부 인프라 제어 필요 시 하위 문서([references/external](references/external.md))를 참고한다.
+클라우드플레어(Cloudflare), 헤츠너(Hetzner) 등 홈랩에서 활용되는 외부 인프라 제어 필요 시 하위 문서([references/external](references/external.md))를 읽고 작업한다.
