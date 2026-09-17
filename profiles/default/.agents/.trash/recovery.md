@@ -1,4 +1,4 @@
-# 홈랩 복구
+ 홈랩 복구
 
 현재 운영 기준은 `~/Workspaces/tinyrack/homelab/readme.md`, 해당 `AGENTS.md`, `ansible/`다. README에 현재 Cilium 초기 구축 방식이 있으므로 AGENTS.md의 오래된 요약을 따라 구식 네트워크 구성을 재설치하지 않는다.
 

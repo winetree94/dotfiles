@@ -78,6 +78,4 @@ Cloudflare DNS·Tunnel은 설치된 `cf` CLI로 관리한다. `cf --help`, 관�
 
 현재 Cloudflare 커넥터, Traefik 경로, 백엔드 엔드포인트, Cilium 정책으로 장애 위치를 찾는다. Cloudflare 설정 작업은 관련 Cloudflare 스킬도 읽는다. 호스트 방화벽 변경 전에는 저장소의 `reserved:host` PolicyAuditMode와 판정 관찰 절차를 따른다. 감사 모드는 Cilium 재시작 후 유지되지 않는다. 긴급 복구는 Tailscale 또는 Hetzner 콘솔과 Git 롤백을 사용한다. 문서화된 절차에서 요구할 때만 관련 Flux 리소스를 중단·재반영한다.
 
-초기 구축, 호스트 교체, 데이터 복구는 [references/recovery.md](references/recovery.md)를 읽는다. 홈랩 백업 목적지 변경에는 `homelab-infrastructure`를 사용하며 앱 백업 작업은 이 저장소가 담당한다. 메일 워크로드는 `mail-server-infrastructure`가 담당한다.
-
 확정한 대상, Git 변경, 직접 수행한 운영 작업, 검증 근거와 미완료 전달·복구 단계를 보고한다.

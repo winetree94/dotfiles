@@ -20,7 +20,6 @@ description: "개인 Hetzner 메일 서버와 웹메일, 메일 전달 환경을
 `mail.winetree94.com`의 DNS 등 Cloudflare 설정은 설치된 `cf` CLI로 관리한다. 명령 선택 전에 `cf --help`, 관련 하위 명령 도움말 또는 `cf schema --help`를 읽고 계정·프로필과 `winetree94.com` 영역을 확인한다. 가능한 경우 프로필·영역을 명시한다. `cf`는 Cloudflare 리소스, GitOps는 클러스터, Ansible은 호스트·게스트 내부 IP 설정, `hcloud`는 Hetzner 리소스 할당을 담당한다. 이 메일 환경에는 Tinyrack·홈랩의 Tunnel 전용 공개 정책을 적용하지 않는다. 메일 프로토콜에 필요한 DNS·네트워크 동작을 보존한다.
 
 - 연결, DNS, TLS, 메일 전달 진단은 [references/mail-delivery.md](references/mail-delivery.md)를 읽는다.
-- 초기 구축, 호스트 교체, 데이터 복구는 [references/recovery.md](references/recovery.md)를 읽는다.
 
 ## Hetzner 리소스
 

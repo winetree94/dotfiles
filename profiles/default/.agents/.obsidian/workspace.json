@@ -1,0 +1,220 @@
+{
+  "main": {
+    "id": "b8336656516b5225",
+    "type": "split",
+    "children": [
+      {
+        "id": "1dd596cee1b95591",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "622f91a9e1b99e79",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "skills/homelab-infrastructure/references/opnsense.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "opnsense"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "24a35e0bc1b39f76",
+    "type": "split",
+    "children": [
+      {
+        "id": "aa3eed047ee0126f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d620ccca0fd904e4",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "7790a69fae4b5af3",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "recovery.md",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "16ae2fefe3b682aa",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "83bc02bac748079d",
+    "type": "split",
+    "children": [
+      {
+        "id": "4ab86c669eb00e1c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "40faee9b0e46fb0b",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "skills/vivident-infrastructure/SKILL.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "69035578e35c4c79",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "skills/vivident-infrastructure/SKILL.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "34715c553d448a8d",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "3e9bfcdfde53976a",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "513a8567a938490f",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "skills/vivident-infrastructure/SKILL.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "622f91a9e1b99e79",
+  "lastOpenFiles": [
+    "skills/homelab-infrastructure/references/openmediavault.md",
+    "skills/homelab-infrastructure/SKILL.md",
+    "skills/homelab-infrastructure/references/proxmox.md",
+    "skills/homelab-infrastructure/references/opnsense.md",
+    "skills/homelab-infrastructure/references/gpu-server.md",
+    "skills/vivident-infrastructure/SKILL.md",
+    "skills/development-machines/SKILL.md",
+    "skills/homelab-infrastructure/references/self-hosted-actions-runners.md",
+    "skills/homelab-infrastructure/references/kubernetes.md",
+    "skills/oshiz-operations/SKILL.md",
+    "skills/oshiz-operations/references/data-model.md",
+    "skills/web-research/SKILL.md",
+    "AGENTS.md",
+    "skills/document-writing/SKILL.md",
+    "skills/document-writing/references/youtube.md",
+    "skills/document-writing/references/blog.md",
+    "skills/mail-server-infrastructure/SKILL.md",
+    "skills/tinyrack-infrastructure/SKILL.md",
+    "skills/mail-server-infrastructure/references/recovery.md",
+    "skills/tinyrack-infrastructure/references/recovery.md",
+    "skills/homelab-infrastructure/references/recovery.md",
+    "skills/homelab-infrastructure/references/gpu-ci-hosts.md",
+    "skills/oshiz-operations/references/data-analysis.md",
+    "skills/tinyrack-dart-packages/SKILL.md",
+    "skills/agent-configuration/SKILL.md",
+    "skills/vivident-infrastructure/references/office-switches.md"
+  ]
+}
