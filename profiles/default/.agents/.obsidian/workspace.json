@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "skills/homelab-infrastructure/references/opnsense.md",
+                "file": "skills/homelab-infrastructure/references/external.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "opnsense"
+              "title": "external"
             }
           }
         ]
@@ -190,10 +190,11 @@
   },
   "active": "622f91a9e1b99e79",
   "lastOpenFiles": [
+    "skills/homelab-infrastructure/references/opnsense.md",
     "skills/homelab-infrastructure/references/openmediavault.md",
     "skills/homelab-infrastructure/SKILL.md",
+    "skills/homelab-infrastructure/references/external.md",
     "skills/homelab-infrastructure/references/proxmox.md",
-    "skills/homelab-infrastructure/references/opnsense.md",
     "skills/homelab-infrastructure/references/gpu-server.md",
     "skills/vivident-infrastructure/SKILL.md",
     "skills/development-machines/SKILL.md",
@@ -214,7 +215,6 @@
     "skills/homelab-infrastructure/references/gpu-ci-hosts.md",
     "skills/oshiz-operations/references/data-analysis.md",
     "skills/tinyrack-dart-packages/SKILL.md",
-    "skills/agent-configuration/SKILL.md",
-    "skills/vivident-infrastructure/references/office-switches.md"
+    "skills/agent-configuration/SKILL.md"
   ]
 }
