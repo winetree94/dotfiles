@@ -1,28 +1,21 @@
 ---
 name: tinyrack-ui
-description: "@tinyrack/ui와 tinyrack_ui로 React·Flutter UI를 구성하고 공통 디자인 시스템을 개선한다. 컴포넌트 연동, 테마·토큰·접근성 개선, 플랫폼 간 디자인 일관성 확보, UI 패키지 수정·릴리스에 사용한다."
+description: "소비자 저장소에서 @tinyrack/ui 또는 tinyrack_ui 연동 중 발견한 공통 문제를 업스트림에 기여하고, 배포 릴리스로 돌아와 원래 작업을 완료할 때 사용한다."
 ---
 
-# Tinyrack UI
+# Tinyrack UI 업스트림 연동
 
-## 플랫폼 선택
+소비자 저장소의 변경과 검증은 그 저장소의 `AGENTS.md`와 저장소 스킬을 따른다. 설치된 배포 릴리스와 공개 API를 기준으로 사용하며 `node_modules`, pub 캐시, 미배포 체크아웃, 의존성 재정의로 우회하지 않는다.
 
-소비자 프로젝트의 매니페스트, 잠금 파일, import, 요청 범위에서 플랫폼을 확인한다. Flutter web은 React가 아닌 Flutter 소비자다.
+배포된 `@tinyrack/ui` 또는 `tinyrack_ui`만으로 해결할 수 없는 재사용 가능한 문제를 발견하면 다음 절차를 따른다.
 
-- React와 `@tinyrack/ui`는 [references/react.md](references/react.md)를 읽는다.
-- Flutter와 `tinyrack_ui`는 [references/flutter.md](references/flutter.md)를 읽는다.
-- 공통 토큰이나 시각적 일관성처럼 의도적으로 두 플랫폼을 다루는 작업에서만 둘 다 읽는다. 같은 저장소에 있다고 두 패키지를 모두 변경·배포할 필요는 없다.
-- 재사용 패키지의 버그나 공통 기능 부족은 [references/contributing.md](references/contributing.md)도 읽는다. 일반 소비자 연동에는 업스트림 절차가 필요하지 않다.
+1. 소비자 작업을 멈추고 소비자 코드만으로 해결할 수 없는 이유와 영향받는 패키지·API·동작·호환성 범위를 정리한다.
+2. 업스트림 변경이 이미 승인된 범위가 아니면 사용자의 명시적 승인을 받는다.
+3. 업스트림 저장소의 `AGENTS.md`와 적용되는 저장소 스킬을 읽고, 최신 기준의 격리된 작업 트리에서 그 지침에 따라 구현·검증한다.
+4. 저장소 지침에 따라 PR을 열고 리뷰와 필수 CI를 통과시킨 뒤 병합·릴리스한다.
+5. 정확한 배포 버전과 아티팩트를 확인하고 업스트림 작업 트리를 정리한다.
+6. 소비자 저장소로 돌아와 의존성과 잠금 파일을 배포 버전으로 갱신하고, 중단했던 작업과 소비자 검증을 완료한다.
 
-`@tinyrack/docs` 사이트 설정·문서 연동은 `tinyrack-docs`도 사용한다. `tinyrack-net/dart-packages`의 패키지는 `tinyrack-dart-packages`가 담당하지만 `tinyrack_ui`는 이 스킬이 담당한다.
+업스트림 구현·검사·릴리스의 구체적인 파일, 명령, 브랜치, 태그와 패키지별 규칙은 이 스킬에 복제하지 않는다. 일반적인 UI 구현, 디자인 토큰, 접근성, 플랫폼별 코드 작성과 검증 규칙도 소비자 저장소 또는 업스트림 저장소의 지침을 따른다.
 
-## 공통 디자인 원칙
-
-- 편집 전에 설치된 릴리스의 문서와 공개 export를 확인한다. 기억이나 아직 배포되지 않은 체크아웃에서 API를 추측하지 않는다.
-- 제품 정책과 흐름 제어는 앱에, 재사용 컴포넌트·테마·토큰·컴포넌트 의미는 Tinyrack에 둔다.
-- 배포된 패키지와 공개 API를 사용한다. 필수 업스트림 릴리스를 우회하려고 `node_modules`나 pub 캐시를 수정하지 않는다.
-- 라이트·다크 동작, 눈에 보이는 포커스, 대비, 키보드 조작, 접근 가능한 이름, 영향받는 상호작용 상태를 보존한다.
-- 각 플랫폼의 문서화된 글꼴 연동을 통해 영어·한국어·일본어를 포함한 IBM Plex 타이포그래피를 유지한다.
-- 플랫폼 고유 수명 주기, 편집, 동작을 유지하면서 의도한 디자인 일관성을 지킨다. React의 디자인 값 리터럴 금지와 Flutter의 패키지 값 우선은 각 참고 문서에 정한 서로 다른 규칙이다.
-
-소비자 작업은 해당 플랫폼 검증과 프로젝트 필수 검사를 마쳐야 완료된다. 업스트림 작업은 해당 릴리스 검증과 원래 소비자 연동까지 끝나야 완료된다.
+`@tinyrack/docs` 사이트 연동은 `tinyrack-docs`, `tinyrack-net/dart-packages`의 패키지는 `tinyrack-dart-packages`, `tinyrack-net/flutter-packages`의 패키지는 `tinyrack-flutter-packages`를 사용한다. `tinyrack_ui`는 이 스킬이 담당한다.

@@ -1,12 +1,12 @@
 # 오시즈 데이터 분석
 
-`psql`과 `OSHIZ_PRODUCTION_READONLY_DATABASE` 환경 변수로 오시즈 운영 읽기 복제본에 질의한다. 모든 연결을 운영 환경 접근으로 취급한다.
+`psql`로 오시즈 운영 읽기 복제본에 질의한다. 연결 정보는 Bitwarden 항목 id `f48f50f6-d9a6-4478-839e-c52c4dcb052a`에서 읽는다. 호스트는 `10.78.154.103`, 포트는 `15435`, 데이터베이스는 `eevee`, SSL 모드는 `require`다. 모든 연결을 운영 환경 접근으로 취급한다.
 
 테이블·조인을 선택하기 전에 [data-model.md](data-model.md)를 읽는다.
 
 ## 연결하기
 
-1. 값을 출력하지 않고 `psql` 설치 여부와 `OSHIZ_PRODUCTION_READONLY_DATABASE` 환경 변수 설정 여부를 확인한다.
+1. 값을 출력하지 않고 `psql` 설치 여부와 Bitwarden 잠금 해제 상태를 확인한다. `bw get username '<item-id>'`와 `bw get password '<item-id>'`로 필요한 값을 읽어 연결 프로세스에 직접 전달하며, 값이나 완성된 연결 URL을 출력·기록하지 않는다.
 2. 모든 쿼리는 명시적 읽기 전용 트랜잭션, `ON_ERROR_STOP`, 사용자 psql 설정 제외, 페이저 비활성화, 짧은 실행 제한 시간으로 실행한다.
 
 ## 운영 데이터 접근 제한

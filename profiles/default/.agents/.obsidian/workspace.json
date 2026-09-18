@@ -190,6 +190,19 @@
   },
   "active": "622f91a9e1b99e79",
   "lastOpenFiles": [
+    "skills/tinyrack-flutter-packages/SKILL.md",
+    "skills/tinyrack-flutter-packages",
+    "skills/tinyrack-dart-packages/SKILL.md",
+    "skills/tinyrack-docs/SKILL.md",
+    "skills/tinyrack-ui/references/contributing.md",
+    "skills/vivident-context/SKILL.md",
+    "skills/vivident-context",
+    "skills/find-skills/SKILL.md",
+    "skills/find-skills",
+    "skills/vivident-skill-authoring/SKILL.md",
+    "skills/vivident-skill-authoring",
+    "skills/vivident-skill-authoring/agents/openai.yaml",
+    "skills/vivident-skill-authoring/agents",
     "skills/vivident-infrastructure/references/opnsense.md",
     "skills/vivident-infrastructure/references/external.md",
     "skills/mail-server-infrastructure/references/external.md",
@@ -209,13 +222,6 @@
     "skills/tinyrack-infrastructure/references/external.md",
     "skills/vivident-infrastructure/references/office-switches.md",
     "skills/mail-server-infrastructure/references/mail-delivery.md",
-    "skills/tinyrack-infrastructure/references",
-    "AGENTS.md",
-    "skills/homelab-infrastructure/references/gpu-server.md",
-    "skills/development-machines/SKILL.md",
-    "skills/homelab-infrastructure/references/self-hosted-actions-runners.md",
-    "skills/homelab-infrastructure/references/kubernetes.md",
-    "skills/web-research/SKILL.md",
-    "skills/document-writing/SKILL.md"
+    "skills/tinyrack-infrastructure/references"
   ]
 }

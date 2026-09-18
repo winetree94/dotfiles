@@ -1,6 +1,6 @@
 # Vivident 오피스 Opnsense 관리 가이드
 
-사무실 내부망은 `10.78.0.0/16`서브넷을 사용하며 `ssh vivident-firewall`로 OPNsense에 접근한다. 라우팅·방화벽·VPN과 인트라넷 Caddy 프록시를 담당한다.
+사무실 내부망은 `10.78.0.0/16` 서브넷을 사용하며 `root@10.78.142.1`로 OPNsense에 SSH 접근한다.
 
 OPNsense 인증 정보 Bitwarden ID: `d8238c54-eb30-4820-b4dd-c3fc3ee8de98`
 

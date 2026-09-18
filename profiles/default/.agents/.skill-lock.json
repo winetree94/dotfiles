@@ -1,0 +1,44 @@
+{
+  "version": 3,
+  "skills": {
+    "oshiz-operations": {
+      "source": "KantoRegion/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/KantoRegion/skills.git",
+      "skillPath": "skills/oshiz-operations/SKILL.md",
+      "skillFolderHash": "1eab29ba9e1752d29664b5cbc650a0135ffaf13c",
+      "installedAt": "2026-09-18T02:26:20.154Z",
+      "updatedAt": "2026-09-18T02:28:41.128Z"
+    },
+    "vivident-infrastructure": {
+      "source": "KantoRegion/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/KantoRegion/skills.git",
+      "skillPath": "skills/vivident-infrastructure/SKILL.md",
+      "skillFolderHash": "c55064a60383f54897370a1affe400ca2563fc44",
+      "installedAt": "2026-09-18T02:26:20.155Z",
+      "updatedAt": "2026-09-18T02:28:41.129Z"
+    },
+    "vivident-skill-authoring": {
+      "source": "KantoRegion/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/KantoRegion/skills.git",
+      "skillPath": "skills/vivident-skill-authoring/SKILL.md",
+      "skillFolderHash": "b2bc7fb39dc8849046308d7ad5b279e17143435e",
+      "installedAt": "2026-09-18T02:26:20.156Z",
+      "updatedAt": "2026-09-18T02:28:41.138Z"
+    },
+    "find-skills": {
+      "source": "vercel-labs/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/skills.git",
+      "skillPath": "skills/find-skills/SKILL.md",
+      "skillFolderHash": "76a98a285cb0434f3d39e1a873823556330e398b",
+      "installedAt": "2026-09-18T02:26:27.002Z",
+      "updatedAt": "2026-09-18T02:26:27.002Z"
+    }
+  },
+  "dismissed": {
+    "findSkillsPrompt": true
+  }
+}

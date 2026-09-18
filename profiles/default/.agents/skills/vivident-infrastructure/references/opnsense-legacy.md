@@ -1,6 +1,6 @@
 # Vivident 구 오피스 Opnsense 관리 가이드
 
-구 사무실 내부망은 `10.79.0.0/16`을 사용하며 `ssh vivident-firewall-legacy`로 OPNsense에 접근한다. 물리적으로 분리된 구 사무실 내부망의 라우팅·방화벽·VPN을 담당한다.
+구 사무실 내부망은 `10.79.0.0/16`을 사용하며 `root@10.79.142.1`로 OPNsense에 SSH 접근한다.
 
 OPNsense 인증 정보 Bitwarden ID: `85d138b2-9aa7-4067-898d-ed00e1c8a84f`
 
