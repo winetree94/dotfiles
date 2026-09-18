@@ -10,7 +10,7 @@ description: "비비던트에서 운영하는 오시즈의 서비스 운영과 �
 ## 작업 경로 선택
 
 - 앱, 인프라, 배포, 장애, 릴리스, 제품, 자산, 카탈로그, 프롬프트 작업은 `~/Workspaces/vivident/eevee`의 오시즈 프로젝트를 사용한다. 체크아웃이 있는지 확인하고 루트와 관련 디렉터리 지침을 읽은 뒤 프로젝트 내부 스킬과 현재 설정을 따른다.
-- 지표, 퍼널, 리텐션, 매출, 사용자 행동, 이벤트, 채팅, Idolive, 코호트, 고객 지원 조사에 운영 데이터가 필요하면 [references/data-analysis.md](references/data-analysis.md)와 [references/data-model.md](references/data-model.md)를 읽는다.
+- 지표, 퍼널, 리텐션, 매출, 사용자 행동, 이벤트, 채팅, Idolive, 코호트, 고객 지원 조사에 운영 데이터가 필요하면 [references/data-analysis.md](references/data-analysis.md)를 읽는다. 스키마와 업무 의미는 분석 시작 시 실제 데이터베이스와 코드에서 확인한다.
 
 ## 서비스 운영 경계 유지
 
