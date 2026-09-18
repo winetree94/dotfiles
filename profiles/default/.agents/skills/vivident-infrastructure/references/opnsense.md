@@ -2,6 +2,8 @@
 
 사무실 내부망은 `10.78.0.0/16`서브넷을 사용하며 `ssh vivident-firewall`로 OPNsense에 접근한다. 라우팅·방화벽·VPN과 인트라넷 Caddy 프록시를 담당한다.
 
+OPNsense 인증 정보 Bitwarden ID: `d8238c54-eb30-4820-b4dd-c3fc3ee8de98`
+
 현 사무실과 구 사무실 OPNsense 모두에 Tailscale이 설치되어 있으며, 서로의 subnet route를 통해 망이 연결된다. 두 내부망은 별도 로컬 서브넷이다.
 
 인트라넷 서비스는 사무실 OPNsense의 Caddy 를 통해 리버스 프록시된다.
@@ -71,3 +73,10 @@ show spanning-tree interface ethernet 1/1/54 detail
 | ------- | --------------------------------------------- | -------------------------------------- |
 | HP 1930 | https://wireless.switch.intranet.moelive.tech | `fb062b8a-3c7f-4354-8cc5-782f555e5c44` |
 | 무선 관리   | https://wifi.intranet.moelive.tech            | `adb7041c-0b7f-4e23-9266-7ad3958b912e` |
+
+무선 네트워크 접속 정보:
+
+| 네트워크              | Bitwarden ID                           |
+| ----------------- | -------------------------------------- |
+| `vivident-office` | `938af2a0-74cf-4b1b-a5f2-b6ba1b84244e` |
+| `vivident-guest`  | `f6f540b4-da07-4b64-bb86-e858101f6bec` |
