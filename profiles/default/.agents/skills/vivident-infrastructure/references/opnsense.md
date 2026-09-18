@@ -29,7 +29,7 @@ OPNsense 인증 정보 Bitwarden ID: `d8238c54-eb30-4820-b4dd-c3fc3ee8de98`
 | ethernet1/1/53          | HP 1930, 무선 구간                           |
 | ethernet1/1/51 및 1/1/52 | NAS, port-channel 1. 일반 액세스 포트로 전용하지 않음  |
 
-계정 정보는 아래 Bitwarden ID로 `bw-vivident get username '<item-id>'`, `bw-vivident get password '<item-id>'`를 사용해 가져온다. 조회 결과는 출력·기록하지 않고 접속 도구에 직접 전달한다.
+계정 정보는 아래 Bitwarden ID로 `bw get username '<item-id>'`, `bw get password '<item-id>'`를 사용해 가져온다. 조회 결과는 출력·기록하지 않고 접속 도구에 직접 전달한다.
 
 ---
 ### Dell S4148T-ON
