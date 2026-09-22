@@ -1,6 +1,6 @@
 ---
 name: homelab-infrastructure
-description: 개인 홈랩의 클러스터, 네트워크, 스토리지, 가상화 호스트, GPU 서버, CI 기기, 모니터링을 관리한다. 홈랩 서비스의 설정·배포·진단·백업·복구 작업에 사용한다.
+description: 개인 홈랩(homelab)의 쿠버네티스(kubernetes), 네트워크(OPNSense), 스토리지(OpenMediaVault), 가상화 호스트(Proxmox), GPU 서버, CI 기기, 모니터링(Grafana)을 관리한다. 홈랩 서비스의 설정·배포·진단·백업·복구 작업에 사용한다.
 ---
 # 홈랩 관리 가이드
 
