@@ -5,7 +5,7 @@ approval_policy = "never"
 
 sandbox_mode = "danger-full-access"
 
-model_reasoning_effort = "low"
+model_reasoning_effort = "medium"
 plan_mode_reasoning_effort = "medium"
 
 experimental_realtime_webrtc_call_base_url = "https://llm.winetree94.com/v1" # Codex App voice chat requires WebRTC. If you do not use voice chat, you can omit this option.
@@ -85,6 +85,9 @@ trust_level = "trusted"
 [projects."/home/winetree94/Documents/Codex/2026-09-22/slack-plugin-slack-slack-help-me"]
 trust_level = "trusted"
 
+[projects."/home/winetree94/Documents/Codex/2026-09-22/df"]
+trust_level = "trusted"
+
 [notice]
 hide_rate_limit_model_nudge = true
 
@@ -133,3 +136,4 @@ enabled = true
 
 [desktop]
 followUpQueueMode = "steer"
+conversationDetailMode = "STEPS_COMMANDS"
