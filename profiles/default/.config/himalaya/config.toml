@@ -1,0 +1,166 @@
+# OAuth token commands must print a fresh access token to stdout.
+# Replace the oauth-token-helper placeholders with real commands.
+
+# Stalwart
+[accounts."stalwart-me@winetree94.com"]
+default = true
+email = "me@winetree94.com"
+display-name = "Stalwart Personal"
+
+imap.server = "imaps://mail.winetree94.com:993"
+imap.sasl.plain.username = "me@winetree94.com"
+imap.sasl.plain.password.command = "bw get item a8a67b1a-22b4-4281-a6ce-b31f00e769a4 | jq -r '.fields[] | select(.name == \"app password (mail client)\") | .value'"
+
+smtp.server = "smtps://mail.winetree94.com:465"
+smtp.sasl.plain.username = "me@winetree94.com"
+smtp.sasl.plain.password.command = "bw get item a8a67b1a-22b4-4281-a6ce-b31f00e769a4 | jq -r '.fields[] | select(.name == \"app password (mail client)\") | .value'"
+
+[accounts."stalwart-admin@winetree94.com"]
+email = "admin@winetree94.com"
+display-name = "Stalwart Admin"
+
+imap.server = "imaps://mail.winetree94.com:993"
+imap.sasl.plain.username = "admin@winetree94.com"
+imap.sasl.plain.password.command = "bw get item 0f4035f7-f5f2-4af1-ad72-b31f00e769a4 | jq -r '.fields[] | select(.name == \"app password (mail client)\") | .value'"
+
+smtp.server = "smtps://mail.winetree94.com:465"
+smtp.sasl.plain.username = "admin@winetree94.com"
+smtp.sasl.plain.password.command = "bw get item 0f4035f7-f5f2-4af1-ad72-b31f00e769a4 | jq -r '.fields[] | select(.name == \"app password (mail client)\") | .value'"
+
+[accounts."stalwart-bot@winetree94.com"]
+email = "bot@winetree94.com"
+display-name = "Stalwart Bot"
+
+imap.server = "imaps://mail.winetree94.com:993"
+imap.sasl.plain.username = "bot@winetree94.com"
+imap.sasl.plain.password.command = "bw get item 178f99b8-9d9d-4fb9-ba18-b42c00799976 | jq -r '.fields[] | select(.name == \"app password (mail client)\") | .value'"
+
+smtp.server = "smtps://mail.winetree94.com:465"
+smtp.sasl.plain.username = "bot@winetree94.com"
+smtp.sasl.plain.password.command = "bw get item 178f99b8-9d9d-4fb9-ba18-b42c00799976 | jq -r '.fields[] | select(.name == \"app password (mail client)\") | .value'"
+
+[accounts."stalwart-notify@winetree94.com"]
+email = "notify@winetree94.com"
+display-name = "Stalwart Notify"
+
+imap.server = "imaps://mail.winetree94.com:993"
+imap.sasl.plain.username = "notify@winetree94.com"
+imap.sasl.plain.password.command = "bw get item 9829213e-c3ea-4a48-b3d0-b4bf00700c3a | jq -r '.fields[] | select(.name == \"app password (grafana alert)\") | .value'"
+
+smtp.server = "smtps://mail.winetree94.com:465"
+smtp.sasl.plain.username = "notify@winetree94.com"
+smtp.sasl.plain.password.command = "bw get item 9829213e-c3ea-4a48-b3d0-b4bf00700c3a | jq -r '.fields[] | select(.name == \"app password (grafana alert)\") | .value'"
+
+[accounts."stalwart-noreply@winetree94.com"]
+email = "noreply@winetree94.com"
+display-name = "Stalwart Noreply (winetree94.com)"
+
+imap.server = "imaps://mail.winetree94.com:993"
+imap.sasl.plain.username = "noreply@winetree94.com"
+imap.sasl.plain.password.command = "bw get item fa77b620-bfae-4b61-87a8-b31f00e769a4 | jq -r '.fields[] | select(.name == \"app password (mail-client)\") | .value'"
+
+smtp.server = "smtps://mail.winetree94.com:465"
+smtp.sasl.plain.username = "noreply@winetree94.com"
+smtp.sasl.plain.password.command = "bw get item fa77b620-bfae-4b61-87a8-b31f00e769a4 | jq -r '.fields[] | select(.name == \"app password (mail-client)\") | .value'"
+
+[accounts."stalwart-admin@tinyrack.net"]
+email = "admin@tinyrack.net"
+display-name = "Stalwart Admin (tinyrack.net)"
+
+imap.server = "imaps://mail.winetree94.com:993"
+imap.sasl.plain.username = "admin@tinyrack.net"
+imap.sasl.plain.password.command = "bw get item 9c120c4b-1269-40b9-b2f0-b31f00e769a4 | jq -r '.fields[] | select(.name == \"app password (mail client)\") | .value'"
+
+smtp.server = "smtps://mail.winetree94.com:465"
+smtp.sasl.plain.username = "admin@tinyrack.net"
+smtp.sasl.plain.password.command = "bw get item 9c120c4b-1269-40b9-b2f0-b31f00e769a4 | jq -r '.fields[] | select(.name == \"app password (mail client)\") | .value'"
+
+[accounts."stalwart-contact@tinyrack.net"]
+email = "contact@tinyrack.net"
+display-name = "Stalwart Contact"
+
+imap.server = "imaps://mail.winetree94.com:993"
+imap.sasl.plain.username = "contact@tinyrack.net"
+imap.sasl.plain.password.command = "bw get item 12891873-ee35-414d-bd11-b31f00e769a4 | jq -r '.fields[] | select(.name == \"app password (mail client)\") | .value'"
+
+smtp.server = "smtps://mail.winetree94.com:465"
+smtp.sasl.plain.username = "contact@tinyrack.net"
+smtp.sasl.plain.password.command = "bw get item 12891873-ee35-414d-bd11-b31f00e769a4 | jq -r '.fields[] | select(.name == \"app password (mail client)\") | .value'"
+
+[accounts."stalwart-news@tinyrack.net"]
+email = "news@tinyrack.net"
+display-name = "Stalwart News"
+
+imap.server = "imaps://mail.winetree94.com:993"
+imap.sasl.plain.username = "news@tinyrack.net"
+imap.sasl.plain.password.command = "bw get item 6236b7dd-30a4-49d4-a182-b31f00e769a4 | jq -r '.fields[] | select(.name == \"app password (mail client)\") | .value'"
+
+smtp.server = "smtps://mail.winetree94.com:465"
+smtp.sasl.plain.username = "news@tinyrack.net"
+smtp.sasl.plain.password.command = "bw get item 6236b7dd-30a4-49d4-a182-b31f00e769a4 | jq -r '.fields[] | select(.name == \"app password (mail client)\") | .value'"
+
+[accounts."stalwart-noreply@tinyrack.net"]
+email = "noreply@tinyrack.net"
+display-name = "Stalwart Noreply (tinyrack.net)"
+
+imap.server = "imaps://mail.winetree94.com:993"
+imap.sasl.plain.username = "noreply@tinyrack.net"
+imap.sasl.plain.password.command = "bw get item c4cc6fc7-3506-4b09-b779-b31f00e769a4 | jq -r '.fields[] | select(.name == \"app password (discourse)\") | .value'"
+
+smtp.server = "smtps://mail.winetree94.com:465"
+smtp.sasl.plain.username = "noreply@tinyrack.net"
+smtp.sasl.plain.password.command = "bw get item c4cc6fc7-3506-4b09-b779-b31f00e769a4 | jq -r '.fields[] | select(.name == \"app password (discourse)\") | .value'"
+
+[accounts."stalwart-support@tinyrack.net"]
+email = "support@tinyrack.net"
+display-name = "Stalwart Support"
+
+imap.server = "imaps://mail.winetree94.com:993"
+imap.sasl.plain.username = "support@tinyrack.net"
+imap.sasl.plain.password.command = "bw get item e6550380-bf6b-4890-a02d-b31f00e769a4 | jq -r '.fields[] | select(.name == \"app password (mail-client)\") | .value'"
+
+smtp.server = "smtps://mail.winetree94.com:465"
+smtp.sasl.plain.username = "support@tinyrack.net"
+smtp.sasl.plain.password.command = "bw get item e6550380-bf6b-4890-a02d-b31f00e769a4 | jq -r '.fields[] | select(.name == \"app password (mail-client)\") | .value'"
+
+[accounts."stalwart-tester@tinyrack.net"]
+email = "tester@tinyrack.net"
+display-name = "Stalwart Tester"
+
+imap.server = "imaps://mail.winetree94.com:993"
+imap.sasl.plain.username = "tester@tinyrack.net"
+imap.sasl.plain.password.command = "bw get item 1753eeb8-fcd0-48f4-8a34-b31f00e769a4 | jq -r '.fields[] | select(.name == \"app password (mail-client)\") | .value'"
+
+smtp.server = "smtps://mail.winetree94.com:465"
+smtp.sasl.plain.username = "tester@tinyrack.net"
+smtp.sasl.plain.password.command = "bw get item 1753eeb8-fcd0-48f4-8a34-b31f00e769a4 | jq -r '.fields[] | select(.name == \"app password (mail-client)\") | .value'"
+
+[accounts.gmail-personal]
+email = "winetree94@gmail.com"
+display-name = "Gmail Personal"
+
+imap.server = "imaps://imap.gmail.com:993"
+imap.sasl.plain.username = "winetree94@gmail.com"
+imap.sasl.plain.password.command = "bw get item 3a4a55f1-8fb7-42af-ab7a-b31f00e769a5 | jq -r '.fields[] | select(.name == \"App Password\") | .value'"
+
+smtp.server = "smtps://smtp.gmail.com:465"
+smtp.sasl.plain.username = "winetree94@gmail.com"
+smtp.sasl.plain.password.command = "bw get item 3a4a55f1-8fb7-42af-ab7a-b31f00e769a5 | jq -r '.fields[] | select(.name == \"App Password\") | .value'"
+
+[accounts.gmail-vivident]
+email = "hansolpark@vivident.xyz"
+display-name = "Gmail Work"
+
+imap.server = "imaps://imap.gmail.com:993"
+imap.sasl.plain.username = "hansolpark@vivident.xyz"
+imap.sasl.plain.password.command = ["zsh", "-lic", "bw-vivident get item 4b0595e9-61c8-4fa7-a79c-f89debf7bdc0 | jq -r '.fields[] | select(.name == \"App Password (Personal SMTP)\") | .value'"]
+
+smtp.server = "smtps://smtp.gmail.com:465"
+smtp.sasl.plain.username = "hansolpark@vivident.xyz"
+smtp.sasl.plain.password.command = ["zsh", "-lic", "bw-vivident get item 4b0595e9-61c8-4fa7-a79c-f89debf7bdc0 | jq -r '.fields[] | select(.name == \"App Password (Personal SMTP)\") | .value'"]
+
+# Outlook / Microsoft 365
+# [accounts.outlook-personal]
+# email = "winetree94@outlook.com"
+# display-name = "Outlook Personal"
+# msgraph.auth.token.command = ["oauth-token-helper", "outlook-personal"]

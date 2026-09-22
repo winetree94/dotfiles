@@ -190,6 +190,15 @@
       }
     },
     {
+      "kind": "file",
+      "localPath": {
+        "default": "~/.config/himalaya/config.toml"
+      },
+      "mode": {
+        "default": "normal"
+      }
+    },
+    {
       "kind": "directory",
       "localPath": {
         "default": "~/.config/kitty"
