@@ -1,4 +1,4 @@
-model = "gpt-5.6-sol"
+model = "claude-sonnet-5"
 model_provider = "cliproxyapi"
 
 approval_policy = "never"
@@ -13,6 +13,7 @@ experimental_realtime_ws_base_url = "https://llm.winetree94.com/v1" # Codex App 
 
 [model_providers.cliproxyapi]
 base_url = "https://llm.winetree94.com/v1"
+model_catalog_url = "https://llm.winetree94.com/v1/models?client_version=0.156.1"
 env_key = "CLIPROXY_API_KEY"
 name = "CliProxyApi"
 wire_api = "responses"
@@ -91,6 +92,9 @@ trust_level = "trusted"
 [notice]
 hide_rate_limit_model_nudge = true
 
+[notice.model_migrations]
+"gpt-5.6-sol" = "gpt-6-sol"
+
 [mcp_servers.figma]
 url = "https://mcp.figma.com/mcp"
 
@@ -137,3 +141,6 @@ enabled = true
 [desktop]
 followUpQueueMode = "steer"
 conversationDetailMode = "STEPS_COMMANDS"
+
+[tui]
+screen_reader_detection_done = true
