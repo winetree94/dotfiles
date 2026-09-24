@@ -13,12 +13,15 @@ experimental_realtime_ws_base_url = "https://llm.winetree94.com/v1" # Codex App 
 
 [model_providers.cliproxyapi]
 base_url = "https://llm.winetree94.com/v1"
-# model_catalog_url = "https://llm.winetree94.com/v1/models?client_version=0.156.1"
+model_catalog_url = "https://llm.winetree94.com/v1/models?client_version=0.156.1"
 env_key = "CLIPROXY_API_KEY"
 name = "CliProxyApi"
 wire_api = "responses"
-requires_openai_auth = true
+requires_openai_auth = false
 supports_websockets = true # Choose whether to enable websockets as needed
+
+[features]
+api_key_model_discovery = true
 
 [projects."/home/winetree94"]
 trust_level = "trusted"
@@ -87,6 +90,9 @@ trust_level = "trusted"
 trust_level = "trusted"
 
 [projects."/home/winetree94/Documents/Codex/2026-09-22/df"]
+trust_level = "trusted"
+
+[projects."/home/winetree94/.config/opencode"]
 trust_level = "trusted"
 
 [notice]

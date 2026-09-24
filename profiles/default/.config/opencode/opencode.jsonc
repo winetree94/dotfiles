@@ -30,30 +30,33 @@
     "fireworks-ai"
   ],
   "provider": {
-    // "litellm": {
-    //   "npm": "@ai-sdk/openai-compatible",
-    //   "name": "litellm",
-    //   "options": {
-    //     "baseURL": "https://llm.winetree94.com/v1",
-    //     "apiKey": "{env:LITELLM_API_KEY}"
-    //   },
-    //   "models": {
-    //     "gemma-4-E4B-it-Q4_K_M": {
-    //       "name": "gemma-4-E4B-it-Q4_K_M",
-    //       "limit": {
-    //         "context": 131072,
-    //         "output": 131072
-    //       }
-    //     },
-    //     "gemma-4-26B-A4B-it-UD-Q4_K_M": {
-    //       "name": "gemma-4-26B-A4B-it-UD-Q4_K_M",
-    //       "limit": {
-    //         "context": 131072,
-    //         "output": 131072
-    //       }
-    //     }
-    //   }
-    // },
+    "cliproxyapi": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "cliproxyapi",
+      "options": {
+        "baseURL": "https://llm.winetree94.com/v1",
+        "apiKey": "{env:CLIPROXY_API_KEY}",
+        "modelsDiscovery": {
+          "enabled": true
+        }
+      },
+      "models": {
+        // "gemma-4-E4B-it-Q4_K_M": {
+        //   "name": "gemma-4-E4B-it-Q4_K_M",
+        //   "limit": {
+        //     "context": 131072,
+        //     "output": 131072
+        //   }
+        // },
+        // "gemma-4-26B-A4B-it-UD-Q4_K_M": {
+        //   "name": "gemma-4-26B-A4B-it-UD-Q4_K_M",
+        //   "limit": {
+        //     "context": 131072,
+        //     "output": 131072
+        //   }
+        // }
+      }
+    }
     // "vllm-server": {
     //   "npm": "@ai-sdk/openai-compatible",
     //   "name": "Remote vLLM",
@@ -115,14 +118,7 @@
     // }
   },
   "plugin": [
-    [
-      "opencode-cliproxyapi",
-      {
-        "baseURL": "https://llm.winetree94.com",
-        "providerID": "cpa",
-        "providerName": "cpa"
-      }
-    ]
+    // "opencode-models-discovery@latest"
   ],
   "skills": {
     "paths": [
