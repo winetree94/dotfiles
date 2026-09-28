@@ -2,9 +2,9 @@
 
 ## 연결
 
-`psql`로 운영 읽기 복제본에 질의한다. 호스트는 `10.78.154.103`, 포트는 `15435`, 데이터베이스는 `eevee`, SSL 모드는 `require`다. 인증 정보는 Bitwarden 항목 id `f48f50f6-d9a6-4478-839e-c52c4dcb052a`의 `bw get username '<item-id>'`, `bw get password '<item-id>'`로 필요한 값만 읽어 연결 프로세스에 직접 전달한다. 인증 정보와 연결 URL은 출력·기록하지 않는다.
+대상 배포 환경의 IAM 인증 DB 연결 절차로 `eevee_ro`에 연결한다.
 
-모든 쿼리는 명시적 읽기 전용 트랜잭션, `ON_ERROR_STOP`, 사용자 psql 설정 제외, 페이저 비활성화, 짧은 실행 제한 시간으로 실행한다.
+모든 쿼리는 명시적 읽기 전용 트랜잭션, `ON_ERROR_STOP`, 사용자 psql 설정 제외, 페이저 비활성화로 실행한다. RDS Proxy는 PostgreSQL 시작 옵션을 지원하지 않으므로 `PGOPTIONS`로 `default_transaction_read_only`나 `statement_timeout`을 전달하지 않는다. 대신 연결 후 `BEGIN TRANSACTION READ ONLY`를 실행하고 필요한 경우 트랜잭션 안에서 `SET LOCAL statement_timeout`을 설정한다.
 
 ## 발견과 분석
 
@@ -19,4 +19,3 @@
 ## 운영 데이터 접근 제한
 
 - `SELECT`, 카탈로그 조회, `ANALYZE` 없는 `EXPLAIN`만 실행한다. DDL, DML, `CALL`, `DO`, `COPY ... PROGRAM`, 유지보수 명령, advisory lock, 데이터를 바꾸는 함수를 실행하지 않는다. 데이터베이스·역할·스키마·권한·세션 기본값을 변경하지 않는다.
-

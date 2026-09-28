@@ -45,4 +45,6 @@ description: "Vivident의 사무실에서 운영되는 네트워크, 인트라�
 ---
 ## 외부 인프라의 관리
 
-회사 공통 AWS, Cloudflare, 오브젝트 스토리지 작업은 [references/external.md](references/external.md)를 읽는다. 외부 리소스도 관리 저장소가 있으면 해당 저장소의 절차를 따른다.
+회사 운영 서비스는 외부 인프라에서 관리된다.
+
+외부 인프라 작업은 [references/external.md](references/external.md)에서 대상 공급자의 문서로 이동한다. 외부 리소스도 관리 저장소가 있으면 해당 저장소의 절차를 따른다.

@@ -5,13 +5,7 @@
 ---
 ## AWS
 
-회사 공통 AWS 리소스는 AWS CLI로 관리한다. 설정된 `vivident` 프로필을 사용하고 작업 전에 계정과 대상 리전을 확인한다.
-
-```sh
-aws --profile vivident sts get-caller-identity
-```
-
-리전은 프로필 기본값 대신 대상 리소스·관리 설정에서 확인해 명령에 명시한다. 인트라넷 백업의 리전도 현재 백업 정의에서 확인한다.
+회사 공통 AWS 리소스의 조회·진단·변경과 RDS 연결은 [AWS 관리 가이드](aws.md)를 따른다.
 
 ---
 ## Cloudflare
