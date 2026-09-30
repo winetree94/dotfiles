@@ -432,6 +432,15 @@
     {
       "kind": "file",
       "localPath": {
+        "default": "~/.doppler/.doppler.yaml"
+      },
+      "mode": {
+        "default": "secret"
+      }
+    },
+    {
+      "kind": "file",
+      "localPath": {
         "default": "~/.gitconfig"
       },
       "mode": {
