@@ -1,4 +1,4 @@
-model = "gpt-5.6-luna"
+model = "gpt-6.1-sol"
 model_provider = "cliproxyapi"
 
 approval_policy = "never"
@@ -10,10 +10,11 @@ plan_mode_reasoning_effort = "medium"
 
 experimental_realtime_webrtc_call_base_url = "https://llm.winetree94.com/v1" # Codex App voice chat requires WebRTC. If you do not use voice chat, you can omit this option.
 experimental_realtime_ws_base_url = "https://llm.winetree94.com/v1" # Codex App voice chat requires WebRTC. If you do not use voice chat, you can omit this option.
+service_tier = "fast"
 
 [model_providers.cliproxyapi]
 base_url = "https://llm.winetree94.com/v1"
-model_catalog_url = "https://llm.winetree94.com/v1/models?client_version=0.156.1"
+model_catalog_url = "https://llm.winetree94.com/v1/models"
 env_key = "CLIPROXY_API_KEY"
 name = "CliProxyApi"
 wire_api = "responses"
@@ -22,6 +23,7 @@ supports_websockets = true # Choose whether to enable websockets as needed
 
 [features]
 api_key_model_discovery = true
+fast_mode = true
 
 [projects."/home/winetree94"]
 trust_level = "trusted"
@@ -150,3 +152,8 @@ conversationDetailMode = "STEPS_COMMANDS"
 
 [tui]
 screen_reader_detection_done = true
+status_line = ["model-with-reasoning", "current-dir", "thread-name", "project-name", "git-branch", "context-remaining", "context-used", "fast-mode"]
+status_line_use_colors = true
+
+[tui.model_availability_nux]
+"gpt-6.1-sol" = 3

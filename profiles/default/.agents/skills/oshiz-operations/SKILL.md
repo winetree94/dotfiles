@@ -26,8 +26,6 @@ description: "비비던트에서 운영하는 오시즈의 서비스 운영과 �
 
 지표, 퍼널, 리텐션, 매출, 사용자 행동, 이벤트, 채팅, Idolive, 코호트, 고객 지원 조사에는 [references/data-analysis.md](references/data-analysis.md)를 추가로 읽는다. 스키마와 업무 의미는 분석 시작 시 실제 데이터베이스와 코드에서 확인한다.
 
-환경별 DB 접속은 각 환경 문서의 Bun 헬퍼 명령을 사용한다. 헬퍼는 `vivident`/`us-west-2`, Proxy DNS·TCP, IAM `eevee_ro`, 읽기 전용 검증을 수행한 뒤 대화형 `psql`을 연다.
-
 ## 서비스 운영 경계 유지
 
 - 고객 계정, 결제, 이용 권한, 보상, 콘텐츠를 임의의 DB 쓰기로 수정하지 않는다.

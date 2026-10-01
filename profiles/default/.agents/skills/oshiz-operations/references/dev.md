@@ -7,10 +7,21 @@
 dev는 비공개 RDS PostgreSQL이며 RDS Proxy에서 IAM 인증을 사용한다. 조회와 분석에는 `eevee_ro`를 사용한다. WARP, 베스천, SSM 포트 포워딩은 사용하지 않는다.
 
 ```bash
-bun ~/.agents/skills/oshiz-operations/scripts/db-connect.ts dev
+aws configure list-profiles | rg -x vivident
+aws --profile vivident --region us-west-2 sts get-caller-identity
+psql --version
+
+db_proxy=$(aws --profile vivident --region us-west-2 rds describe-db-proxies \
+  --query 'DBProxies[?starts_with(DBProxyName, `eevee-dev-db-proxy-`)].Endpoint | [0]' --output text)
+test -n "$db_proxy" && test "$db_proxy" != None
+PGPASSWORD="$(aws --profile vivident --region us-west-2 rds generate-db-auth-token \
+  --hostname "$db_proxy" --port 5432 --username eevee_ro)" PGCONNECT_TIMEOUT=15 psql \
+  "host=$db_proxy port=5432 dbname=eevee user=eevee_ro sslmode=require" \
+  --no-psqlrc --set ON_ERROR_STOP=1 \
+  --command "begin transaction read only; select current_database(), current_user, current_setting('transaction_read_only'); rollback;"
 ```
 
-스크립트는 `vivident` 프로필, `us-west-2`, 사설 DNS, TCP 5432, IAM 인증과 `eevee / eevee_ro / on`을 검증한 뒤 대화형 `psql`을 연다. 검증에 실패하면 셸을 열지 않는다. 실제 조회도 읽기 전용 트랜잭션 안에서 실행한다.
+결과는 `eevee`, `eevee_ro`, `on`이어야 한다. 다르면 쿼리하지 않는다. `PGOPTIONS`는 사용하지 않으며 실제 조회도 읽기 전용 트랜잭션 안에서 실행한다. 연결 시간 초과 시 `tailscale status`와 광고된 경로를 확인한다.
 
 ## 기타 인프라
 
