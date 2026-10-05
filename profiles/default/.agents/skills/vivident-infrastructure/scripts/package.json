@@ -1,0 +1,11 @@
+{
+  "name": "@vivident/infrastructure-scripts",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "bunx --bun tsc --noEmit -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.4.2"
+  }
+}

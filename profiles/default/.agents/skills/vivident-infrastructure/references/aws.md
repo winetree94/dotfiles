@@ -25,104 +25,35 @@ aws --profile vivident --region us-west-2 sts get-caller-identity
 
 조회 결과에 운영 서비스의 엔드포인트, 계정 ID 등 민감할 수 있는 값이 포함되면 필요한 필드만 출력하고 문서나 작업 보고에 그대로 복사하지 않는다. 삭제, 교체, 공개 접근 허용처럼 복구가 어렵거나 노출 범위를 넓히는 변경은 요청 범위를 재확인한다.
 
-오시즈 전용 AWS 리소스는 이 문서에서 직접 관리하지 않고 [oshiz-operations](../../oshiz-operations/SKILL.md)를 따른다. 인트라넷 백업과 오브젝트 스토리지의 구성은 인트라넷 저장소를 정본으로 삼는다.
+서비스 전용 AWS 리소스는 이 문서에서 직접 관리하지 않고 해당 서비스의 관리 정본을 따른다. 인트라넷 백업과 오브젝트 스토리지의 구성은 인트라넷 저장소를 정본으로 삼는다.
 
-## Tailscale 서브넷 라우터
+## Private 네트워크 접근
 
-비공개 AWS 리소스에는 private subnet의 전용 EC2 한 대를 Tailscale 서브넷 라우터로 두고 접근한다. 공인 IP를 부여하지 않으며 VPC CIDR `10.0.0.0/16`을 tailnet에 광고한다. WARP, 베스천, 별도 relay 계층은 사용하지 않는다.
+AWS 리소스는 주로 VPC CIDR `10.0.0.0/16` 의 Private Subnet 을 사용한다. 그래서 기본적으로 공개 경로로 접근할 수 없다.
+그래서 해당 네트워크 망에 연결된 EC2 인스턴스에 Tailscale 서브넷 라우터가 배포되어 있다.
+이 노드는 공인 IP를 부여하지 않으며 VPC CIDR `10.0.0.0/16`을 tailnet에 광고한다.
+내부망 `opnsense` 가 Tailscale 에 연결되어 해당 VPC CIDR 을 라우팅하므로, 내부망에서는 특별한 조치 없이 AWS에 접근할 수 있다.
+외부망인 경우에만 Tailscale 연결이 필요하다.
 
-라우터는 AWS CLI로 직접 생성하며 다음 조건을 유지한다.
+## 범용 RDS 연결 도구
 
-- IAM instance profile에 `AmazonSSMManagedInstanceCore`를 부착한다. SSM은 복구·진단용이며 평상시 DB 포워딩 경로가 아니다.
-- 라우터 보안 그룹 인바운드는 비워 둔다. RDS Proxy·Redis·NATS 보안 그룹에서 라우터 보안 그룹으로 필요한 포트만 허용한다.
-- source/destination check를 끄고 IPv4·IPv6 forwarding을 켠다.
-- Tailscale 등록은 운영자가 Session Manager 셸에서 수동 수행한다. auth key를 문서나 user-data에 저장하지 않는다.
-- Tailscale DNS 설정에서 us-west-2.rds.amazonaws.com 질의는 VPC Resolver 10.0.0.2로 보내도록 split DNS를 구성한다. 로컬 PC의 /etc/hosts, 라우팅, resolver 설정은 변경하지 않는다.
-
-인스턴스 생성 뒤 `tailscaled`와 forwarding 상태를 확인한다. 운영자는 Session Manager 셸에서 다음 명령을 직접 실행하고 Tailscale 관리 화면에서 subnet route를 승인한다.
+비공개 PostgreSQL RDS Proxy의 IAM 인증 연결과 읽기 전용 SQL 실행은 [connect-rds.ts](../scripts/connect-rds.ts)를 사용한다. 대상 Proxy 접두사, 데이터베이스 이름, DB 사용자, AWS 프로필과 리전을 인자로 전달하므로 서비스별 환경을 추가할 수 있다.
 
 ```bash
-sudo tailscale up \
-  --advertise-routes=10.0.0.0/16 \
-  --snat-subnet-routes=true \
-  --accept-dns=false
+cd <인프라-스킬-디렉터리>/scripts
+bun install
+bun run typecheck
+
+bun connect-rds.ts \
+  --proxy-prefix <rds-proxy-name-prefix> \
+  --db-name <database> \
+  --db-user <iam-db-user> \
+  --profile <aws-profile> \
+  --region <aws-region> \
+  --check
 ```
 
-장비에서 `tailscale status`가 로그인 상태이고 `10.0.0.0/16` 경로가 활성화된 것을 확인한다. 라우터를 교체할 때는 새 인스턴스와 보안 그룹·라우팅을 검증한 뒤 기존 노드를 제거한다.
+`--check`, `--query`, `--file`, stdin 중 하나만 사용한다.
+스크립트는 Proxy가 정확히 하나인지, 사설 IPv4와 PostgreSQL 포트로 연결되는지, IAM 인증과 예상 데이터베이스·사용자·읽기 전용 상태가 맞는지 확인한다.
+SQL은 읽기 전용 트랜잭션으로 실행하며 IAM 토큰은 출력하거나 명령 인자에 넣지 않는다. 공개 접근 전환, SSM 포트 포워딩, 로컬 relay는 사용하지 않는다.
 
-## 비공개 RDS PostgreSQL 연결
-
-비공개 RDS는 공개 접근으로 전환하지 않는다. Tailscale 서브넷 라우터를 통해 RDS Proxy 엔드포인트로 직접 연결하고, 실제 Proxy 호스트명을 대상으로 RDS IAM 토큰을 발급한다. SSM 포트 포워딩이나 로컬 relay를 사용하지 않는다.
-
-RDS Proxy가 DUAL 네트워크 타입이면 일반 DNS가 IPv6 주소를 우선 반환할 수 있다. 클라이언트의 로컬 설정을 바꾸지 말고 Tailscale split DNS를 통해 AWS VPC Resolver가 사설 IPv4 주소를 반환하도록 한다. 확인 명령은 다음과 같다.
-
-```bash
-dig +short A @10.0.0.2 <rds-proxy-endpoint>
-nc -4 -vz <rds-proxy-endpoint> 5432
-```
-
-### RDS 대상 확인
-
-대상 DB 인스턴스의 엔드포인트, 데이터베이스 이름, VPC와 보안 그룹을 확인한다.
-
-```bash
-aws --profile vivident --region us-west-2 rds describe-db-instances \
-  --db-instance-identifier <db-instance-identifier> \
-  --query 'DBInstances[0].{Endpoint:Endpoint.Address,Port:Endpoint.Port,DBName:DBName,Public:PubliclyAccessible,Vpc:DBSubnetGroup.VpcId,SecurityGroups:VpcSecurityGroups[*].GroupId}' \
-  --output json
-```
-
-`Public`이 `false`이면 공개 접근을 활성화하거나 광범위한 인바운드 규칙을 추가하지 않는다. Tailscale 라우터 보안 그룹이 RDS 보안 그룹의 PostgreSQL 포트에 허용되어 있는지 확인한다.
-
-```bash
-aws --profile vivident --region us-west-2 ssm describe-instance-information \
-  --query 'InstanceInformationList[?PingStatus==`Online`].{Id:InstanceId,Platform:PlatformName,LastPing:LastPingDateTime}' \
-  --output table
-```
-
-선택한 인스턴스의 네트워크 경로와 보안 그룹이 RDS 보안 그룹의 PostgreSQL 포트에 허용되어 있어야 한다. 인스턴스 이름이나 ID를 추측하지 않고 조회 결과와 관리 정본에서 대상을 확정한다.
-
-### IAM 토큰으로 직접 접속
-
-실제 RDS Proxy 엔드포인트를 대상으로 IAM 토큰을 발급하고 해당 호스트로 직접 접속한다. 토큰이나 접속 정보를 셸 기록, 문서, 작업 보고에 남기지 않는다.
-
-```bash
-dbhost='<rds-endpoint>'
-
-PGPASSWORD="$(
-  aws --profile vivident --region us-west-2 rds generate-db-auth-token \
-    --hostname "$dbhost" \
-    --port 5432 \
-    --username <db-user>
-)" \
-psql \
-  "host=$dbhost port=5432 dbname=<db-name> user=<db-user> sslmode=require" \
-  --no-psqlrc \
-  --set ON_ERROR_STOP=1 \
-  --command 'select current_database(), current_user, version();'
-```
-
-연결 결과의 데이터베이스와 사용자가 예상과 다르면 즉시 세션을 종료하고 쓰기 작업을 하지 않는다. IAM 토큰은 짧은 시간만 유효하므로 만료되면 새로 발급한다. 별도로 `PGPASSWORD`를 설정했다면 작업 후 제거한다.
-
-```bash
-unset PGPASSWORD
-```
-
-### 문제 해결
-
-- `tailscale status`가 로그아웃 상태: 운영자가 라우터에서 `tailscale up`을 다시 실행하고 관리 화면에서 경로를 승인한다.
-- 직접 연결 timeout: 로컬 tailnet 경로, 라우터 forwarding, RDS와 라우터의 보안 그룹, 라우팅, NACL을 확인한다.
-- `TargetNotConnected` 또는 SSM 권한 오류: 라우터의 IAM instance profile과 SSM 관리형 상태를 확인한다.
-- `PAM authentication failed` 또는 `rds-db:connect` 거부: DB 사용자의 `rds_iam` 구성원 여부와 IAM 정책을 확인한다.
-- `database does not exist`: RDS 조회 결과의 `DBName`과 접속 명령의 데이터베이스 이름을 비교한다.
-- 연결 확인 결과가 예상과 다름: 작업을 중단하고 대상 식별자와 관리 정본을 다시 확인한다.
-
-## 공식 문서
-
-- [AWS CLI 구성 및 자격 증명](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)
-- [AWS CLI `sts get-caller-identity`](https://docs.aws.amazon.com/cli/latest/reference/sts/get-caller-identity.html)
-- [Amazon RDS IAM 데이터베이스 인증](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html)
-- [AWS Systems Manager Session Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html)
-- [Session Manager Plugin](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html)
-- [AWS CLI `start-session`](https://docs.aws.amazon.com/cli/latest/reference/ssm/start-session.html)
-- [AWS CLI `generate-db-auth-token`](https://docs.aws.amazon.com/cli/latest/reference/rds/generate-db-auth-token.html)
