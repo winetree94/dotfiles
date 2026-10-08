@@ -275,19 +275,7 @@
     {
       "kind": "file",
       "localPath": {
-        "default": "~/.config/pi/agent/config.yml"
-      },
-      "mode": {
-        "default": "normal"
-      },
-      "permission": {
-        "default": "0644"
-      }
-    },
-    {
-      "kind": "file",
-      "localPath": {
-        "default": "~/.config/pi/agent/models.yml"
+        "default": "~/.config/pi/agent/settings.json"
       },
       "mode": {
         "default": "normal"

@@ -1,0 +1,24 @@
+{
+  "lastChangelogVersion": "1.1.0",
+  "packages": [
+    "npm:billion-context",
+    "npm:pi-subagents",
+    "npm:@juicesharp/rpiv-ask-user-question",
+    "npm:@juicesharp/rpiv-todo",
+    "npm:pi-goal-x",
+    "npm:@plannotator/pi-extension",
+    "npm:pi-background-tasks",
+    "npm:@router-for-me/pi-cliproxyapi-provider"
+  ],
+  "extensions": [
+    "+builtin:mcp"
+  ],
+  "enabledModels": [
+    "cliproxyapi/*"
+  ],
+  "defaultProjectTrust": "always",
+  "images": {
+    "blockImages": false
+  },
+  "theme": "system"
+}
